@@ -209,6 +209,20 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 		return r
 	}
 
+	//if we have a next stack
+	if t.stack.next != 0 {
+		nstack := (*stackHeader)(unsafe.Pointer(t.stack.next))
+		if nstack.free >= n {
+			t.stack = *nstack
+			r = t.stack.sp
+			t.stack.free -= n
+			t.stack.sp += uintptr(n)
+			return r
+		}
+		Xfree(t, nstack.page)
+		t.stack.next = 0
+	}
+
 	if t.stack.page != 0 {
 		*(*stackHeader)(unsafe.Pointer(t.stack.page)) = t.stack
 	}
@@ -226,6 +240,10 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 	r = t.stack.sp
 	t.stack.free -= n
 	t.stack.sp += uintptr(n)
+	if t.stack.prev != 0 {
+		(*stackHeader)(unsafe.Pointer(t.stack.prev)).next = t.stack.page
+	}
+
 	return r
 }
 
@@ -237,20 +255,28 @@ func (t *TLS) Free(n int) {
 	if t.stack.sp != t.stack.page+stackHeaderSize {
 		return
 	}
-
-	Xfree(t, t.stack.page)
-	if t.stack.prev != 0 {
-		t.stack = *(*stackHeader)(unsafe.Pointer(t.stack.prev))
+	if t.stack.next == 0 { //if we are the last frame
+		if t.stack.prev != 0 { //but not the first
+			t.stack = *(*stackHeader)(unsafe.Pointer(t.stack.prev))
+		}
 		return
 	}
-
-	t.stack = stackHeader{}
+	//if not the last frame dealloc the last one.
+	Xfree(t, t.stack.next)
+	if t.stack.prev == 0 { //if we are the first frame, also free this and reset
+		Xfree(t, t.stack.page)
+		t.stack = stackHeader{}
+		return
+	}
+	(*stackHeader)(unsafe.Pointer(t.stack.page)).next = 0
+	t.stack = *(*stackHeader)(unsafe.Pointer(t.stack.prev))
 }
 
 type stackHeader struct {
 	free int     // bytes left in page
 	page uintptr // stack page
 	prev uintptr // prev stack page = prev stack header
+	next uintptr // next stack page = next stack header
 	sp   uintptr // next allocation address
 }
 
