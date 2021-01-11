@@ -49,6 +49,12 @@ var (
 	_ = trc
 )
 
+func init() {
+	if n := stackHeaderSize; n%16 != 0 {
+		panic(fmt.Errorf("internal error: stackHeaderSize %v == %v (mod 16)", n, n%16))
+	}
+}
+
 func origin(skip int) string {
 	pc, fn, fl, _ := runtime.Caller(skip)
 	f := runtime.FuncForPC(pc)
@@ -299,6 +305,7 @@ type stackHeader struct {
 	prev uintptr // prev stack page = prev stack header
 	next uintptr // next stack page = next stack header
 	sp   uintptr // next allocation address
+	_    stackHeaderPadding
 }
 
 func cString(t *TLS, s string) uintptr {
