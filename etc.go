@@ -209,18 +209,17 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 		return r
 	}
 	//if we have a next stack
-	if t.stack.next != nil {
-		nstack := t.stack.next
-		if nstack.free >= n {
+	if nstack := t.stack.next; nstack != 0 {
+		if (*stackHeader)(unsafe.Pointer(nstack)).free >= n {
 			*(*stackHeader)(unsafe.Pointer(t.stack.page)) = t.stack
-			t.stack = *nstack
+			t.stack = *(*stackHeader)(unsafe.Pointer(nstack))
 			r = t.stack.sp
 			t.stack.free -= n
 			t.stack.sp += uintptr(n)
 			return r
 		}
-		Xfree(t, nstack.page)
-		t.stack.next = nil
+		Xfree(t, nstack)
+		t.stack.next = 0
 	}
 	if t.stack.page != 0 {
 		*(*stackHeader)(unsafe.Pointer(t.stack.page)) = t.stack
@@ -232,7 +231,7 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 		rq += int(stackSegmentSize)
 	}
 	t.stack.free = rq - int(stackHeaderSize)
-	t.stack.prev = (*stackHeader)(unsafe.Pointer(t.stack.page))
+	t.stack.prev = t.stack.page
 
 	rq += 15
 	rq &^= 15
@@ -242,8 +241,8 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 	r = t.stack.sp
 	t.stack.free -= n
 	t.stack.sp += uintptr(n)
-	if t.stack.prev != nil {
-		t.stack.prev.next = (*stackHeader)(unsafe.Pointer(t.stack.page))
+	if t.stack.prev != 0 {
+		(*stackHeader)(unsafe.Pointer(t.stack.prev)).next = t.stack.page
 	}
 
 	return r
@@ -260,27 +259,27 @@ func (t *TLS) Free(n int) {
 	if t.stack.sp != t.stack.page+stackHeaderSize {
 		return
 	}
-	isFirst := t.stack.prev == nil
+	isFirst := t.stack.prev == 0
 	nstack := t.stack
 
 	//look if we are in the last n stackframes (n=stackFrameKeepalive)
 	//if we find something just return and set the current stack pointer to the previous one
 	for i := 0; i < stackFrameKeepalive; i++ {
-		if nstack.next == nil {
+		if nstack.next == 0 {
 			if !isFirst {
 				*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
-				t.stack = *t.stack.prev
+				t.stack = *(*stackHeader)(unsafe.Pointer(t.stack.prev))
 			}
 			return
 		}
-		nstack = *nstack.next
+		nstack = *(*stackHeader)(unsafe.Pointer(nstack.next))
 	}
 
 	//if we are the first one, just free all of them
 	if isFirst {
-		for nstack = t.stack; nstack.next != nil; nstack = *nstack.next {
+		for nstack = t.stack; nstack.next != 0; nstack = *(*stackHeader)(unsafe.Pointer(nstack.next)) {
 			if isFirst {
-				Xfree(t, uintptr(unsafe.Pointer(nstack.page)))
+				Xfree(t, nstack.page)
 			}
 		}
 		t.stack = stackHeader{}
@@ -288,18 +287,18 @@ func (t *TLS) Free(n int) {
 	}
 
 	//else only free the last
-	Xfree(t, uintptr(unsafe.Pointer(nstack.page)))
-	nstack.prev.next = nil
-	*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
-	t.stack = *t.stack.prev
+	Xfree(t, nstack.page)
+	(*stackHeader)(unsafe.Pointer(nstack.prev)).next = 0
+	*(*stackHeader)(unsafe.Pointer(t.stack.page)) = t.stack
+	t.stack = *(*stackHeader)(unsafe.Pointer(t.stack.prev))
 }
 
 type stackHeader struct {
-	free int          // bytes left in page
-	page uintptr      // stack page
-	prev *stackHeader // prev stack page = prev stack header
-	next *stackHeader // next stack page = next stack header
-	sp   uintptr      // next allocation address
+	free int     // bytes left in page
+	page uintptr // stack page
+	prev uintptr // prev stack page = prev stack header
+	next uintptr // next stack page = next stack header
+	sp   uintptr // next allocation address
 }
 
 func cString(t *TLS, s string) uintptr {
