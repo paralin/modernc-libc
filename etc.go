@@ -210,12 +210,10 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 	}
 	//if we have a next stack
 	if t.stack.next != nil {
-		nstack := (*stackHeader)(unsafe.Pointer(t.stack.next))
+		nstack := t.stack.next
 		if nstack.free >= n {
 			*(*stackHeader)(unsafe.Pointer(t.stack.page)) = t.stack
-
 			t.stack = *nstack
-
 			r = t.stack.sp
 			t.stack.free -= n
 			t.stack.sp += uintptr(n)
@@ -227,6 +225,7 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 	if t.stack.page != 0 {
 		*(*stackHeader)(unsafe.Pointer(t.stack.page)) = t.stack
 	}
+
 	rq := n + int(stackHeaderSize)
 	if rq%int(stackSegmentSize) != 0 {
 		rq -= rq % int(stackSegmentSize)
@@ -250,6 +249,9 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 	return r
 }
 
+//this declares how many stack frames are kept alive before being freed
+const stackFrameKeepalive = 2
+
 func (t *TLS) Free(n int) {
 	n += 15
 	n &^= 15
@@ -258,36 +260,35 @@ func (t *TLS) Free(n int) {
 	if t.stack.sp != t.stack.page+stackHeaderSize {
 		return
 	}
-	if t.stack.next == nil { //if we are the last frame
-		if t.stack.prev != nil { //but not the first
-			*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
-			t.stack = *t.stack.prev
+	isFirst := t.stack.prev == nil
+	nstack := t.stack
+
+	for i := 0; i < stackFrameKeepalive; i++ {
+		if nstack.next == nil { //if we are the last frame
+			if !isFirst { //but not the first
+				*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
+				t.stack = *t.stack.prev
+			}
+			return
 		}
-		return
+		nstack = *nstack.next
 	}
 
-	nstack := *t.stack.next
-	if nstack.next == nil { //if we are the second last frame
-		if t.stack.prev != nil { //but not the first
-			*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
-			t.stack = *t.stack.prev
+	if isFirst {
+		t.stack = stackHeader{}
+		for nstack = t.stack; nstack.next != nil; nstack = *nstack.next {
+			if isFirst {
+				Xfree(t, uintptr(unsafe.Pointer(nstack.page)))
+			}
 		}
 		return
 	}
 
 	//if not the second last frame dealloc the last one.
-	Xfree(t, uintptr(unsafe.Pointer(nstack.next)))
-	if t.stack.prev == nil { //if we are the first frame, reset
-		if t.stack.next != nil {
-			Xfree(t, uintptr(unsafe.Pointer(t.stack.next)))
-		}
-		Xfree(t, t.stack.page)
-		t.stack = stackHeader{}
-		return
-	}
+	Xfree(t, uintptr(unsafe.Pointer(nstack.page)))
 	t.stack.next = nil
-	*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
 
+	*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
 	t.stack = *t.stack.prev
 }
 
