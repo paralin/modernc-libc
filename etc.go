@@ -208,12 +208,14 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 		t.stack.sp += uintptr(n)
 		return r
 	}
-
 	//if we have a next stack
 	if t.stack.next != 0 {
 		nstack := (*stackHeader)(unsafe.Pointer(t.stack.next))
 		if nstack.free >= n {
+			*(*stackHeader)(unsafe.Pointer(t.stack.page)) = t.stack
+
 			t.stack = *nstack
+
 			r = t.stack.sp
 			t.stack.free -= n
 			t.stack.sp += uintptr(n)
@@ -222,7 +224,6 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 		Xfree(t, nstack.page)
 		t.stack.next = 0
 	}
-
 	if t.stack.page != 0 {
 		*(*stackHeader)(unsafe.Pointer(t.stack.page)) = t.stack
 	}
@@ -232,6 +233,7 @@ func (t *TLS) Alloc(n int) (r uintptr) {
 	}
 	t.stack.free = rq - int(stackHeaderSize)
 	t.stack.prev = t.stack.page
+
 	rq += 15
 	rq &^= 15
 	t.stack.page = mustMalloc(t, types.Size_t(rq))
@@ -257,6 +259,7 @@ func (t *TLS) Free(n int) {
 	}
 	if t.stack.next == 0 { //if we are the last frame
 		if t.stack.prev != 0 { //but not the first
+			*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
 			t.stack = *(*stackHeader)(unsafe.Pointer(t.stack.prev))
 		}
 		return
@@ -268,7 +271,9 @@ func (t *TLS) Free(n int) {
 		t.stack = stackHeader{}
 		return
 	}
-	(*stackHeader)(unsafe.Pointer(t.stack.page)).next = 0
+	t.stack.next = 0
+	*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
+
 	t.stack = *(*stackHeader)(unsafe.Pointer(t.stack.prev))
 }
 
