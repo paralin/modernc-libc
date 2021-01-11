@@ -7,7 +7,8 @@
 package libc // import "modernc.org/libc"
 
 type (
-	RawMem [1<<31 - 1]byte
+	RawMem   [1<<31 - 1]byte
+	RawMem64 [1<<27 - 1]uint64
 )
 
 type bits []int
