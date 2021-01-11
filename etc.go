@@ -263,9 +263,11 @@ func (t *TLS) Free(n int) {
 	isFirst := t.stack.prev == nil
 	nstack := t.stack
 
+	//look if we are in the last n stackframes (n=stackFrameKeepalive)
+	//if we find something just return and set the current stack pointer to the previous one
 	for i := 0; i < stackFrameKeepalive; i++ {
-		if nstack.next == nil { //if we are the last frame
-			if !isFirst { //but not the first
+		if nstack.next == nil {
+			if !isFirst {
 				*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
 				t.stack = *t.stack.prev
 			}
@@ -274,20 +276,20 @@ func (t *TLS) Free(n int) {
 		nstack = *nstack.next
 	}
 
+	//if we are the first one, just free all of them
 	if isFirst {
-		t.stack = stackHeader{}
 		for nstack = t.stack; nstack.next != nil; nstack = *nstack.next {
 			if isFirst {
 				Xfree(t, uintptr(unsafe.Pointer(nstack.page)))
 			}
 		}
+		t.stack = stackHeader{}
 		return
 	}
 
-	//if not the second last frame dealloc the last one.
+	//else only free the last
 	Xfree(t, uintptr(unsafe.Pointer(nstack.page)))
-	t.stack.next = nil
-
+	nstack.prev.next = nil
 	*((*stackHeader)(unsafe.Pointer(t.stack.page))) = t.stack
 	t.stack = *t.stack.prev
 }
