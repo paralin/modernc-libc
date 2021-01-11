@@ -725,11 +725,10 @@ func Xmemset(t *TLS, s uintptr, c int32, n types.Size_t) uintptr {
 
 // void *memcpy(void *dest, const void *src, size_t n);
 func Xmemcpy(t *TLS, dest, src uintptr, n types.Size_t) (r uintptr) {
-	r = dest
 	s := (*RawMem)(unsafe.Pointer(src))[:n:n]
 	d := (*RawMem)(unsafe.Pointer(dest))[:n:n]
 	copy(d, s)
-	return r
+	return dest
 }
 
 // int memcmp(const void *s1, const void *s2, size_t n);
