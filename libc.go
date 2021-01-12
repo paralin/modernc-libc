@@ -709,6 +709,8 @@ func Xstrrchr(t *TLS, s uintptr, c int32) (r uintptr) {
 // void *memset(void *s, int c, size_t n)
 func Xmemset(t *TLS, s uintptr, c int32, n types.Size_t) uintptr {
 	if n != 0 {
+		c := byte(c & 0xff)
+
 		//this will make sure that on platforms where they are not equally alligned
 		//we clear out the first few bytes until allignment
 		bytesBeforeAllignment := s % unsafe.Alignof(uint64(0))
@@ -718,10 +720,9 @@ func Xmemset(t *TLS, s uintptr, c int32, n types.Size_t) uintptr {
 		b := (*RawMem)(unsafe.Pointer(s))[:bytesBeforeAllignment:bytesBeforeAllignment]
 		n -= types.Size_t(bytesBeforeAllignment)
 		for i := range b {
-			b[i] = byte(c)
+			b[i] = c
 		}
-
-		i64 := uint64(byte(c) + byte(c)<<8 + byte(c)<<16 + byte(c)<<24 + byte(c)<<32 + byte(c)<<40 + byte(c)<<48 + byte(c)<<56)
+		i64 := uint64(c) + uint64(c)<<8 + uint64(c)<<16 + uint64(c)<<24 + uint64(c)<<32 + uint64(c)<<40 + uint64(c)<<48 + uint64(c)<<56
 		b8 := (*RawMem64)(unsafe.Pointer(s + bytesBeforeAllignment))[: n/8 : n/8]
 		for i := range b8 {
 			b8[i] = i64
@@ -729,7 +730,7 @@ func Xmemset(t *TLS, s uintptr, c int32, n types.Size_t) uintptr {
 		if n%8 != 0 {
 			b = (*RawMem)(unsafe.Pointer(s + bytesBeforeAllignment + uintptr(n-n%8)))[: n%8 : n%8]
 			for i := range b {
-				b[i] = byte(c)
+				b[i] = c
 			}
 		}
 	}
