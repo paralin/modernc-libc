@@ -726,10 +726,11 @@ func Xmemset(t *TLS, s uintptr, c int32, n types.Size_t) uintptr {
 		for i := range b8 {
 			b8[i] = i64
 		}
-
-		b = (*RawMem)(unsafe.Pointer(s + bytesBeforeAllignment + uintptr(n-n%8)))[: n%8 : n%8]
-		for i := range b {
-			b[i] = byte(c)
+		if n%8 != 0 {
+			b = (*RawMem)(unsafe.Pointer(s + bytesBeforeAllignment + uintptr(n-n%8)))[: n%8 : n%8]
+			for i := range b {
+				b[i] = byte(c)
+			}
 		}
 	}
 	return s
