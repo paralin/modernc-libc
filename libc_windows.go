@@ -112,6 +112,8 @@ var (
 	procSleepEx                    = modkernel32.NewProc("SleepEx")
 	procPeekConsoleInputW          = modkernel32.NewProc("PeekConsoleInputW")
 	procReadConsoleW               = modkernel32.NewProc("ReadConsoleW")
+	procGetExitCodeProcess         = modkernel32.NewProc("GetExitCodeProcess")
+	procWaitForSingleObjectEx      = modkernel32.NewProc("WaitForSingleObjectEx")
 	//	procSetConsoleCP               = modkernel32.NewProc("SetConsoleCP")
 	//	procSetThreadPriority          = modkernel32.NewProc("SetThreadPriority")
 	//--
@@ -1875,10 +1877,13 @@ func extractDigits(s string, base int32) (string, int) {
 			continue
 		}
 		if r == 'x' || r == 'X' {
-			if lastRune != '0' {
-				return "", 0
-			}
 			sbldr.WriteRune(r)
+
+			if lastRune != '0' {
+				// not at end, x terminator
+				break
+			}
+			// 'x' after 0, ok to continue
 			continue
 		}
 		if unicode.IsDigit(r) {
@@ -1909,6 +1914,11 @@ func Xstrtoul(t *TLS, nptr, endptr uintptr, base int32) ulong {
 	if ct == 0 {
 		t.setErrno(errno.EINVAL)
 		return 0
+	}
+
+	if strings.HasSuffix(strings.ToLower(numStr), "x") {
+		numStr = numStr[0 : len(numStr)-1]
+		base = 16
 	}
 
 	var out, err = strconv.ParseUint(numStr, int(base), 64)
@@ -1946,10 +1956,16 @@ func XSetEvent(t *TLS, hEvent uintptr) int32 {
 // long int strtol(const char *nptr, char **endptr, int base);
 func Xstrtol(t *TLS, nptr, endptr uintptr, base int32) long {
 	var s = GoString(nptr)
+
 	var numStr, ct = extractDigits(s, base)
 	if ct == 0 {
 		t.setErrno(errno.EINVAL)
 		return 0
+	}
+
+	if strings.HasSuffix(strings.ToLower(numStr), "x") {
+		numStr = numStr[0 : len(numStr)-1]
+		base = 16
 	}
 
 	var out, err = strconv.ParseInt(numStr, int(base), 64)
@@ -3463,7 +3479,8 @@ func XGetExitCodeThread(t *TLS, hThread, lpExitCode uintptr) int32 {
 //   BOOL   bAlertable
 // );
 func XWaitForSingleObjectEx(t *TLS, hHandle uintptr, dwMilliseconds uint32, bAlertable int32) uint32 {
-	panic(todo(""))
+	rv, _, _ := syscall.Syscall(procWaitForSingleObjectEx.Addr(), 3, hHandle, uintptr(dwMilliseconds), uintptr(bAlertable))
+	return uint32(rv)
 }
 
 // DWORD MsgWaitForMultipleObjectsEx(
@@ -4023,7 +4040,11 @@ func XGetShortPathNameW(t *TLS, _ ...interface{}) int32 {
 //   LPDWORD lpExitCode
 // );
 func XGetExitCodeProcess(t *TLS, hProcess, lpExitCode uintptr) int32 {
-	panic(todo(""))
+	r0, _, err := syscall.Syscall(procGetExitCodeProcess.Addr(), 2, hProcess, lpExitCode, 0)
+	if r0 == 0 {
+		t.setErrno(err)
+	}
+	return int32(r0)
 }
 
 // BOOL PeekNamedPipe(
