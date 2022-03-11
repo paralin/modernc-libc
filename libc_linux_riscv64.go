@@ -5,13 +5,13 @@
 package libc // import "modernc.org/libc"
 
 import (
-	// "os"
-	// "strings"
+	"os"
+	"strings"
 	"unicode"
 	"unsafe"
 
 	"golang.org/x/sys/unix"
-	// "modernc.org/libc/errno"
+	"modernc.org/libc/errno"
 	"modernc.org/libc/fcntl"
 	"modernc.org/libc/signal"
 	"modernc.org/libc/sys/types"
@@ -87,38 +87,27 @@ func Xfcntl64(t *TLS, fd, cmd int32, args uintptr) int32 {
 	return int32(n)
 }
 
+// int fstatat(int dirfd, const char *pathname, struct stat *statbuf, int flags);
+func Xfstatat(t *TLS, dirfd int32, pathname, statbuf uintptr, flags int32) int32 {
+	// From golang.org/x/sys/unix/zsyscall_linux_riscv64.go
+	if _, _, err := unix.Syscall6(unix.SYS_FSTATAT, uintptr(dirfd), pathname, statbuf, uintptr(flags), 0, 0); err != 0 {
+		t.setErrno(err)
+		return -1
+	}
+
+	return 0
+}
+
 // int lstat(const char *pathname, struct stat *statbuf);
 func Xlstat64(t *TLS, pathname, statbuf uintptr) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_LSTAT, pathname, statbuf, 0); err != 0 {
-	// 	// if dmesgs {
-	// 	// 	dmesg("%v: %q: %v", origin(1), GoString(pathname), err)
-	// 	// }
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// // if dmesgs {
-	// // 	dmesg("%v: %q: ok", origin(1), GoString(pathname))
-	// // }
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux_riscv64.go
+	return Xfstatat(t, unix.AT_FDCWD, pathname, statbuf, unix.AT_SYMLINK_NOFOLLOW)
 }
 
 // int stat(const char *pathname, struct stat *statbuf);
 func Xstat64(t *TLS, pathname, statbuf uintptr) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_STAT, pathname, statbuf, 0); err != 0 {
-	// 	// if dmesgs {
-	// 	// 	dmesg("%v: %q: %v", origin(1), GoString(pathname), err)
-	// 	// }
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// // if dmesgs {
-	// // 	dmesg("%v: %q: ok", origin(1), GoString(pathname))
-	// // }
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux_riscv64.go
+	return Xfstatat(t, unix.AT_FDCWD, pathname, statbuf, 0)
 }
 
 // int fstat(int fd, struct stat *statbuf);
@@ -214,39 +203,38 @@ func Xlseek64(t *TLS, fd int32, offset types.Off_t, whence int32) types.Off_t {
 
 // int utime(const char *filename, const struct utimbuf *times);
 func Xutime(t *TLS, filename, times uintptr) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_UTIME, filename, times, 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
+	if times == 0 {
+		return Xutimes(t, filename, 0)
+	}
 
-	// return 0
+	panic(todo("")) // Missing defination to struct utimbuf in types_linux_riscv64.go.
+	tv := [2]types.Timeval{
+		{ /* TODO: fill this */ },
+		{ /* TODO: fill this */ },
+	}
+	return Xutimes(t, filename, uintptr(unsafe.Pointer(&tv[0])))
 }
 
 // unsigned int alarm(unsigned int seconds);
 func Xalarm(t *TLS, seconds uint32) uint32 {
 	panic(todo(""))
-	// n, _, err := unix.Syscall(unix.SYS_ALARM, uintptr(seconds), 0, 0)
-	// if err != 0 {
-	// 	panic(todo(""))
-	// }
-
-	// return uint32(n)
+	// No alarm syscall on linux/riscv64. And cannot implement with setitimer as in musl,
+	// because of missing defination to constant ITIMER_REAL in types_linux_riscv64.go.
 }
 
 // time_t time(time_t *tloc);
 func Xtime(t *TLS, tloc uintptr) types.Time_t {
-	panic(todo(""))
-	// n, _, err := unix.Syscall(unix.SYS_TIME, tloc, 0, 0)
-	// if err != 0 {
-	// 	t.setErrno(err)
-	// 	return types.Time_t(-1)
-	// }
+	// From golang.org/x/sys/unix/syscall_linux_riscv64.go
+	var tv types.Timeval
+	if err := Xgettimeofday(t, uintptr(unsafe.Pointer(&tv)), 0); err != 0 {
+		t.setErrno(err)
+		return -1
+	}
 
-	// if tloc != 0 {
-	// 	*(*types.Time_t)(unsafe.Pointer(tloc)) = types.Time_t(n)
-	// }
-	// return types.Time_t(n)
+	if tloc != 0 {
+		*(*types.Time_t)(unsafe.Pointer(tloc)) = tv.Ftv_sec
+	}
+	return tv.Ftv_sec
 }
 
 // int getrlimit(int resource, struct rlimit *rlim);
@@ -261,219 +249,128 @@ func Xgetrlimit64(t *TLS, resource int32, rlim uintptr) int32 {
 
 // int mkdir(const char *path, mode_t mode);
 func Xmkdir(t *TLS, path uintptr, mode types.Mode_t) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_MKDIR, path, uintptr(mode), 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// // if dmesgs {
-	// // 	dmesg("%v: %q: ok", origin(1), GoString(path))
-	// // }
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xmkdirat(t, unix.AT_FDCWD, path, mode)
 }
 
 // int symlink(const char *target, const char *linkpath);
 func Xsymlink(t *TLS, target, linkpath uintptr) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_SYMLINK, target, linkpath, 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// // if dmesgs {
-	// // 	dmesg("%v: %q %q: ok", origin(1), GoString(target), GoString(linkpath))
-	// // }
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xsymlinkat(t, target, unix.AT_FDCWD, linkpath)
 }
 
 // int chmod(const char *pathname, mode_t mode)
 func Xchmod(t *TLS, pathname uintptr, mode types.Mode_t) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_CHMOD, pathname, uintptr(mode), 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// // if dmesgs {
-	// // 	dmesg("%v: %q %#o: ok", origin(1), GoString(pathname), mode)
-	// // }
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xfchmodat(t, unix.AT_FDCWD, pathname, mode, 0)
 }
 
 // int utimes(const char *filename, const struct timeval times[2]);
 func Xutimes(t *TLS, filename, times uintptr) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_UTIMES, filename, times, 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// // if dmesgs {
-	// // 	dmesg("%v: %q: ok", origin(1), GoString(filename))
-	// // }
-	// return 0
+	return Xutimensat(t, unix.AT_FDCWD, filename, times, 0)
 }
 
 // int unlink(const char *pathname);
 func Xunlink(t *TLS, pathname uintptr) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_UNLINK, pathname, 0, 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// // if dmesgs {
-	// // 	dmesg("%v: %q: ok", origin(1), GoString(pathname))
-	// // }
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xunlinkat(t, unix.AT_FDCWD, pathname, 0)
 }
 
 // int access(const char *pathname, int mode);
 func Xaccess(t *TLS, pathname uintptr, mode int32) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_ACCESS, pathname, uintptr(mode), 0); err != 0 {
-	// 	// if dmesgs {
-	// 	// 	dmesg("%v: %q: %v", origin(1), GoString(pathname), err)
-	// 	// }
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// // if dmesgs {
-	// // 	dmesg("%v: %q %#o: ok", origin(1), GoString(pathname), mode)
-	// // }
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xfaccessat(t, unix.AT_FDCWD, pathname, mode, 0)
 }
 
 // int rmdir(const char *pathname);
 func Xrmdir(t *TLS, pathname uintptr) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_RMDIR, pathname, 0, 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// // if dmesgs {
-	// // 	dmesg("%v: %q: ok", origin(1), GoString(pathname))
-	// // }
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xunlinkat(t, unix.AT_FDCWD, pathname, unix.AT_REMOVEDIR)
 }
 
 // int rename(const char *oldpath, const char *newpath);
 func Xrename(t *TLS, oldpath, newpath uintptr) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_RENAME, oldpath, newpath, 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xrenameat(t, unix.AT_FDCWD, oldpath, unix.AT_FDCWD, newpath)
+}
 
-	// return 0
+// int renameat(int olddirfd, const char *oldpath,	int newdirfd, const char *newpath);
+func Xrenameat(t *TLS, olddirfd int32, oldpath uintptr, newdirfd int32, newpath uintptr) int32 {
+	// From golang.org/x/sys/unix/syscall_linux_riscv64.go
+	return Xrenameat2(t, olddirfd, oldpath, newdirfd, newpath, 0)
 }
 
 // int mknod(const char *pathname, mode_t mode, dev_t dev);
 func Xmknod(t *TLS, pathname uintptr, mode types.Mode_t, dev types.Dev_t) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_MKNOD, pathname, uintptr(mode), uintptr(dev)); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xmknodat(t, unix.AT_FDCWD, pathname, mode, dev)
 }
 
 // int chown(const char *pathname, uid_t owner, gid_t group);
 func Xchown(t *TLS, pathname uintptr, owner types.Uid_t, group types.Gid_t) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_CHOWN, pathname, uintptr(owner), uintptr(group)); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xfchownat(t, unix.AT_FDCWD, pathname, owner, group, 0)
 }
 
 // int link(const char *oldpath, const char *newpath);
 func Xlink(t *TLS, oldpath, newpath uintptr) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_LINK, oldpath, newpath, 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xlinkat(t, unix.AT_FDCWD, oldpath, unix.AT_FDCWD, newpath, 0)
 }
 
 // int pipe(int pipefd[2]);
 func Xpipe(t *TLS, pipefd uintptr) int32 {
-	panic(todo(""))
-	// if _, _, err := unix.Syscall(unix.SYS_PIPE, pipefd, 0, 0); err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// return 0
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xpipe2(t, pipefd, 0)
 }
 
 // int dup2(int oldfd, int newfd);
 func Xdup2(t *TLS, oldfd, newfd int32) int32 {
-	panic(todo(""))
-	// n, _, err := unix.Syscall(unix.SYS_DUP2, uintptr(oldfd), uintptr(newfd), 0)
-	// if err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// return int32(n)
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xdup3(t, oldfd, newfd, 0)
 }
 
 // ssize_t readlink(const char *restrict path, char *restrict buf, size_t bufsize);
 func Xreadlink(t *TLS, path, buf uintptr, bufsize types.Size_t) types.Ssize_t {
-	panic(todo(""))
-	// n, _, err := unix.Syscall(unix.SYS_READLINK, path, buf, uintptr(bufsize))
-	// if err != 0 {
-	// 	t.setErrno(err)
-	// 	return -1
-	// }
-
-	// return types.Ssize_t(n)
+	// From golang.org/x/sys/unix/syscall_linux.go
+	return Xreadlinkat(t, unix.AT_FDCWD, path, buf, bufsize)
 }
 
 // FILE *fopen64(const char *pathname, const char *mode);
 func Xfopen64(t *TLS, pathname, mode uintptr) uintptr {
-	panic(todo(""))
-	// m := strings.ReplaceAll(GoString(mode), "b", "")
-	// var flags int
-	// switch m {
-	// case "r":
-	// 	flags = os.O_RDONLY
-	// case "r+":
-	// 	flags = os.O_RDWR
-	// case "w":
-	// 	flags = os.O_WRONLY | os.O_CREATE | os.O_TRUNC
-	// case "w+":
-	// 	flags = os.O_RDWR | os.O_CREATE | os.O_TRUNC
-	// case "a":
-	// 	flags = os.O_WRONLY | os.O_CREATE | os.O_APPEND
-	// case "a+":
-	// 	flags = os.O_RDWR | os.O_CREATE | os.O_APPEND
-	// default:
-	// 	panic(m)
-	// }
-	// //TODO- flags |= fcntl.O_LARGEFILE
-	// fd, _, err := unix.Syscall(unix.SYS_OPEN, pathname, uintptr(flags|unix.O_LARGEFILE), 0666)
-	// if err != 0 {
-	// 	t.setErrno(err)
-	// 	return 0
-	// }
+	m := strings.ReplaceAll(GoString(mode), "b", "")
+	var flags int
+	switch m {
+	case "r":
+		flags = os.O_RDONLY
+	case "r+":
+		flags = os.O_RDWR
+	case "w":
+		flags = os.O_WRONLY | os.O_CREATE | os.O_TRUNC
+	case "w+":
+		flags = os.O_RDWR | os.O_CREATE | os.O_TRUNC
+	case "a":
+		flags = os.O_WRONLY | os.O_CREATE | os.O_APPEND
+	case "a+":
+		flags = os.O_RDWR | os.O_CREATE | os.O_APPEND
+	default:
+		panic(m)
+	}
+	//TODO- flags |= fcntl.O_LARGEFILE
 
-	// if p := newFile(t, int32(fd)); p != 0 {
-	// 	return p
-	// }
+	// From golang.org/x/sys/unix/syscall_linux.go
+	fd := Xopenat(t, unix.AT_FDCWD, pathname, int32(flags|unix.O_LARGEFILE), 0666)
+	if fd == -1 {
+		return 0
+	}
 
-	// Xclose(t, int32(fd))
-	// t.setErrno(errno.ENOMEM)
-	// return 0
+	if p := newFile(t, fd); p != 0 {
+		return p
+	}
+
+	Xclose(t, fd)
+	t.setErrno(errno.ENOMEM)
+	return 0
 }
 
 // int iswspace(wint_t wc);
