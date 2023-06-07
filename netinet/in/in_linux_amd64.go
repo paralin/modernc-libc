@@ -15,161 +15,163 @@ var _ atomic.Value
 var _ unsafe.Pointer
 
 const (
-	AF_ALG                           = 38         // socket.h:133:1:
-	AF_APPLETALK                     = 5          // socket.h:99:1:
-	AF_ASH                           = 18         // socket.h:113:1:
-	AF_ATMPVC                        = 8          // socket.h:102:1:
-	AF_ATMSVC                        = 20         // socket.h:115:1:
-	AF_AX25                          = 3          // socket.h:97:1:
-	AF_BLUETOOTH                     = 31         // socket.h:126:1:
-	AF_BRIDGE                        = 7          // socket.h:101:1:
-	AF_CAIF                          = 37         // socket.h:132:1:
-	AF_CAN                           = 29         // socket.h:124:1:
-	AF_DECnet                        = 12         // socket.h:106:1:
-	AF_ECONET                        = 19         // socket.h:114:1:
-	AF_FILE                          = 1          // socket.h:95:1:
-	AF_IB                            = 27         // socket.h:122:1:
-	AF_IEEE802154                    = 36         // socket.h:131:1:
-	AF_INET                          = 2          // socket.h:96:1:
-	AF_INET6                         = 10         // socket.h:104:1:
-	AF_IPX                           = 4          // socket.h:98:1:
-	AF_IRDA                          = 23         // socket.h:118:1:
-	AF_ISDN                          = 34         // socket.h:129:1:
-	AF_IUCV                          = 32         // socket.h:127:1:
-	AF_KCM                           = 41         // socket.h:136:1:
-	AF_KEY                           = 15         // socket.h:109:1:
-	AF_LLC                           = 26         // socket.h:121:1:
-	AF_LOCAL                         = 1          // socket.h:93:1:
-	AF_MAX                           = 45         // socket.h:140:1:
-	AF_MPLS                          = 28         // socket.h:123:1:
-	AF_NETBEUI                       = 13         // socket.h:107:1:
-	AF_NETLINK                       = 16         // socket.h:110:1:
-	AF_NETROM                        = 6          // socket.h:100:1:
-	AF_NFC                           = 39         // socket.h:134:1:
-	AF_PACKET                        = 17         // socket.h:112:1:
-	AF_PHONET                        = 35         // socket.h:130:1:
-	AF_PPPOX                         = 24         // socket.h:119:1:
-	AF_QIPCRTR                       = 42         // socket.h:137:1:
-	AF_RDS                           = 21         // socket.h:116:1:
-	AF_ROSE                          = 11         // socket.h:105:1:
-	AF_ROUTE                         = 16         // socket.h:111:1:
-	AF_RXRPC                         = 33         // socket.h:128:1:
-	AF_SECURITY                      = 14         // socket.h:108:1:
-	AF_SMC                           = 43         // socket.h:138:1:
-	AF_SNA                           = 22         // socket.h:117:1:
-	AF_TIPC                          = 30         // socket.h:125:1:
-	AF_UNIX                          = 1          // socket.h:94:1:
-	AF_UNSPEC                        = 0          // socket.h:92:1:
-	AF_VSOCK                         = 40         // socket.h:135:1:
-	AF_WANPIPE                       = 25         // socket.h:120:1:
-	AF_X25                           = 9          // socket.h:103:1:
-	AF_XDP                           = 44         // socket.h:139:1:
+	AF_ALG                           = 38         // socket.h:134:1:
+	AF_APPLETALK                     = 5          // socket.h:100:1:
+	AF_ASH                           = 18         // socket.h:114:1:
+	AF_ATMPVC                        = 8          // socket.h:103:1:
+	AF_ATMSVC                        = 20         // socket.h:116:1:
+	AF_AX25                          = 3          // socket.h:98:1:
+	AF_BLUETOOTH                     = 31         // socket.h:127:1:
+	AF_BRIDGE                        = 7          // socket.h:102:1:
+	AF_CAIF                          = 37         // socket.h:133:1:
+	AF_CAN                           = 29         // socket.h:125:1:
+	AF_DECnet                        = 12         // socket.h:107:1:
+	AF_ECONET                        = 19         // socket.h:115:1:
+	AF_FILE                          = 1          // socket.h:96:1:
+	AF_IB                            = 27         // socket.h:123:1:
+	AF_IEEE802154                    = 36         // socket.h:132:1:
+	AF_INET                          = 2          // socket.h:97:1:
+	AF_INET6                         = 10         // socket.h:105:1:
+	AF_IPX                           = 4          // socket.h:99:1:
+	AF_IRDA                          = 23         // socket.h:119:1:
+	AF_ISDN                          = 34         // socket.h:130:1:
+	AF_IUCV                          = 32         // socket.h:128:1:
+	AF_KCM                           = 41         // socket.h:137:1:
+	AF_KEY                           = 15         // socket.h:110:1:
+	AF_LLC                           = 26         // socket.h:122:1:
+	AF_LOCAL                         = 1          // socket.h:94:1:
+	AF_MAX                           = 46         // socket.h:142:1:
+	AF_MCTP                          = 45         // socket.h:141:1:
+	AF_MPLS                          = 28         // socket.h:124:1:
+	AF_NETBEUI                       = 13         // socket.h:108:1:
+	AF_NETLINK                       = 16         // socket.h:111:1:
+	AF_NETROM                        = 6          // socket.h:101:1:
+	AF_NFC                           = 39         // socket.h:135:1:
+	AF_PACKET                        = 17         // socket.h:113:1:
+	AF_PHONET                        = 35         // socket.h:131:1:
+	AF_PPPOX                         = 24         // socket.h:120:1:
+	AF_QIPCRTR                       = 42         // socket.h:138:1:
+	AF_RDS                           = 21         // socket.h:117:1:
+	AF_ROSE                          = 11         // socket.h:106:1:
+	AF_ROUTE                         = 16         // socket.h:112:1:
+	AF_RXRPC                         = 33         // socket.h:129:1:
+	AF_SECURITY                      = 14         // socket.h:109:1:
+	AF_SMC                           = 43         // socket.h:139:1:
+	AF_SNA                           = 22         // socket.h:118:1:
+	AF_TIPC                          = 30         // socket.h:126:1:
+	AF_UNIX                          = 1          // socket.h:95:1:
+	AF_UNSPEC                        = 0          // socket.h:93:1:
+	AF_VSOCK                         = 40         // socket.h:136:1:
+	AF_WANPIPE                       = 25         // socket.h:121:1:
+	AF_X25                           = 9          // socket.h:104:1:
+	AF_XDP                           = 44         // socket.h:140:1:
 	BIG_ENDIAN                       = 4321       // endian.h:28:1:
 	BYTE_ORDER                       = 1234       // endian.h:30:1:
 	FD_SETSIZE                       = 1024       // select.h:73:1:
 	FIOGETOWN                        = 0x8903     // sockios.h:8:1:
 	FIOSETOWN                        = 0x8901     // sockios.h:6:1:
-	INET6_ADDRSTRLEN                 = 46         // in.h:234:1:
-	INET_ADDRSTRLEN                  = 16         // in.h:233:1:
-	IN_CLASSA_HOST                   = 16777215   // in.h:169:1:
-	IN_CLASSA_MAX                    = 128        // in.h:170:1:
-	IN_CLASSA_NET                    = 0xff000000 // in.h:167:1:
-	IN_CLASSA_NSHIFT                 = 24         // in.h:168:1:
-	IN_CLASSB_HOST                   = 65535      // in.h:175:1:
-	IN_CLASSB_MAX                    = 65536      // in.h:176:1:
-	IN_CLASSB_NET                    = 0xffff0000 // in.h:173:1:
-	IN_CLASSB_NSHIFT                 = 16         // in.h:174:1:
-	IN_CLASSC_HOST                   = 255        // in.h:181:1:
-	IN_CLASSC_NET                    = 0xffffff00 // in.h:179:1:
-	IN_CLASSC_NSHIFT                 = 8          // in.h:180:1:
-	IN_LOOPBACKNET                   = 127        // in.h:197:1:
-	IPV6_2292DSTOPTS                 = 4          // in.h:171:1:
-	IPV6_2292HOPLIMIT                = 8          // in.h:175:1:
-	IPV6_2292HOPOPTS                 = 3          // in.h:170:1:
-	IPV6_2292PKTINFO                 = 2          // in.h:169:1:
-	IPV6_2292PKTOPTIONS              = 6          // in.h:173:1:
-	IPV6_2292RTHDR                   = 5          // in.h:172:1:
-	IPV6_ADDRFORM                    = 1          // in.h:168:1:
-	IPV6_ADDR_PREFERENCES            = 72         // in.h:223:1:
-	IPV6_ADD_MEMBERSHIP              = 20         // in.h:237:1:
-	IPV6_AUTHHDR                     = 10         // in.h:180:1:
-	IPV6_AUTOFLOWLABEL               = 70         // in.h:220:1:
-	IPV6_CHECKSUM                    = 7          // in.h:174:1:
-	IPV6_DONTFRAG                    = 62         // in.h:214:1:
-	IPV6_DROP_MEMBERSHIP             = 21         // in.h:238:1:
-	IPV6_DSTOPTS                     = 59         // in.h:211:1:
-	IPV6_FREEBIND                    = 78         // in.h:233:1:
-	IPV6_HDRINCL                     = 36         // in.h:198:1:
-	IPV6_HOPLIMIT                    = 52         // in.h:204:1:
-	IPV6_HOPOPTS                     = 54         // in.h:206:1:
-	IPV6_IPSEC_POLICY                = 34         // in.h:196:1:
-	IPV6_JOIN_ANYCAST                = 27         // in.h:192:1:
-	IPV6_JOIN_GROUP                  = 20         // in.h:185:1:
-	IPV6_LEAVE_ANYCAST               = 28         // in.h:193:1:
-	IPV6_LEAVE_GROUP                 = 21         // in.h:186:1:
-	IPV6_MINHOPCOUNT                 = 73         // in.h:226:1:
-	IPV6_MTU                         = 24         // in.h:189:1:
-	IPV6_MTU_DISCOVER                = 23         // in.h:188:1:
-	IPV6_MULTICAST_ALL               = 29         // in.h:194:1:
-	IPV6_MULTICAST_HOPS              = 18         // in.h:183:1:
-	IPV6_MULTICAST_IF                = 17         // in.h:182:1:
-	IPV6_MULTICAST_LOOP              = 19         // in.h:184:1:
-	IPV6_NEXTHOP                     = 9          // in.h:179:1:
-	IPV6_ORIGDSTADDR                 = 74         // in.h:228:1:
-	IPV6_PATHMTU                     = 61         // in.h:213:1:
-	IPV6_PKTINFO                     = 50         // in.h:202:1:
-	IPV6_PMTUDISC_DO                 = 2          // in.h:246:1:
-	IPV6_PMTUDISC_DONT               = 0          // in.h:244:1:
-	IPV6_PMTUDISC_INTERFACE          = 4          // in.h:248:1:
-	IPV6_PMTUDISC_OMIT               = 5          // in.h:249:1:
-	IPV6_PMTUDISC_PROBE              = 3          // in.h:247:1:
-	IPV6_PMTUDISC_WANT               = 1          // in.h:245:1:
-	IPV6_RECVDSTOPTS                 = 58         // in.h:210:1:
-	IPV6_RECVERR                     = 25         // in.h:190:1:
-	IPV6_RECVFRAGSIZE                = 77         // in.h:232:1:
-	IPV6_RECVHOPLIMIT                = 51         // in.h:203:1:
-	IPV6_RECVHOPOPTS                 = 53         // in.h:205:1:
-	IPV6_RECVORIGDSTADDR             = 74         // in.h:229:1:
-	IPV6_RECVPATHMTU                 = 60         // in.h:212:1:
-	IPV6_RECVPKTINFO                 = 49         // in.h:201:1:
-	IPV6_RECVRTHDR                   = 56         // in.h:208:1:
-	IPV6_RECVTCLASS                  = 66         // in.h:217:1:
-	IPV6_ROUTER_ALERT                = 22         // in.h:187:1:
-	IPV6_ROUTER_ALERT_ISOLATE        = 30         // in.h:195:1:
-	IPV6_RTHDR                       = 57         // in.h:209:1:
-	IPV6_RTHDRDSTOPTS                = 55         // in.h:207:1:
-	IPV6_RTHDR_LOOSE                 = 0          // in.h:256:1:
-	IPV6_RTHDR_STRICT                = 1          // in.h:257:1:
-	IPV6_RTHDR_TYPE_0                = 0          // in.h:259:1:
-	IPV6_RXDSTOPTS                   = 59         // in.h:241:1:
-	IPV6_RXHOPOPTS                   = 54         // in.h:240:1:
-	IPV6_TCLASS                      = 67         // in.h:218:1:
-	IPV6_TRANSPARENT                 = 75         // in.h:230:1:
-	IPV6_UNICAST_HOPS                = 16         // in.h:181:1:
-	IPV6_UNICAST_IF                  = 76         // in.h:231:1:
-	IPV6_V6ONLY                      = 26         // in.h:191:1:
-	IPV6_XFRM_POLICY                 = 35         // in.h:197:1:
-	IP_ADD_MEMBERSHIP                = 35         // in.h:121:1:
-	IP_ADD_SOURCE_MEMBERSHIP         = 39         // in.h:125:1:
+	INET6_ADDRSTRLEN                 = 46         // in.h:241:1:
+	INET_ADDRSTRLEN                  = 16         // in.h:240:1:
+	IN_CLASSA_HOST                   = 16777215   // in.h:173:1:
+	IN_CLASSA_MAX                    = 128        // in.h:174:1:
+	IN_CLASSA_NET                    = 0xff000000 // in.h:171:1:
+	IN_CLASSA_NSHIFT                 = 24         // in.h:172:1:
+	IN_CLASSB_HOST                   = 65535      // in.h:179:1:
+	IN_CLASSB_MAX                    = 65536      // in.h:180:1:
+	IN_CLASSB_NET                    = 0xffff0000 // in.h:177:1:
+	IN_CLASSB_NSHIFT                 = 16         // in.h:178:1:
+	IN_CLASSC_HOST                   = 255        // in.h:185:1:
+	IN_CLASSC_NET                    = 0xffffff00 // in.h:183:1:
+	IN_CLASSC_NSHIFT                 = 8          // in.h:184:1:
+	IN_LOOPBACKNET                   = 127        // in.h:204:1:
+	IPV6_2292DSTOPTS                 = 4          // in.h:164:1:
+	IPV6_2292HOPLIMIT                = 8          // in.h:168:1:
+	IPV6_2292HOPOPTS                 = 3          // in.h:163:1:
+	IPV6_2292PKTINFO                 = 2          // in.h:162:1:
+	IPV6_2292PKTOPTIONS              = 6          // in.h:166:1:
+	IPV6_2292RTHDR                   = 5          // in.h:165:1:
+	IPV6_ADDRFORM                    = 1          // in.h:161:1:
+	IPV6_ADDR_PREFERENCES            = 72         // in.h:217:1:
+	IPV6_ADD_MEMBERSHIP              = 20         // in.h:231:1:
+	IPV6_AUTHHDR                     = 10         // in.h:173:1:
+	IPV6_AUTOFLOWLABEL               = 70         // in.h:214:1:
+	IPV6_CHECKSUM                    = 7          // in.h:167:1:
+	IPV6_DONTFRAG                    = 62         // in.h:208:1:
+	IPV6_DROP_MEMBERSHIP             = 21         // in.h:232:1:
+	IPV6_DSTOPTS                     = 59         // in.h:205:1:
+	IPV6_FREEBIND                    = 78         // in.h:227:1:
+	IPV6_HDRINCL                     = 36         // in.h:192:1:
+	IPV6_HOPLIMIT                    = 52         // in.h:198:1:
+	IPV6_HOPOPTS                     = 54         // in.h:200:1:
+	IPV6_IPSEC_POLICY                = 34         // in.h:190:1:
+	IPV6_JOIN_ANYCAST                = 27         // in.h:185:1:
+	IPV6_JOIN_GROUP                  = 20         // in.h:178:1:
+	IPV6_LEAVE_ANYCAST               = 28         // in.h:186:1:
+	IPV6_LEAVE_GROUP                 = 21         // in.h:179:1:
+	IPV6_MINHOPCOUNT                 = 73         // in.h:220:1:
+	IPV6_MTU                         = 24         // in.h:182:1:
+	IPV6_MTU_DISCOVER                = 23         // in.h:181:1:
+	IPV6_MULTICAST_ALL               = 29         // in.h:187:1:
+	IPV6_MULTICAST_HOPS              = 18         // in.h:176:1:
+	IPV6_MULTICAST_IF                = 17         // in.h:175:1:
+	IPV6_MULTICAST_LOOP              = 19         // in.h:177:1:
+	IPV6_NEXTHOP                     = 9          // in.h:172:1:
+	IPV6_ORIGDSTADDR                 = 74         // in.h:222:1:
+	IPV6_PATHMTU                     = 61         // in.h:207:1:
+	IPV6_PKTINFO                     = 50         // in.h:196:1:
+	IPV6_PMTUDISC_DO                 = 2          // in.h:240:1:
+	IPV6_PMTUDISC_DONT               = 0          // in.h:238:1:
+	IPV6_PMTUDISC_INTERFACE          = 4          // in.h:242:1:
+	IPV6_PMTUDISC_OMIT               = 5          // in.h:243:1:
+	IPV6_PMTUDISC_PROBE              = 3          // in.h:241:1:
+	IPV6_PMTUDISC_WANT               = 1          // in.h:239:1:
+	IPV6_RECVDSTOPTS                 = 58         // in.h:204:1:
+	IPV6_RECVERR                     = 25         // in.h:183:1:
+	IPV6_RECVERR_RFC4884             = 31         // in.h:189:1:
+	IPV6_RECVFRAGSIZE                = 77         // in.h:226:1:
+	IPV6_RECVHOPLIMIT                = 51         // in.h:197:1:
+	IPV6_RECVHOPOPTS                 = 53         // in.h:199:1:
+	IPV6_RECVORIGDSTADDR             = 74         // in.h:223:1:
+	IPV6_RECVPATHMTU                 = 60         // in.h:206:1:
+	IPV6_RECVPKTINFO                 = 49         // in.h:195:1:
+	IPV6_RECVRTHDR                   = 56         // in.h:202:1:
+	IPV6_RECVTCLASS                  = 66         // in.h:211:1:
+	IPV6_ROUTER_ALERT                = 22         // in.h:180:1:
+	IPV6_ROUTER_ALERT_ISOLATE        = 30         // in.h:188:1:
+	IPV6_RTHDR                       = 57         // in.h:203:1:
+	IPV6_RTHDRDSTOPTS                = 55         // in.h:201:1:
+	IPV6_RTHDR_LOOSE                 = 0          // in.h:250:1:
+	IPV6_RTHDR_STRICT                = 1          // in.h:251:1:
+	IPV6_RTHDR_TYPE_0                = 0          // in.h:253:1:
+	IPV6_RXDSTOPTS                   = 59         // in.h:235:1:
+	IPV6_RXHOPOPTS                   = 54         // in.h:234:1:
+	IPV6_TCLASS                      = 67         // in.h:212:1:
+	IPV6_TRANSPARENT                 = 75         // in.h:224:1:
+	IPV6_UNICAST_HOPS                = 16         // in.h:174:1:
+	IPV6_UNICAST_IF                  = 76         // in.h:225:1:
+	IPV6_V6ONLY                      = 26         // in.h:184:1:
+	IPV6_XFRM_POLICY                 = 35         // in.h:191:1:
+	IP_ADD_MEMBERSHIP                = 35         // in.h:122:1:
+	IP_ADD_SOURCE_MEMBERSHIP         = 39         // in.h:126:1:
 	IP_BIND_ADDRESS_NO_PORT          = 24         // in.h:103:1:
-	IP_BLOCK_SOURCE                  = 38         // in.h:124:1:
+	IP_BLOCK_SOURCE                  = 38         // in.h:125:1:
 	IP_CHECKSUM                      = 23         // in.h:102:1:
-	IP_DEFAULT_MULTICAST_LOOP        = 1          // in.h:135:1:
-	IP_DEFAULT_MULTICAST_TTL         = 1          // in.h:134:1:
-	IP_DROP_MEMBERSHIP               = 36         // in.h:122:1:
-	IP_DROP_SOURCE_MEMBERSHIP        = 40         // in.h:126:1:
+	IP_DEFAULT_MULTICAST_LOOP        = 1          // in.h:136:1:
+	IP_DEFAULT_MULTICAST_TTL         = 1          // in.h:135:1:
+	IP_DROP_MEMBERSHIP               = 36         // in.h:123:1:
+	IP_DROP_SOURCE_MEMBERSHIP        = 40         // in.h:127:1:
 	IP_FREEBIND                      = 15         // in.h:89:1:
 	IP_HDRINCL                       = 3          // in.h:48:1:
 	IP_IPSEC_POLICY                  = 16         // in.h:90:1:
-	IP_MAX_MEMBERSHIPS               = 20         // in.h:136:1:
+	IP_MAX_MEMBERSHIPS               = 20         // in.h:137:1:
 	IP_MINTTL                        = 21         // in.h:100:1:
-	IP_MSFILTER                      = 41         // in.h:127:1:
+	IP_MSFILTER                      = 41         // in.h:128:1:
 	IP_MTU                           = 14         // in.h:88:1:
 	IP_MTU_DISCOVER                  = 10         // in.h:84:1:
-	IP_MULTICAST_ALL                 = 49         // in.h:128:1:
-	IP_MULTICAST_IF                  = 32         // in.h:118:1:
-	IP_MULTICAST_LOOP                = 34         // in.h:120:1:
-	IP_MULTICAST_TTL                 = 33         // in.h:119:1:
+	IP_MULTICAST_ALL                 = 49         // in.h:129:1:
+	IP_MULTICAST_IF                  = 32         // in.h:119:1:
+	IP_MULTICAST_LOOP                = 34         // in.h:121:1:
+	IP_MULTICAST_TTL                 = 33         // in.h:120:1:
 	IP_NODEFRAG                      = 22         // in.h:101:1:
 	IP_OPTIONS                       = 4          // in.h:47:1:
 	IP_ORIGDSTADDR                   = 20         // in.h:97:1:
@@ -177,13 +179,14 @@ const (
 	IP_PKTINFO                       = 8          // in.h:81:1:
 	IP_PKTOPTIONS                    = 9          // in.h:82:1:
 	IP_PMTUDISC                      = 10         // in.h:83:1:
-	IP_PMTUDISC_DO                   = 2          // in.h:109:1:
-	IP_PMTUDISC_DONT                 = 0          // in.h:107:1:
-	IP_PMTUDISC_INTERFACE            = 4          // in.h:114:1:
-	IP_PMTUDISC_OMIT                 = 5          // in.h:116:1:
-	IP_PMTUDISC_PROBE                = 3          // in.h:110:1:
-	IP_PMTUDISC_WANT                 = 1          // in.h:108:1:
+	IP_PMTUDISC_DO                   = 2          // in.h:110:1:
+	IP_PMTUDISC_DONT                 = 0          // in.h:108:1:
+	IP_PMTUDISC_INTERFACE            = 4          // in.h:115:1:
+	IP_PMTUDISC_OMIT                 = 5          // in.h:117:1:
+	IP_PMTUDISC_PROBE                = 3          // in.h:111:1:
+	IP_PMTUDISC_WANT                 = 1          // in.h:109:1:
 	IP_RECVERR                       = 11         // in.h:85:1:
+	IP_RECVERR_RFC4884               = 26         // in.h:105:1:
 	IP_RECVFRAGSIZE                  = 25         // in.h:104:1:
 	IP_RECVOPTS                      = 6          // in.h:51:1:
 	IP_RECVORIGDSTADDR               = 20         // in.h:98:1:
@@ -195,8 +198,8 @@ const (
 	IP_TOS                           = 1          // in.h:49:1:
 	IP_TRANSPARENT                   = 19         // in.h:93:1:
 	IP_TTL                           = 2          // in.h:50:1:
-	IP_UNBLOCK_SOURCE                = 37         // in.h:123:1:
-	IP_UNICAST_IF                    = 50         // in.h:129:1:
+	IP_UNBLOCK_SOURCE                = 37         // in.h:124:1:
+	IP_UNICAST_IF                    = 50         // in.h:130:1:
 	IP_XFRM_POLICY                   = 17         // in.h:91:1:
 	LITTLE_ENDIAN                    = 1234       // endian.h:27:1:
 	MCAST_BLOCK_SOURCE               = 43         // in.h:67:1:
@@ -234,7 +237,8 @@ const (
 	PF_KEY                           = 15         // socket.h:58:1:
 	PF_LLC                           = 26         // socket.h:70:1:
 	PF_LOCAL                         = 1          // socket.h:42:1:
-	PF_MAX                           = 45         // socket.h:89:1:
+	PF_MAX                           = 46         // socket.h:90:1:
+	PF_MCTP                          = 45         // socket.h:89:1:
 	PF_MPLS                          = 28         // socket.h:72:1:
 	PF_NETBEUI                       = 13         // socket.h:56:1:
 	PF_NETLINK                       = 16         // socket.h:59:1:
@@ -258,47 +262,50 @@ const (
 	PF_WANPIPE                       = 25         // socket.h:69:1:
 	PF_X25                           = 9          // socket.h:52:1:
 	PF_XDP                           = 44         // socket.h:88:1:
-	SCM_TIMESTAMP                    = 29         // socket.h:140:1:
-	SCM_TIMESTAMPING                 = 37         // socket.h:142:1:
+	SCM_TIMESTAMP                    = 29         // socket.h:153:1:
+	SCM_TIMESTAMPING                 = 37         // socket.h:155:1:
 	SCM_TIMESTAMPING_OPT_STATS       = 54         // socket.h:90:1:
 	SCM_TIMESTAMPING_PKTINFO         = 58         // socket.h:98:1:
-	SCM_TIMESTAMPNS                  = 35         // socket.h:141:1:
+	SCM_TIMESTAMPNS                  = 35         // socket.h:154:1:
 	SCM_TXTIME                       = 61         // socket.h:105:1:
 	SCM_WIFI_STATUS                  = 41         // socket.h:64:1:
 	SIOCATMARK                       = 0x8905     // sockios.h:10:1:
 	SIOCGPGRP                        = 0x8904     // sockios.h:9:1:
-	SIOCGSTAMP                       = 0x8906     // sockios.h:11:1:
-	SIOCGSTAMPNS                     = 0x8907     // sockios.h:12:1:
+	SIOCGSTAMPNS_OLD                 = 0x8907     // sockios.h:12:1:
+	SIOCGSTAMP_OLD                   = 0x8906     // sockios.h:11:1:
 	SIOCSPGRP                        = 0x8902     // sockios.h:7:1:
-	SOL_AAL                          = 265        // socket.h:151:1:
-	SOL_ALG                          = 279        // socket.h:165:1:
-	SOL_ATM                          = 264        // socket.h:150:1:
-	SOL_BLUETOOTH                    = 274        // socket.h:160:1:
-	SOL_CAIF                         = 278        // socket.h:164:1:
-	SOL_DCCP                         = 269        // socket.h:155:1:
-	SOL_DECNET                       = 261        // socket.h:147:1:
-	SOL_ICMPV6                       = 58         // in.h:253:1:
-	SOL_IP                           = 0          // in.h:132:1:
-	SOL_IPV6                         = 41         // in.h:252:1:
-	SOL_IRDA                         = 266        // socket.h:152:1:
-	SOL_IUCV                         = 277        // socket.h:163:1:
-	SOL_KCM                          = 281        // socket.h:167:1:
-	SOL_LLC                          = 268        // socket.h:154:1:
-	SOL_NETBEUI                      = 267        // socket.h:153:1:
-	SOL_NETLINK                      = 270        // socket.h:156:1:
-	SOL_NFC                          = 280        // socket.h:166:1:
-	SOL_PACKET                       = 263        // socket.h:149:1:
-	SOL_PNPIPE                       = 275        // socket.h:161:1:
-	SOL_PPPOL2TP                     = 273        // socket.h:159:1:
-	SOL_RAW                          = 255        // socket.h:146:1:
-	SOL_RDS                          = 276        // socket.h:162:1:
-	SOL_RXRPC                        = 272        // socket.h:158:1:
+	SOL_AAL                          = 265        // socket.h:153:1:
+	SOL_ALG                          = 279        // socket.h:167:1:
+	SOL_ATM                          = 264        // socket.h:152:1:
+	SOL_BLUETOOTH                    = 274        // socket.h:162:1:
+	SOL_CAIF                         = 278        // socket.h:166:1:
+	SOL_DCCP                         = 269        // socket.h:157:1:
+	SOL_DECNET                       = 261        // socket.h:149:1:
+	SOL_ICMPV6                       = 58         // in.h:247:1:
+	SOL_IP                           = 0          // in.h:133:1:
+	SOL_IPV6                         = 41         // in.h:246:1:
+	SOL_IRDA                         = 266        // socket.h:154:1:
+	SOL_IUCV                         = 277        // socket.h:165:1:
+	SOL_KCM                          = 281        // socket.h:169:1:
+	SOL_LLC                          = 268        // socket.h:156:1:
+	SOL_MCTP                         = 285        // socket.h:173:1:
+	SOL_MPTCP                        = 284        // socket.h:172:1:
+	SOL_NETBEUI                      = 267        // socket.h:155:1:
+	SOL_NETLINK                      = 270        // socket.h:158:1:
+	SOL_NFC                          = 280        // socket.h:168:1:
+	SOL_PACKET                       = 263        // socket.h:151:1:
+	SOL_PNPIPE                       = 275        // socket.h:163:1:
+	SOL_PPPOL2TP                     = 273        // socket.h:161:1:
+	SOL_RAW                          = 255        // socket.h:148:1:
+	SOL_RDS                          = 276        // socket.h:164:1:
+	SOL_RXRPC                        = 272        // socket.h:160:1:
+	SOL_SMC                          = 286        // socket.h:174:1:
 	SOL_SOCKET                       = 1          // socket.h:9:1:
-	SOL_TIPC                         = 271        // socket.h:157:1:
-	SOL_TLS                          = 282        // socket.h:168:1:
-	SOL_X25                          = 262        // socket.h:148:1:
-	SOL_XDP                          = 283        // socket.h:169:1:
-	SOMAXCONN                        = 4096       // socket.h:172:1:
+	SOL_TIPC                         = 271        // socket.h:159:1:
+	SOL_TLS                          = 282        // socket.h:170:1:
+	SOL_X25                          = 262        // socket.h:150:1:
+	SOL_XDP                          = 283        // socket.h:171:1:
+	SOMAXCONN                        = 4096       // socket.h:177:1:
 	SO_ACCEPTCONN                    = 30         // socket.h:51:1:
 	SO_ATTACH_BPF                    = 50         // socket.h:82:1:
 	SO_ATTACH_FILTER                 = 26         // socket.h:45:1:
@@ -309,7 +316,9 @@ const (
 	SO_BPF_EXTENSIONS                = 48         // socket.h:78:1:
 	SO_BROADCAST                     = 6          // socket.h:16:1:
 	SO_BSDCOMPAT                     = 14         // socket.h:26:1:
+	SO_BUF_LOCK                      = 72         // socket.h:127:1:
 	SO_BUSY_POLL                     = 46         // socket.h:74:1:
+	SO_BUSY_POLL_BUDGET              = 70         // socket.h:123:1:
 	SO_CNX_ADVICE                    = 53         // socket.h:88:1:
 	SO_COOKIE                        = 57         // socket.h:96:1:
 	SO_DEBUG                         = 1          // socket.h:11:1:
@@ -328,6 +337,7 @@ const (
 	SO_MARK                          = 36         // socket.h:56:1:
 	SO_MAX_PACING_RATE               = 47         // socket.h:76:1:
 	SO_MEMINFO                       = 55         // socket.h:92:1:
+	SO_NETNS_COOKIE                  = 71         // socket.h:125:1:
 	SO_NOFCS                         = 43         // socket.h:68:1:
 	SO_NO_CHECK                      = 11         // socket.h:23:1:
 	SO_OOBINLINE                     = 10         // socket.h:22:1:
@@ -338,14 +348,17 @@ const (
 	SO_PEERGROUPS                    = 59         // socket.h:100:1:
 	SO_PEERNAME                      = 28         // socket.h:49:1:
 	SO_PEERSEC                       = 31         // socket.h:53:1:
+	SO_PREFER_BUSY_POLL              = 69         // socket.h:122:1:
 	SO_PRIORITY                      = 12         // socket.h:24:1:
 	SO_PROTOCOL                      = 38         // socket.h:58:1:
 	SO_RCVBUF                        = 8          // socket.h:18:1:
 	SO_RCVBUFFORCE                   = 33         // socket.h:20:1:
 	SO_RCVLOWAT                      = 18         // socket.h:31:1:
-	SO_RCVTIMEO                      = 20         // socket.h:129:1:
+	SO_RCVMARK                       = 75         // socket.h:133:1:
+	SO_RCVTIMEO                      = 20         // socket.h:142:1:
 	SO_RCVTIMEO_NEW                  = 66         // socket.h:117:1:
 	SO_RCVTIMEO_OLD                  = 20         // socket.h:33:1:
+	SO_RESERVE_MEM                   = 73         // socket.h:129:1:
 	SO_REUSEADDR                     = 2          // socket.h:12:1:
 	SO_REUSEPORT                     = 15         // socket.h:27:1:
 	SO_RXQ_OVFL                      = 40         // socket.h:61:1:
@@ -356,24 +369,26 @@ const (
 	SO_SNDBUF                        = 7          // socket.h:17:1:
 	SO_SNDBUFFORCE                   = 32         // socket.h:19:1:
 	SO_SNDLOWAT                      = 19         // socket.h:32:1:
-	SO_SNDTIMEO                      = 21         // socket.h:130:1:
+	SO_SNDTIMEO                      = 21         // socket.h:143:1:
 	SO_SNDTIMEO_NEW                  = 67         // socket.h:118:1:
 	SO_SNDTIMEO_OLD                  = 21         // socket.h:34:1:
-	SO_TIMESTAMP                     = 29         // socket.h:125:1:
-	SO_TIMESTAMPING                  = 37         // socket.h:127:1:
+	SO_TIMESTAMP                     = 29         // socket.h:138:1:
+	SO_TIMESTAMPING                  = 37         // socket.h:140:1:
 	SO_TIMESTAMPING_NEW              = 65         // socket.h:115:1:
 	SO_TIMESTAMPING_OLD              = 37         // socket.h:111:1:
-	SO_TIMESTAMPNS                   = 35         // socket.h:126:1:
+	SO_TIMESTAMPNS                   = 35         // socket.h:139:1:
 	SO_TIMESTAMPNS_NEW               = 64         // socket.h:114:1:
 	SO_TIMESTAMPNS_OLD               = 35         // socket.h:110:1:
 	SO_TIMESTAMP_NEW                 = 63         // socket.h:113:1:
 	SO_TIMESTAMP_OLD                 = 29         // socket.h:109:1:
+	SO_TXREHASH                      = 74         // socket.h:131:1:
 	SO_TXTIME                        = 61         // socket.h:104:1:
 	SO_TYPE                          = 3          // socket.h:13:1:
 	SO_WIFI_STATUS                   = 41         // socket.h:63:1:
 	SO_ZEROCOPY                      = 60         // socket.h:102:1:
 	X_ASM_X86_POSIX_TYPES_64_H       = 0          // posix_types_64.h:3:1:
-	X_ATFILE_SOURCE                  = 1          // features.h:342:1:
+	X_ATFILE_SOURCE                  = 1          // features.h:351:1:
+	X_BITS_ATOMIC_WIDE_COUNTER_H     = 0          // atomic_wide_counter.h:20:1:
 	X_BITS_BYTESWAP_H                = 1          // byteswap.h:24:1:
 	X_BITS_ENDIANNESS_H              = 1          // endianness.h:2:1:
 	X_BITS_ENDIAN_H                  = 1          // endian.h:20:1:
@@ -386,43 +401,58 @@ const (
 	X_BITS_TYPESIZES_H               = 1          // typesizes.h:24:1:
 	X_BITS_TYPES_H                   = 1          // types.h:24:1:
 	X_BITS_UINTN_IDENTITY_H          = 1          // uintn-identity.h:24:1:
-	X_BSD_SIZE_T_                    = 0          // stddef.h:189:1:
-	X_BSD_SIZE_T_DEFINED_            = 0          // stddef.h:192:1:
-	X_DEFAULT_SOURCE                 = 1          // features.h:227:1:
+	X_BSD_SIZE_T_                    = 0          // stddef.h:193:1:
+	X_BSD_SIZE_T_DEFINED_            = 0          // stddef.h:196:1:
+	X_DEFAULT_SOURCE                 = 1          // features.h:236:1:
 	X_ENDIAN_H                       = 1          // endian.h:19:1:
 	X_FEATURES_H                     = 1          // features.h:19:1:
 	X_FILE_OFFSET_BITS               = 64         // <builtin>:25:1:
-	X_GCC_SIZE_T                     = 0          // stddef.h:195:1:
+	X_GCC_SIZE_T                     = 0          // stddef.h:200:1:
 	X_LINUX_POSIX_TYPES_H            = 0          // posix_types.h:3:1:
-	X_LP64                           = 1          // <predefined>:284:1:
+	X_LINUX_STDDEF_H                 = 0          // stddef.h:3:1:
+	X_LP64                           = 1          // <predefined>:312:1:
 	X_NETINET_IN_H                   = 1          // in.h:19:1:
-	X_POSIX_C_SOURCE                 = 200809     // features.h:281:1:
-	X_POSIX_SOURCE                   = 1          // features.h:279:1:
+	X_POSIX_C_SOURCE                 = 200809     // features.h:290:1:
+	X_POSIX_SOURCE                   = 1          // features.h:288:1:
 	X_RWLOCK_INTERNAL_H              = 0          // struct_rwlock.h:21:1:
-	X_SIZET_                         = 0          // stddef.h:196:1:
-	X_SIZE_T                         = 0          // stddef.h:183:1:
-	X_SIZE_T_                        = 0          // stddef.h:188:1:
-	X_SIZE_T_DECLARED                = 0          // stddef.h:193:1:
-	X_SIZE_T_DEFINED                 = 0          // stddef.h:191:1:
-	X_SIZE_T_DEFINED_                = 0          // stddef.h:190:1:
+	X_SIZET_                         = 0          // stddef.h:201:1:
+	X_SIZE_T                         = 0          // stddef.h:187:1:
+	X_SIZE_T_                        = 0          // stddef.h:192:1:
+	X_SIZE_T_DECLARED                = 0          // stddef.h:197:1:
+	X_SIZE_T_DEFINED                 = 0          // stddef.h:195:1:
+	X_SIZE_T_DEFINED_                = 0          // stddef.h:194:1:
 	X_SS_SIZE                        = 128        // sockaddr.h:40:1:
-	X_STDC_PREDEF_H                  = 1          // <predefined>:162:1:
+	X_STDC_PREDEF_H                  = 1          // <predefined>:174:1:
 	X_STRUCT_TIMESPEC                = 1          // struct_timespec.h:3:1:
-	X_SYS_CDEFS_H                    = 1          // cdefs.h:19:1:
+	X_SYS_CDEFS_H                    = 1          // cdefs.h:20:1:
 	X_SYS_SELECT_H                   = 1          // select.h:22:1:
-	X_SYS_SIZE_T_H                   = 0          // stddef.h:184:1:
+	X_SYS_SIZE_T_H                   = 0          // stddef.h:188:1:
 	X_SYS_SOCKET_H                   = 1          // socket.h:20:1:
 	X_SYS_TYPES_H                    = 1          // types.h:23:1:
 	X_THREAD_MUTEX_INTERNAL_H        = 1          // struct_mutex.h:20:1:
 	X_THREAD_SHARED_TYPES_H          = 1          // thread-shared-types.h:20:1:
-	X_T_SIZE                         = 0          // stddef.h:186:1:
-	X_T_SIZE_                        = 0          // stddef.h:185:1:
-	Linux                            = 1          // <predefined>:231:1:
-	Unix                             = 1          // <predefined>:177:1:
+	X_T_SIZE                         = 0          // stddef.h:190:1:
+	X_T_SIZE_                        = 0          // stddef.h:189:1:
+	Linux                            = 1          // <predefined>:255:1:
+	Unix                             = 1          // <predefined>:191:1:
+)
+
+// If __USE_KERNEL_IPV6_DEFS is 1 then the user has included the kernel
+//
+//	network headers first and we should use those ABI-identical definitions
+//	instead of our own, otherwise 0.
+const ( /* in.h:103:1: */
+	IPPROTO_HOPOPTS  = 0  // IPv6 Hop-by-Hop options.
+	IPPROTO_ROUTING  = 43 // IPv6 routing header.
+	IPPROTO_FRAGMENT = 44 // IPv6 fragmentation header.
+	IPPROTO_ICMPV6   = 58 // ICMPv6.
+	IPPROTO_NONE     = 59 // IPv6 no next header.
+	IPPROTO_DSTOPTS  = 60 // IPv6 destination options.
+	IPPROTO_MH       = 135
 )
 
 // Standard well-known ports.
-const ( /* in.h:122:1: */
+const ( /* in.h:126:1: */
 	IPPORT_ECHO       = 7  // Echo service.
 	IPPORT_DISCARD    = 9  // Discard transmissions service.
 	IPPORT_SYSTAT     = 11 // System status service.
@@ -481,50 +511,38 @@ const ( /* in.h:122:1: */
 
 // Standard well-defined IP protocols.
 const ( /* in.h:40:1: */
-	IPPROTO_IP      = 0   // Dummy protocol for TCP.
-	IPPROTO_ICMP    = 1   // Internet Control Message Protocol.
-	IPPROTO_IGMP    = 2   // Internet Group Management Protocol.
-	IPPROTO_IPIP    = 4   // IPIP tunnels (older KA9Q tunnels use 94).
-	IPPROTO_TCP     = 6   // Transmission Control Protocol.
-	IPPROTO_EGP     = 8   // Exterior Gateway Protocol.
-	IPPROTO_PUP     = 12  // PUP protocol.
-	IPPROTO_UDP     = 17  // User Datagram Protocol.
-	IPPROTO_IDP     = 22  // XNS IDP protocol.
-	IPPROTO_TP      = 29  // SO Transport Protocol Class 4.
-	IPPROTO_DCCP    = 33  // Datagram Congestion Control Protocol.
-	IPPROTO_IPV6    = 41  // IPv6 header.
-	IPPROTO_RSVP    = 46  // Reservation Protocol.
-	IPPROTO_GRE     = 47  // General Routing Encapsulation.
-	IPPROTO_ESP     = 50  // encapsulating security payload.
-	IPPROTO_AH      = 51  // authentication header.
-	IPPROTO_MTP     = 92  // Multicast Transport Protocol.
-	IPPROTO_BEETPH  = 94  // IP option pseudo header for BEET.
-	IPPROTO_ENCAP   = 98  // Encapsulation Header.
-	IPPROTO_PIM     = 103 // Protocol Independent Multicast.
-	IPPROTO_COMP    = 108 // Compression Header Protocol.
-	IPPROTO_SCTP    = 132 // Stream Control Transmission Protocol.
-	IPPROTO_UDPLITE = 136 // UDP-Lite protocol.
-	IPPROTO_MPLS    = 137 // MPLS in IP.
-	IPPROTO_RAW     = 255 // Raw IP packets.
-	IPPROTO_MAX     = 256
-)
-
-// If __USE_KERNEL_IPV6_DEFS is 1 then the user has included the kernel
-//
-//	network headers first and we should use those ABI-identical definitions
-//	instead of our own, otherwise 0.
-const ( /* in.h:99:1: */
-	IPPROTO_HOPOPTS  = 0  // IPv6 Hop-by-Hop options.
-	IPPROTO_ROUTING  = 43 // IPv6 routing header.
-	IPPROTO_FRAGMENT = 44 // IPv6 fragmentation header.
-	IPPROTO_ICMPV6   = 58 // ICMPv6.
-	IPPROTO_NONE     = 59 // IPv6 no next header.
-	IPPROTO_DSTOPTS  = 60 // IPv6 destination options.
-	IPPROTO_MH       = 135
+	IPPROTO_IP       = 0   // Dummy protocol for TCP.
+	IPPROTO_ICMP     = 1   // Internet Control Message Protocol.
+	IPPROTO_IGMP     = 2   // Internet Group Management Protocol.
+	IPPROTO_IPIP     = 4   // IPIP tunnels (older KA9Q tunnels use 94).
+	IPPROTO_TCP      = 6   // Transmission Control Protocol.
+	IPPROTO_EGP      = 8   // Exterior Gateway Protocol.
+	IPPROTO_PUP      = 12  // PUP protocol.
+	IPPROTO_UDP      = 17  // User Datagram Protocol.
+	IPPROTO_IDP      = 22  // XNS IDP protocol.
+	IPPROTO_TP       = 29  // SO Transport Protocol Class 4.
+	IPPROTO_DCCP     = 33  // Datagram Congestion Control Protocol.
+	IPPROTO_IPV6     = 41  // IPv6 header.
+	IPPROTO_RSVP     = 46  // Reservation Protocol.
+	IPPROTO_GRE      = 47  // General Routing Encapsulation.
+	IPPROTO_ESP      = 50  // encapsulating security payload.
+	IPPROTO_AH       = 51  // authentication header.
+	IPPROTO_MTP      = 92  // Multicast Transport Protocol.
+	IPPROTO_BEETPH   = 94  // IP option pseudo header for BEET.
+	IPPROTO_ENCAP    = 98  // Encapsulation Header.
+	IPPROTO_PIM      = 103 // Protocol Independent Multicast.
+	IPPROTO_COMP     = 108 // Compression Header Protocol.
+	IPPROTO_SCTP     = 132 // Stream Control Transmission Protocol.
+	IPPROTO_UDPLITE  = 136 // UDP-Lite protocol.
+	IPPROTO_MPLS     = 137 // MPLS in IP.
+	IPPROTO_ETHERNET = 143 // Ethernet-within-IPv6 Encapsulation.
+	IPPROTO_RAW      = 255 // Raw IP packets.
+	IPPROTO_MPTCP    = 262 // Multipath TCP connection.
+	IPPROTO_MAX      = 263
 )
 
 // Bits in the FLAGS argument to `send', `recv', et al.
-const ( /* socket.h:200:1: */
+const ( /* socket.h:205:1: */
 	MSG_OOB        = 1  // Process out-of-band data.
 	MSG_PEEK       = 2  // Peek at incoming messages.
 	MSG_DONTROUTE  = 4  // Don't use local routing.
@@ -552,13 +570,13 @@ const ( /* socket.h:200:1: */
 // Socket level message types.  This must match the definitions in
 //
 //	<linux/socket.h>.
-const ( /* socket.h:332:1: */
+const ( /* socket.h:363:1: */
 	SCM_RIGHTS = 1
 )
 
 // Get the architecture-dependent definition of enum __socket_type.
 // Define enum __socket_type for generic Linux.
-//    Copyright (C) 1991-2020 Free Software Foundation, Inc.
+//    Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -625,7 +643,7 @@ type X__uint128_t = struct {
 type X__builtin_va_list = uintptr /* <builtin>:46:14 */
 type X__float128 = float64        /* <builtin>:47:21 */
 
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -642,7 +660,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    License along with the GNU C Library; if not, see
 //    <https://www.gnu.org/licenses/>.
 
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -674,6 +692,8 @@ type X__float128 = float64        /* <builtin>:47:21 */
 // 			Extensions to ISO C11 from TS 18661-4:2015.
 //    __STDC_WANT_IEC_60559_TYPES_EXT__
 // 			Extensions to ISO C11 from TS 18661-3:2015.
+//    __STDC_WANT_IEC_60559_EXT__
+// 			ISO C2X interfaces defined only in Annex F.
 //
 //    _POSIX_SOURCE	IEEE Std 1003.1.
 //    _POSIX_C_SOURCE	If ==1, like _POSIX_SOURCE; if >=2 add IEEE Std 1003.2;
@@ -689,6 +709,8 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    _LARGEFILE64_SOURCE	Additional functionality from LFS for large files.
 //    _FILE_OFFSET_BITS=N	Select default filesystem interface.
 //    _ATFILE_SOURCE	Additional *at interfaces.
+//    _DYNAMIC_STACK_SIZE_SOURCE Select correct (but non compile-time constant)
+// 			MINSIGSTKSZ, SIGSTKSZ and PTHREAD_STACK_MIN.
 //    _GNU_SOURCE		All of the above, plus GNU extensions.
 //    _DEFAULT_SOURCE	The default set of features (taking precedence over
 // 			__STRICT_ANSI__).
@@ -735,6 +757,8 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    __USE_FILE_OFFSET64	Define 64bit interface as default.
 //    __USE_MISC		Define things from 4.3BSD or System V Unix.
 //    __USE_ATFILE		Define *at interfaces and AT_* constants for them.
+//    __USE_DYNAMIC_STACK_SIZE Define correct (but non compile-time constant)
+// 			MINSIGSTKSZ, SIGSTKSZ and PTHREAD_STACK_MIN.
 //    __USE_GNU		Define GNU extensions.
 //    __USE_FORTIFY_LEVEL	Additional security measures used, according to level.
 //
@@ -805,6 +829,52 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    comprehensive support for multithreaded code.  Using them never
 //    lowers the selected level of POSIX conformance, only raises it.
 
+// Features part to handle 64-bit time_t support.
+//    Copyright (C) 2021-2022 Free Software Foundation, Inc.
+//    This file is part of the GNU C Library.
+//
+//    The GNU C Library is free software; you can redistribute it and/or
+//    modify it under the terms of the GNU Lesser General Public
+//    License as published by the Free Software Foundation; either
+//    version 2.1 of the License, or (at your option) any later version.
+//
+//    The GNU C Library is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    Lesser General Public License for more details.
+//
+//    You should have received a copy of the GNU Lesser General Public
+//    License along with the GNU C Library; if not, see
+//    <https://www.gnu.org/licenses/>.
+
+// We need to know the word size in order to check the time size.
+// Determine the wordsize from the preprocessor defines.
+
+// Both x86-64 and x32 use the 64-bit system call interface.
+// Bit size of the time_t type at glibc build time, x86-64 and x32 case.
+//    Copyright (C) 2018-2022 Free Software Foundation, Inc.
+//    This file is part of the GNU C Library.
+//
+//    The GNU C Library is free software; you can redistribute it and/or
+//    modify it under the terms of the GNU Lesser General Public
+//    License as published by the Free Software Foundation; either
+//    version 2.1 of the License, or (at your option) any later version.
+//
+//    The GNU C Library is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    Lesser General Public License for more details.
+//
+//    You should have received a copy of the GNU Lesser General Public
+//    License along with the GNU C Library; if not, see
+//    <https://www.gnu.org/licenses/>.
+
+// Determine the wordsize from the preprocessor defines.
+
+// Both x86-64 and x32 use the 64-bit system call interface.
+
+// For others, time size is word size.
+
 // The function 'gets' existed in C89, but is impossible to use
 //    safely.  It has been removed from ISO C11 and ISO C++14.  Note: for
 //    compatibility with various implementations of <cstdio>, this test
@@ -825,7 +895,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // Get definitions of __STDC_* predefined macros, if the compiler has
 //    not preincluded this header automatically.
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -853,7 +923,8 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    these macros to test for features in specific releases.
 
 // This is here only because every header file already includes this one.
-// Copyright (C) 1992-2020 Free Software Foundation, Inc.
+// Copyright (C) 1992-2022 Free Software Foundation, Inc.
+//    Copyright The GNU Toolchain Authors.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -874,22 +945,23 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // The GNU libc does not support any K&R compilers or the traditional mode
 //    of ISO C compilers anymore.  Check for some of the combinations not
-//    anymore supported.
+//    supported anymore.
 
 // Some user header file might have defined this before.
+
+// Compilers that lack __has_attribute may object to
+//        #if defined __has_attribute && __has_attribute (...)
+//    even though they do not need to evaluate the right-hand side of the &&.
+//    Similarly for __has_builtin, etc.
 
 // All functions, except those with callbacks or those that
 //    synchronize memory, are leaf functions.
 
 // GCC can always grok prototypes.  For C++ programs we add throw()
-//    to help it optimize the function calls.  But this works only with
-//    gcc 2.8.x and egcs.  For gcc 3.2 and up we even mark C functions
+//    to help it optimize the function calls.  But this only works with
+//    gcc 2.8.x and egcs.  For gcc 3.4 and up we even mark C functions
 //    as non-throwing using a function attribute since programs can use
 //    the -fexceptions options for C code as well.
-
-// Compilers that are not clang may object to
-//        #if defined __clang__ && __has_extension(...)
-//    even though they do not need to evaluate the right-hand side of the &&.
 
 // These two macros are not used in glibc anymore.  They are kept here
 //    only because some other projects expect the macros to be defined.
@@ -902,6 +974,25 @@ type X__float128 = float64        /* <builtin>:47:21 */
 // C++ needs to know that types and declarations are C, not C++.
 
 // Fortify support.
+
+// Use __builtin_dynamic_object_size at _FORTIFY_SOURCE=3 when available.
+
+// Compile time conditions to choose between the regular, _chk and _chk_warn
+//    variants.  These conditions should get evaluated to constant and optimized
+//    away.
+
+// Length is known to be safe at compile time if the __L * __S <= __OBJSZ
+//    condition can be folded to a constant and if it is true, or unknown (-1)
+
+// Conversely, we know at compile time that the length is unsafe if the
+//    __L * __S <= __OBJSZ condition can be folded to a constant and if it is
+//    false.
+
+// Fortify function f.  __f_alias, __f_chk and __f_chk_warn must be
+//    declared.
+
+// Fortify function f, where object size argument passed to f is the number of
+//    elements and not total size.
 
 // Support for flexible arrays.
 //    Headers that should use flexible arrays only if they're "real"
@@ -923,8 +1014,8 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //
 // # define __REDIRECT(name, proto, alias) name proto; 	_Pragma("let " #name " = " #alias)
 
-// GCC has various useful declarations that can be made with the
-//    `__attribute__' syntax.  All of the ways we use this do fine if
+// GCC and clang have various useful declarations that can be made with
+//    the '__attribute__' syntax.  All of the ways we use this do fine if
 //    they are omitted for compilers that don't understand it.
 
 // At some point during the gcc 2.96 development the `malloc' attribute
@@ -933,6 +1024,9 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // Tell the compiler which arguments to an allocation function
 //    indicate the size of the allocation.
+
+// Tell the compiler which argument to an allocation function
+//    indicates the alignment of the allocation.
 
 // At some point during the gcc 2.96 development the `pure' attribute
 //    for functions was introduced.  We don't want to use it unconditionally
@@ -962,8 +1056,13 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    unconditionally (although this would be possible) since it
 //    generates warnings.
 
-// The nonull function attribute allows to mark pointer parameters which
-//    must not be NULL.
+// The nonnull function attribute marks pointer parameters that
+//    must not be NULL.  This has the name __nonnull in glibc,
+//    and __attribute_nonnull__ in files shared with Gnulib to avoid
+//    collision with a different __nonnull in DragonFlyBSD 5.9.
+
+// The returns_nonnull function attribute marks the return type of the function
+//    as always being non-null.
 
 // If fortification mode, we warn about unused results of certain
 //    function calls which can lead to problems.
@@ -994,11 +1093,14 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    `__extension__' keyword.  But this is not generally available before
 //    version 2.8.
 
-// __restrict is known in EGCS 1.2 and above.
+// __restrict is known in EGCS 1.2 and above, and in clang.
+//    It works also in C++ mode (outside of arrays), but only when spelled
+//    as '__restrict', not 'restrict'.
 
 // ISO C99 also allows to declare arrays as non-overlapping.  The syntax is
 //      array_name[restrict]
-//    GCC 3.1 supports this.
+//    GCC 3.1 and clang support this.
+//    This syntax is not usable in C++ mode.
 
 // Describes a char array whose address can safely be passed as the first
 //    argument to strncpy and strncat, as the char array is not necessarily
@@ -1008,11 +1110,13 @@ type X__float128 = float64        /* <builtin>:47:21 */
 // Copies attributes from the declaration or type referenced by
 //    the argument.
 
+// Gnulib avoids including these, as they don't work on non-glibc or
+//    older glibc platforms.
 // Determine the wordsize from the preprocessor defines.
 
 // Both x86-64 and x32 use the 64-bit system call interface.
 // Properties of long double type.  ldbl-96 version.
-//    Copyright (C) 2016-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2016-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1046,6 +1150,22 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    On the other hand, Clang also defines __GNUC__, so a clang-specific
 //    check is required to enable the use of generic selection.
 
+// Designates a 1-based positional argument ref-index of pointer type
+//    that can be used to access size-index elements of the pointed-to
+//    array according to access mode, or at least one element when
+//    size-index is not provided:
+//      access (access-mode, <ref-index> [, <size-index>])
+// For _FORTIFY_SOURCE == 3 we use __builtin_dynamic_object_size, which may
+//    use the access attribute to get object sizes from function definition
+//    arguments, so we can't use them on functions we fortify.  Drop the object
+//    size hints for such functions.
+
+// Designates dealloc as a function to call to deallocate objects
+//    allocated by the declared function.
+
+// Specify that a function such as setjmp or vfork may return
+//    twice.
+
 // If we don't have __REDIRECT, prototypes will be missing if
 //    __USE_FILE_OFFSET64 but not __USE_LARGEFILE[64].
 
@@ -1065,7 +1185,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    every time called, usually setting errno to ENOSYS.
 
 // Define uintN_t types.
-//    Copyright (C) 2017-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2017-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1083,7 +1203,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    <https://www.gnu.org/licenses/>.
 
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1102,7 +1222,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // Never include this file directly; use <sys/types.h> instead.
 
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1123,7 +1243,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // Both x86-64 and x32 use the 64-bit system call interface.
 // Bit size of the time_t type at glibc build time, x86-64 and x32 case.
-//    Copyright (C) 2018-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2018-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1139,6 +1259,10 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    You should have received a copy of the GNU Lesser General Public
 //    License along with the GNU C Library; if not, see
 //    <https://www.gnu.org/licenses/>.
+
+// Determine the wordsize from the preprocessor defines.
+
+// Both x86-64 and x32 use the 64-bit system call interface.
 
 // For others, time size is word size.
 
@@ -1207,7 +1331,7 @@ type X__uintmax_t = uint64 /* types.h:73:27 */
 
 // No need to mark the typedef with __extension__.
 // bits/typesizes.h -- underlying types for *_t.  Linux/x86-64 version.
-//    Copyright (C) 2012-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2012-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1239,10 +1363,12 @@ type X__uintmax_t = uint64 /* types.h:73:27 */
 
 // And for fsblkcnt_t, fsblkcnt64_t, fsfilcnt_t and fsfilcnt64_t.
 
+// And for getitimer, setitimer and rusage
+
 // Number of descriptors that can fit in an `fd_set'.
 
 // bits/time64.h -- underlying types for __time64_t.  Generic version.
-//    Copyright (C) 2018-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2018-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1281,60 +1407,61 @@ type X__id_t = uint32                      /* types.h:159:24 */ // General type 
 type X__time_t = int64                     /* types.h:160:26 */ // Seconds since the Epoch.
 type X__useconds_t = uint32                /* types.h:161:30 */ // Count of microseconds.
 type X__suseconds_t = int64                /* types.h:162:31 */ // Signed count of microseconds.
+type X__suseconds64_t = int64              /* types.h:163:33 */
 
-type X__daddr_t = int32 /* types.h:164:27 */ // The type of a disk address.
-type X__key_t = int32   /* types.h:165:25 */ // Type of an IPC key.
+type X__daddr_t = int32 /* types.h:165:27 */ // The type of a disk address.
+type X__key_t = int32   /* types.h:166:25 */ // Type of an IPC key.
 
 // Clock ID used in clock and timer functions.
-type X__clockid_t = int32 /* types.h:168:29 */
+type X__clockid_t = int32 /* types.h:169:29 */
 
 // Timer ID returned by `timer_create'.
-type X__timer_t = uintptr /* types.h:171:12 */
+type X__timer_t = uintptr /* types.h:172:12 */
 
 // Type to represent block size.
-type X__blksize_t = int64 /* types.h:174:29 */
+type X__blksize_t = int64 /* types.h:175:29 */
 
 // Types from the Large File Support interface.
 
 // Type to count number of disk blocks.
-type X__blkcnt_t = int64   /* types.h:179:28 */
-type X__blkcnt64_t = int64 /* types.h:180:30 */
+type X__blkcnt_t = int64   /* types.h:180:28 */
+type X__blkcnt64_t = int64 /* types.h:181:30 */
 
 // Type to count file system blocks.
-type X__fsblkcnt_t = uint64   /* types.h:183:30 */
-type X__fsblkcnt64_t = uint64 /* types.h:184:32 */
+type X__fsblkcnt_t = uint64   /* types.h:184:30 */
+type X__fsblkcnt64_t = uint64 /* types.h:185:32 */
 
 // Type to count file system nodes.
-type X__fsfilcnt_t = uint64   /* types.h:187:30 */
-type X__fsfilcnt64_t = uint64 /* types.h:188:32 */
+type X__fsfilcnt_t = uint64   /* types.h:188:30 */
+type X__fsfilcnt64_t = uint64 /* types.h:189:32 */
 
 // Type of miscellaneous file system fields.
-type X__fsword_t = int64 /* types.h:191:28 */
+type X__fsword_t = int64 /* types.h:192:28 */
 
-type X__ssize_t = int64 /* types.h:193:27 */ // Type of a byte count, or error.
+type X__ssize_t = int64 /* types.h:194:27 */ // Type of a byte count, or error.
 
 // Signed long type used in system calls.
-type X__syscall_slong_t = int64 /* types.h:196:33 */
+type X__syscall_slong_t = int64 /* types.h:197:33 */
 // Unsigned long type used in system calls.
-type X__syscall_ulong_t = uint64 /* types.h:198:33 */
+type X__syscall_ulong_t = uint64 /* types.h:199:33 */
 
 // These few don't really vary by system, they always correspond
 //
 //	to one of the other defined types.
-type X__loff_t = X__off64_t /* types.h:202:19 */ // Type of file sizes and offsets (LFS).
-type X__caddr_t = uintptr   /* types.h:203:14 */
+type X__loff_t = X__off64_t /* types.h:203:19 */ // Type of file sizes and offsets (LFS).
+type X__caddr_t = uintptr   /* types.h:204:14 */
 
 // Duplicates info from stdint.h but this is used in unistd.h.
-type X__intptr_t = int64 /* types.h:206:25 */
+type X__intptr_t = int64 /* types.h:207:25 */
 
 // Duplicate info from sys/socket.h.
-type X__socklen_t = uint32 /* types.h:209:23 */
+type X__socklen_t = uint32 /* types.h:210:23 */
 
 // C99: An integer type that can be accessed as an atomic entity,
 //
 //	even in the presence of asynchronous interrupts.
 //	It is not currently necessary for this to be machine-specific.
-type X__sig_atomic_t = int32 /* types.h:214:13 */
+type X__sig_atomic_t = int32 /* types.h:215:13 */
 
 // Seconds since the Epoch, visible to user code when time_t is too
 //    narrow only for consistency with the old way of widening too-narrow
@@ -1361,7 +1488,7 @@ type Iovec = struct {
 	Fiov_len  Size_t
 } /* struct_iovec.h:26:1 */
 
-// Copyright (C) 1989-2020 Free Software Foundation, Inc.
+// Copyright (C) 1989-2022 Free Software Foundation, Inc.
 //
 // This file is part of GCC.
 //
@@ -1433,7 +1560,7 @@ type Iovec = struct {
 //    AF_*, MSG_*, SOL_*, and SO_* constants, and the `struct sockaddr',
 //    `struct msghdr', and `struct linger' types.
 // System-specific socket constants and types.  Linux version.
-//    Copyright (C) 1991-2020 Free Software Foundation, Inc.
+//    Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1450,7 +1577,7 @@ type Iovec = struct {
 //    License along with the GNU C Library; if not, see
 //    <https://www.gnu.org/licenses/>.
 
-// Copyright (C) 1989-2020 Free Software Foundation, Inc.
+// Copyright (C) 1989-2022 Free Software Foundation, Inc.
 //
 // This file is part of GCC.
 //
@@ -1518,7 +1645,7 @@ type Iovec = struct {
 
 // A null pointer constant.
 
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1537,7 +1664,7 @@ type Iovec = struct {
 
 //	POSIX Standard: 2.6 Primitive System Data Types	<sys/types.h>
 
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1555,7 +1682,7 @@ type Iovec = struct {
 //    <https://www.gnu.org/licenses/>.
 
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1609,7 +1736,7 @@ type Caddr_t = X__caddr_t /* types.h:115:19 */
 type Key_t = X__key_t /* types.h:121:17 */
 
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1632,7 +1759,7 @@ type Key_t = X__key_t /* types.h:121:17 */
 type Clock_t = X__clock_t /* clock_t.h:7:19 */
 
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1655,7 +1782,7 @@ type Clock_t = X__clock_t /* clock_t.h:7:19 */
 type Clockid_t = X__clockid_t /* clockid_t.h:7:21 */
 
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1675,10 +1802,10 @@ type Clockid_t = X__clockid_t /* clockid_t.h:7:21 */
 // Never include this file directly; use <sys/types.h> instead.
 
 // Returned by `time'.
-type Time_t = X__time_t /* time_t.h:7:18 */
+type Time_t = X__time_t /* time_t.h:10:18 */
 
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1700,7 +1827,7 @@ type Time_t = X__time_t /* time_t.h:7:18 */
 // Timer ID returned by `timer_create'.
 type Timer_t = X__timer_t /* timer_t.h:7:19 */
 
-// Copyright (C) 1989-2020 Free Software Foundation, Inc.
+// Copyright (C) 1989-2022 Free Software Foundation, Inc.
 //
 // This file is part of GCC.
 //
@@ -1776,7 +1903,7 @@ type Uint = uint32   /* types.h:150:22 */
 // These size-specific names are used by some of the inet code.
 
 // Define intN_t types.
-//    Copyright (C) 2017-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2017-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1794,7 +1921,7 @@ type Uint = uint32   /* types.h:150:22 */
 //    <https://www.gnu.org/licenses/>.
 
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1828,7 +1955,7 @@ type Register_t = int32 /* types.h:164:13 */
 
 // It also defines `fd_set' and the FD_* macros for `select'.
 // `fd_set' type and related macros, and `select'/`pselect' declarations.
-//    Copyright (C) 1996-2020 Free Software Foundation, Inc.
+//    Copyright (C) 1996-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1847,7 +1974,7 @@ type Register_t = int32 /* types.h:164:13 */
 
 //	POSIX 1003.1g: 6.2 Select from File Descriptor Sets <sys/select.h>
 
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1866,7 +1993,7 @@ type Register_t = int32 /* types.h:164:13 */
 
 // Get definition of needed basic types.
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1886,7 +2013,7 @@ type Register_t = int32 /* types.h:164:13 */
 // Never include this file directly; use <sys/types.h> instead.
 
 // Get __FD_* definitions.
-// Copyright (C) 1997-2020 Free Software Foundation, Inc.
+// Copyright (C) 1997-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1903,9 +2030,8 @@ type Register_t = int32 /* types.h:164:13 */
 //    License along with the GNU C Library; if not, see
 //    <https://www.gnu.org/licenses/>.
 
-// Determine the wordsize from the preprocessor defines.
-
-// Both x86-64 and x32 use the 64-bit system call interface.
+// We don't use `memset' because this would require a prototype and
+//    the array isn't too big.
 
 // Get sigset_t.
 
@@ -1917,7 +2043,7 @@ type Sigset_t = X__sigset_t /* sigset_t.h:7:20 */
 // Get definition of timer specification structures.
 
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1947,7 +2073,7 @@ type Timeval = struct {
 // NB: Include guard matches what <linux/time.h> uses.
 
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1967,7 +2093,7 @@ type Timeval = struct {
 // Never include this file directly; use <sys/types.h> instead.
 
 // Endian macros for string.h functions
-//    Copyright (C) 1992-2020 Free Software Foundation, Inc.
+//    Copyright (C) 1992-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -1990,7 +2116,7 @@ type Timeval = struct {
 type Timespec = struct {
 	Ftv_sec  X__time_t
 	Ftv_nsec X__syscall_slong_t
-} /* struct_timespec.h:10:1 */
+} /* struct_timespec.h:11:1 */
 
 type Suseconds_t = X__suseconds_t /* select.h:43:23 */
 
@@ -2019,7 +2145,7 @@ type Fsfilcnt_t = X__fsfilcnt64_t /* types.h:213:24 */ // Type to count file sys
 
 // Now add the thread types.
 // Declaration of common pthread types for all architectures.
-//    Copyright (C) 2017-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2017-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -2038,7 +2164,7 @@ type Fsfilcnt_t = X__fsfilcnt64_t /* types.h:213:24 */ // Type to count file sys
 
 // For internal mutex and condition variable definitions.
 // Common threading primitives definitions for both POSIX and C11.
-//    Copyright (C) 2017-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2017-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -2077,7 +2203,7 @@ type Fsfilcnt_t = X__fsfilcnt64_t /* types.h:213:24 */ // Type to count file sys
 //
 //    __ONCE_ALIGNMENT - for pthread_once_t/once_flag definition.
 
-// Copyright (C) 2002-2020 Free Software Foundation, Inc.
+// Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -2097,104 +2223,45 @@ type Fsfilcnt_t = X__fsfilcnt64_t /* types.h:213:24 */ // Type to count file sys
 // Determine the wordsize from the preprocessor defines.
 
 // Both x86-64 and x32 use the 64-bit system call interface.
+
+// Monotonically increasing wide counters (at least 62 bits).
+//    Copyright (C) 2016-2022 Free Software Foundation, Inc.
+//    This file is part of the GNU C Library.
+//
+//    The GNU C Library is free software; you can redistribute it and/or
+//    modify it under the terms of the GNU Lesser General Public
+//    License as published by the Free Software Foundation; either
+//    version 2.1 of the License, or (at your option) any later version.
+//
+//    The GNU C Library is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    Lesser General Public License for more details.
+//
+//    You should have received a copy of the GNU Lesser General Public
+//    License along with the GNU C Library; if not, see
+//    <https://www.gnu.org/licenses/>.
+
+// Counter that is monotonically increasing (by less than 2**31 per
+//
+//	increment), with a single writer, and an arbitrary number of
+//	readers.
+type X__atomic_wide_counter = struct{ F__value64 uint64 } /* atomic_wide_counter.h:33:3 */
 
 // Common definition of pthread_mutex_t.
 
 type X__pthread_internal_list = struct {
 	F__prev uintptr
 	F__next uintptr
-} /* thread-shared-types.h:49:9 */
-
-// Type to count file system inodes.
-
-// Now add the thread types.
-// Declaration of common pthread types for all architectures.
-//    Copyright (C) 2017-2020 Free Software Foundation, Inc.
-//    This file is part of the GNU C Library.
-//
-//    The GNU C Library is free software; you can redistribute it and/or
-//    modify it under the terms of the GNU Lesser General Public
-//    License as published by the Free Software Foundation; either
-//    version 2.1 of the License, or (at your option) any later version.
-//
-//    The GNU C Library is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//    Lesser General Public License for more details.
-//
-//    You should have received a copy of the GNU Lesser General Public
-//    License along with the GNU C Library; if not, see
-//    <https://www.gnu.org/licenses/>.
-
-// For internal mutex and condition variable definitions.
-// Common threading primitives definitions for both POSIX and C11.
-//    Copyright (C) 2017-2020 Free Software Foundation, Inc.
-//    This file is part of the GNU C Library.
-//
-//    The GNU C Library is free software; you can redistribute it and/or
-//    modify it under the terms of the GNU Lesser General Public
-//    License as published by the Free Software Foundation; either
-//    version 2.1 of the License, or (at your option) any later version.
-//
-//    The GNU C Library is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//    Lesser General Public License for more details.
-//
-//    You should have received a copy of the GNU Lesser General Public
-//    License along with the GNU C Library; if not, see
-//    <https://www.gnu.org/licenses/>.
-
-// Arch-specific definitions.  Each architecture must define the following
-//    macros to define the expected sizes of pthread data types:
-//
-//    __SIZEOF_PTHREAD_ATTR_T        - size of pthread_attr_t.
-//    __SIZEOF_PTHREAD_MUTEX_T       - size of pthread_mutex_t.
-//    __SIZEOF_PTHREAD_MUTEXATTR_T   - size of pthread_mutexattr_t.
-//    __SIZEOF_PTHREAD_COND_T        - size of pthread_cond_t.
-//    __SIZEOF_PTHREAD_CONDATTR_T    - size of pthread_condattr_t.
-//    __SIZEOF_PTHREAD_RWLOCK_T      - size of pthread_rwlock_t.
-//    __SIZEOF_PTHREAD_RWLOCKATTR_T  - size of pthread_rwlockattr_t.
-//    __SIZEOF_PTHREAD_BARRIER_T     - size of pthread_barrier_t.
-//    __SIZEOF_PTHREAD_BARRIERATTR_T - size of pthread_barrierattr_t.
-//
-//    The additional macro defines any constraint for the lock alignment
-//    inside the thread structures:
-//
-//    __LOCK_ALIGNMENT - for internal lock/futex usage.
-//
-//    Same idea but for the once locking primitive:
-//
-//    __ONCE_ALIGNMENT - for pthread_once_t/once_flag definition.
-
-// Copyright (C) 2002-2020 Free Software Foundation, Inc.
-//    This file is part of the GNU C Library.
-//
-//    The GNU C Library is free software; you can redistribute it and/or
-//    modify it under the terms of the GNU Lesser General Public
-//    License as published by the Free Software Foundation; either
-//    version 2.1 of the License, or (at your option) any later version.
-//
-//    The GNU C Library is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//    Lesser General Public License for more details.
-//
-//    You should have received a copy of the GNU Lesser General Public
-//    License along with the GNU C Library; if not, see
-//    <https://www.gnu.org/licenses/>.
-
-// Determine the wordsize from the preprocessor defines.
-
-// Both x86-64 and x32 use the 64-bit system call interface.
+} /* thread-shared-types.h:51:9 */
 
 // Common definition of pthread_mutex_t.
 
-type X__pthread_list_t = X__pthread_internal_list /* thread-shared-types.h:53:3 */
+type X__pthread_list_t = X__pthread_internal_list /* thread-shared-types.h:55:3 */
 
-type X__pthread_internal_slist = struct{ F__next uintptr } /* thread-shared-types.h:55:9 */
+type X__pthread_internal_slist = struct{ F__next uintptr } /* thread-shared-types.h:57:9 */
 
-type X__pthread_slist_t = X__pthread_internal_slist /* thread-shared-types.h:58:3 */
+type X__pthread_slist_t = X__pthread_internal_slist /* thread-shared-types.h:60:3 */
 
 // Arch-specific mutex definitions.  A generic implementation is provided
 //    by sysdeps/nptl/bits/struct_mutex.h.  If required, an architecture
@@ -2211,7 +2278,7 @@ type X__pthread_slist_t = X__pthread_internal_slist /* thread-shared-types.h:58:
 //       It should initialize the mutex internal flag.
 
 // x86 internal mutex struct definitions.
-//    Copyright (C) 2019-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2019-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -2251,7 +2318,7 @@ type X__pthread_mutex_s = struct {
 //       It should initialize the rwlock internal type.
 
 // x86 internal rwlock struct definitions.
-//    Copyright (C) 2019-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2019-2022 Free Software Foundation, Inc.
 //
 //    This file is part of the GNU C Library.
 //
@@ -2288,14 +2355,19 @@ type X__pthread_rwlock_arch_t = struct {
 // Common definition of pthread_cond_t.
 
 type X__pthread_cond_s = struct {
-	F__0            struct{ F__wseq uint64 }
-	F__8            struct{ F__g1_start uint64 }
+	F__wseq         X__atomic_wide_counter
+	F__g1_start     X__atomic_wide_counter
 	F__g_refs       [2]uint32
 	F__g_size       [2]uint32
 	F__g1_orig_size uint32
 	F__wrefs        uint32
 	F__g_signals    [2]uint32
-} /* thread-shared-types.h:92:1 */
+} /* thread-shared-types.h:94:1 */
+
+type X__tss_t = uint32  /* thread-shared-types.h:105:22 */
+type X__thrd_t = uint64 /* thread-shared-types.h:106:27 */
+
+type X__once_flag = struct{ F__data int32 } /* thread-shared-types.h:111:3 */
 
 // Thread identifiers.  The structure of the attribute type is not
 //
@@ -2377,7 +2449,7 @@ type Socklen_t = X__socklen_t /* socket.h:33:21 */
 
 // Get the definition of the macro to define the common sockaddr members.
 // Definition of struct sockaddr_* common members and sizes, generic version.
-//    Copyright (C) 1995-2020 Free Software Foundation, Inc.
+//    Copyright (C) 1995-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -2409,7 +2481,7 @@ type Sa_family_t = uint16 /* sockaddr.h:28:28 */
 type Sockaddr = struct {
 	Fsa_family Sa_family_t
 	Fsa_data   [14]int8
-} /* socket.h:178:1 */
+} /* socket.h:183:1 */
 
 // Structure large enough to hold any socket address (with the historical
 //    exception of AF_UNIX).
@@ -2418,7 +2490,7 @@ type Sockaddr_storage = struct {
 	Fss_family    Sa_family_t
 	F__ss_padding [118]int8
 	F__ss_align   uint64
-} /* socket.h:191:1 */
+} /* socket.h:196:1 */
 
 // Structure describing messages sent by
 //
@@ -2433,7 +2505,7 @@ type Msghdr = struct {
 	Fmsg_controllen Size_t
 	Fmsg_flags      int32
 	F__ccgo_pad2    [4]byte
-} /* socket.h:257:1 */
+} /* socket.h:262:1 */
 
 // Structure used for storage of ancillary data object information.
 type Cmsghdr = struct {
@@ -2441,13 +2513,38 @@ type Cmsghdr = struct {
 	Fcmsg_len    Size_t
 	Fcmsg_level  int32
 	Fcmsg_type   int32
-} /* socket.h:275:1 */
+} /* socket.h:280:1 */
 
 // SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note
 
 // SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note
 
 // SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note
+
+// *
+// __struct_group() - Create a mirrored named and anonyomous struct
+//
+// @TAG: The tag name for the named sub-struct (usually empty)
+// @NAME: The identifier name of the mirrored sub-struct
+// @ATTRS: Any struct attributes (usually empty)
+// @MEMBERS: The member declarations for the mirrored structs
+//
+// Used to create an anonymous union of two structs with identical layout
+// and size: one anonymous and one named. The former's members can be used
+// normally without sub-struct naming, and the latter can be used to
+// reason about the start, end, and size of the group of struct members.
+// The named struct can also be explicitly tagged for layer reuse, as well
+// as both having struct attributes appended.
+
+// *
+// __DECLARE_FLEX_ARRAY() - Declare a flexible array usable in a union
+//
+// @TYPE: The type of each flexible array element
+// @NAME: The name of the flexible array member
+//
+// In order to have a flexible array member in a union or alone in a
+// struct, it needs to be wrapped in an anonymous struct with at least 1
+// named member, but that member can be empty.
 
 // This allows for 1024 file descriptors: if NR_OPEN is ever grown
 // beyond that you'll have to change this too. But 1024 fd's seem to be
@@ -2560,7 +2657,7 @@ type X__kernel_gid16_t = uint16              /* posix_types.h:97:24 */
 type Linger = struct {
 	Fl_onoff  int32
 	Fl_linger int32
-} /* socket.h:361:1 */
+} /* socket.h:392:1 */
 
 // This is the 4.3 BSD `struct sockaddr' format, which is used as wire
 //
@@ -2573,7 +2670,7 @@ type Osockaddr = struct {
 // Define some macros helping to catch buffer overflows.
 
 // bits/types.h -- definitions of __*_t types underlying *_t types.
-//    Copyright (C) 2002-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2002-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -2597,7 +2694,7 @@ type In_addr_t = Uint32_t                  /* in.h:30:18 */
 type In_addr = struct{ Fs_addr In_addr_t } /* in.h:31:1 */
 
 // Get system-specific definitions.
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -2647,24 +2744,17 @@ type In_addr = struct{ Fs_addr In_addr_t } /* in.h:31:1 */
 type Ip_opts = struct {
 	Fip_dst  struct{ Fs_addr In_addr_t }
 	Fip_opts [40]int8
-} /* in.h:142:1 */
-
-// Like `struct ip_mreq' but including interface specification by index.
-type Ip_mreqn = struct {
-	Fimr_multiaddr struct{ Fs_addr In_addr_t }
-	Fimr_address   struct{ Fs_addr In_addr_t }
-	Fimr_ifindex   int32
-} /* in.h:149:1 */
+} /* in.h:143:1 */
 
 // Structure used for IP_PKTINFO.
 type In_pktinfo = struct {
 	Fipi_ifindex  int32
 	Fipi_spec_dst struct{ Fs_addr In_addr_t }
 	Fipi_addr     struct{ Fs_addr In_addr_t }
-} /* in.h:157:1 */
+} /* in.h:150:1 */
 
 // Type to represent a port.
-type In_port_t = Uint16_t /* in.h:119:18 */
+type In_port_t = Uint16_t /* in.h:123:18 */
 
 // Definitions of the bits in an Internet address integer.
 //
@@ -2674,6 +2764,8 @@ type In_port_t = Uint16_t /* in.h:119:18 */
 // Address to accept any incoming messages.
 // Address to send to all hosts.
 // Address indicating an error return.
+// Dummy address for source of ICMPv6 errors converted to IPv4 (RFC
+//    7600).
 
 // Network number for local host loopback.
 // Address to loopback in software to local host.
@@ -2686,7 +2778,7 @@ type In6_addr = struct {
 		F__ccgo_pad1 [0]uint32
 		F__u6_addr8  [16]Uint8_t
 	}
-} /* in.h:212:1 */
+} /* in.h:219:1 */
 
 // ::1
 
@@ -2696,7 +2788,7 @@ type Sockaddr_in = struct {
 	Fsin_port   In_port_t
 	Fsin_addr   struct{ Fs_addr In_addr_t }
 	Fsin_zero   [8]uint8
-} /* in.h:238:1 */
+} /* in.h:245:1 */
 
 // Ditto, for IPv6.
 type Sockaddr_in6 = struct {
@@ -2710,19 +2802,26 @@ type Sockaddr_in6 = struct {
 		}
 	}
 	Fsin6_scope_id Uint32_t
-} /* in.h:253:1 */
+} /* in.h:260:1 */
 
 // IPv4 multicast request.
 type Ip_mreq = struct {
 	Fimr_multiaddr struct{ Fs_addr In_addr_t }
 	Fimr_interface struct{ Fs_addr In_addr_t }
-} /* in.h:265:1 */
+} /* in.h:272:1 */
+
+// IPv4 multicast request with interface index.
+type Ip_mreqn = struct {
+	Fimr_multiaddr struct{ Fs_addr In_addr_t }
+	Fimr_address   struct{ Fs_addr In_addr_t }
+	Fimr_ifindex   int32
+} /* in.h:282:1 */
 
 type Ip_mreq_source = struct {
 	Fimr_multiaddr  struct{ Fs_addr In_addr_t }
 	Fimr_interface  struct{ Fs_addr In_addr_t }
 	Fimr_sourceaddr struct{ Fs_addr In_addr_t }
-} /* in.h:274:1 */
+} /* in.h:294:1 */
 
 // Likewise, for IPv6.
 type Ipv6_mreq = struct {
@@ -2733,7 +2832,7 @@ type Ipv6_mreq = struct {
 		}
 	}
 	Fipv6mr_interface uint32
-} /* in.h:289:1 */
+} /* in.h:309:1 */
 
 // Multicast group request.
 type Group_req = struct {
@@ -2744,7 +2843,7 @@ type Group_req = struct {
 		F__ss_padding [118]int8
 		F__ss_align   uint64
 	}
-} /* in.h:301:1 */
+} /* in.h:321:1 */
 
 type Group_source_req = struct {
 	Fgsr_interface Uint32_t
@@ -2759,7 +2858,7 @@ type Group_source_req = struct {
 		F__ss_padding [118]int8
 		F__ss_align   uint64
 	}
-} /* in.h:310:1 */
+} /* in.h:330:1 */
 
 // Full-state filter operations.
 type Ip_msfilter = struct {
@@ -2768,7 +2867,7 @@ type Ip_msfilter = struct {
 	Fimsf_fmode     Uint32_t
 	Fimsf_numsrc    Uint32_t
 	Fimsf_slist     [1]struct{ Fs_addr In_addr_t }
-} /* in.h:324:1 */
+} /* in.h:344:1 */
 
 type Group_filter = struct {
 	Fgf_interface Uint32_t
@@ -2785,6 +2884,6 @@ type Group_filter = struct {
 		F__ss_padding [118]int8
 		F__ss_align   uint64
 	}
-} /* in.h:345:1 */
+} /* in.h:365:1 */
 
 var _ int8 /* gen.c:2:13: */

@@ -46,7 +46,7 @@ const (
 	PIPE_BUF                             = 4096                 // limits.h:14:1:
 	PTHREAD_DESTRUCTOR_ITERATIONS        = 4                    // local_lim.h:69:1:
 	PTHREAD_KEYS_MAX                     = 1024                 // local_lim.h:64:1:
-	PTHREAD_STACK_MIN                    = 16384                // local_lim.h:81:1:
+	PTHREAD_STACK_MIN                    = 16384                // pthread_stack_min.h:20:1:
 	RE_DUP_MAX                           = 32767                // posix2_lim.h:88:1:
 	RTSIG_MAX                            = 32                   // limits.h:19:1:
 	SCHAR_MAX                            = 127                  // limits.h:75:1:
@@ -64,17 +64,17 @@ const (
 	XATTR_LIST_MAX                       = 65536                // limits.h:17:1:
 	XATTR_NAME_MAX                       = 255                  // limits.h:15:1:
 	XATTR_SIZE_MAX                       = 65536                // limits.h:16:1:
-	X_ATFILE_SOURCE                      = 1                    // features.h:342:1:
+	X_ATFILE_SOURCE                      = 1                    // features.h:351:1:
 	X_BITS_POSIX1_LIM_H                  = 1                    // posix1_lim.h:25:1:
 	X_BITS_POSIX2_LIM_H                  = 1                    // posix2_lim.h:23:1:
-	X_DEFAULT_SOURCE                     = 1                    // features.h:227:1:
+	X_DEFAULT_SOURCE                     = 1                    // features.h:236:1:
 	X_FEATURES_H                         = 1                    // features.h:19:1:
 	X_FILE_OFFSET_BITS                   = 64                   // <builtin>:25:1:
 	X_GCC_LIMITS_H_                      = 0                    // limits.h:30:1:
 	X_LIBC_LIMITS_H_                     = 1                    // limits.h:23:1:
 	X_LIMITS_H___                        = 0                    // limits.h:60:1:
 	X_LINUX_LIMITS_H                     = 0                    // limits.h:3:1:
-	X_LP64                               = 1                    // <predefined>:284:1:
+	X_LP64                               = 1                    // <predefined>:312:1:
 	X_POSIX2_BC_BASE_MAX                 = 99                   // posix2_lim.h:27:1:
 	X_POSIX2_BC_DIM_MAX                  = 2048                 // posix2_lim.h:30:1:
 	X_POSIX2_BC_SCALE_MAX                = 99                   // posix2_lim.h:33:1:
@@ -89,7 +89,7 @@ const (
 	X_POSIX_ARG_MAX                      = 4096                 // posix1_lim.h:38:1:
 	X_POSIX_CHILD_MAX                    = 25                   // posix1_lim.h:42:1:
 	X_POSIX_CLOCKRES_MIN                 = 20000000             // posix1_lim.h:157:1:
-	X_POSIX_C_SOURCE                     = 200809               // features.h:281:1:
+	X_POSIX_C_SOURCE                     = 200809               // features.h:290:1:
 	X_POSIX_DELAYTIMER_MAX               = 32                   // posix1_lim.h:48:1:
 	X_POSIX_HOST_NAME_MAX                = 255                  // posix1_lim.h:52:1:
 	X_POSIX_LINK_MAX                     = 8                    // posix1_lim.h:55:1:
@@ -108,7 +108,7 @@ const (
 	X_POSIX_SEM_NSEMS_MAX                = 256                  // posix1_lim.h:110:1:
 	X_POSIX_SEM_VALUE_MAX                = 32767                // posix1_lim.h:113:1:
 	X_POSIX_SIGQUEUE_MAX                 = 32                   // posix1_lim.h:116:1:
-	X_POSIX_SOURCE                       = 1                    // features.h:279:1:
+	X_POSIX_SOURCE                       = 1                    // features.h:288:1:
 	X_POSIX_SSIZE_MAX                    = 32767                // posix1_lim.h:119:1:
 	X_POSIX_STREAM_MAX                   = 8                    // posix1_lim.h:122:1:
 	X_POSIX_SYMLINK_MAX                  = 255                  // posix1_lim.h:125:1:
@@ -119,10 +119,10 @@ const (
 	X_POSIX_TIMER_MAX                    = 32                   // posix1_lim.h:132:1:
 	X_POSIX_TTY_NAME_MAX                 = 9                    // posix1_lim.h:135:1:
 	X_POSIX_TZNAME_MAX                   = 6                    // posix1_lim.h:139:1:
-	X_STDC_PREDEF_H                      = 1                    // <predefined>:162:1:
-	X_SYS_CDEFS_H                        = 1                    // cdefs.h:19:1:
-	Linux                                = 1                    // <predefined>:231:1:
-	Unix                                 = 1                    // <predefined>:177:1:
+	X_STDC_PREDEF_H                      = 1                    // <predefined>:174:1:
+	X_SYS_CDEFS_H                        = 1                    // cdefs.h:20:1:
+	Linux                                = 1                    // <predefined>:255:1:
+	Unix                                 = 1                    // <predefined>:191:1:
 )
 
 type Ptrdiff_t = int64 /* <builtin>:3:26 */
@@ -143,7 +143,7 @@ type X__uint128_t = struct {
 type X__builtin_va_list = uintptr /* <builtin>:46:14 */
 type X__float128 = float64        /* <builtin>:47:21 */
 
-// Copyright (C) 1992-2020 Free Software Foundation, Inc.
+// Copyright (C) 1992-2022 Free Software Foundation, Inc.
 //
 // This file is part of GCC.
 //
@@ -178,7 +178,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    If fixincludes fixes it, then the fixed version is installed
 //    instead of this text.
 
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -198,7 +198,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //	ISO C99 Standard: 7.10/5.2.4.2.1 Sizes of integer types	<limits.h>
 
 // Handle feature test macros at the start of a header.
-//    Copyright (C) 2016-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2016-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -223,7 +223,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    header is included, not when the first system header is
 //    included.
 
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -255,6 +255,8 @@ type X__float128 = float64        /* <builtin>:47:21 */
 // 			Extensions to ISO C11 from TS 18661-4:2015.
 //    __STDC_WANT_IEC_60559_TYPES_EXT__
 // 			Extensions to ISO C11 from TS 18661-3:2015.
+//    __STDC_WANT_IEC_60559_EXT__
+// 			ISO C2X interfaces defined only in Annex F.
 //
 //    _POSIX_SOURCE	IEEE Std 1003.1.
 //    _POSIX_C_SOURCE	If ==1, like _POSIX_SOURCE; if >=2 add IEEE Std 1003.2;
@@ -270,6 +272,8 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    _LARGEFILE64_SOURCE	Additional functionality from LFS for large files.
 //    _FILE_OFFSET_BITS=N	Select default filesystem interface.
 //    _ATFILE_SOURCE	Additional *at interfaces.
+//    _DYNAMIC_STACK_SIZE_SOURCE Select correct (but non compile-time constant)
+// 			MINSIGSTKSZ, SIGSTKSZ and PTHREAD_STACK_MIN.
 //    _GNU_SOURCE		All of the above, plus GNU extensions.
 //    _DEFAULT_SOURCE	The default set of features (taking precedence over
 // 			__STRICT_ANSI__).
@@ -316,6 +320,8 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    __USE_FILE_OFFSET64	Define 64bit interface as default.
 //    __USE_MISC		Define things from 4.3BSD or System V Unix.
 //    __USE_ATFILE		Define *at interfaces and AT_* constants for them.
+//    __USE_DYNAMIC_STACK_SIZE Define correct (but non compile-time constant)
+// 			MINSIGSTKSZ, SIGSTKSZ and PTHREAD_STACK_MIN.
 //    __USE_GNU		Define GNU extensions.
 //    __USE_FORTIFY_LEVEL	Additional security measures used, according to level.
 //
@@ -386,6 +392,52 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    comprehensive support for multithreaded code.  Using them never
 //    lowers the selected level of POSIX conformance, only raises it.
 
+// Features part to handle 64-bit time_t support.
+//    Copyright (C) 2021-2022 Free Software Foundation, Inc.
+//    This file is part of the GNU C Library.
+//
+//    The GNU C Library is free software; you can redistribute it and/or
+//    modify it under the terms of the GNU Lesser General Public
+//    License as published by the Free Software Foundation; either
+//    version 2.1 of the License, or (at your option) any later version.
+//
+//    The GNU C Library is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    Lesser General Public License for more details.
+//
+//    You should have received a copy of the GNU Lesser General Public
+//    License along with the GNU C Library; if not, see
+//    <https://www.gnu.org/licenses/>.
+
+// We need to know the word size in order to check the time size.
+// Determine the wordsize from the preprocessor defines.
+
+// Both x86-64 and x32 use the 64-bit system call interface.
+// Bit size of the time_t type at glibc build time, x86-64 and x32 case.
+//    Copyright (C) 2018-2022 Free Software Foundation, Inc.
+//    This file is part of the GNU C Library.
+//
+//    The GNU C Library is free software; you can redistribute it and/or
+//    modify it under the terms of the GNU Lesser General Public
+//    License as published by the Free Software Foundation; either
+//    version 2.1 of the License, or (at your option) any later version.
+//
+//    The GNU C Library is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    Lesser General Public License for more details.
+//
+//    You should have received a copy of the GNU Lesser General Public
+//    License along with the GNU C Library; if not, see
+//    <https://www.gnu.org/licenses/>.
+
+// Determine the wordsize from the preprocessor defines.
+
+// Both x86-64 and x32 use the 64-bit system call interface.
+
+// For others, time size is word size.
+
 // The function 'gets' existed in C89, but is impossible to use
 //    safely.  It has been removed from ISO C11 and ISO C++14.  Note: for
 //    compatibility with various implementations of <cstdio>, this test
@@ -406,7 +458,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // Get definitions of __STDC_* predefined macros, if the compiler has
 //    not preincluded this header automatically.
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -434,7 +486,8 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    these macros to test for features in specific releases.
 
 // This is here only because every header file already includes this one.
-// Copyright (C) 1992-2020 Free Software Foundation, Inc.
+// Copyright (C) 1992-2022 Free Software Foundation, Inc.
+//    Copyright The GNU Toolchain Authors.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -455,22 +508,23 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // The GNU libc does not support any K&R compilers or the traditional mode
 //    of ISO C compilers anymore.  Check for some of the combinations not
-//    anymore supported.
+//    supported anymore.
 
 // Some user header file might have defined this before.
+
+// Compilers that lack __has_attribute may object to
+//        #if defined __has_attribute && __has_attribute (...)
+//    even though they do not need to evaluate the right-hand side of the &&.
+//    Similarly for __has_builtin, etc.
 
 // All functions, except those with callbacks or those that
 //    synchronize memory, are leaf functions.
 
 // GCC can always grok prototypes.  For C++ programs we add throw()
-//    to help it optimize the function calls.  But this works only with
-//    gcc 2.8.x and egcs.  For gcc 3.2 and up we even mark C functions
+//    to help it optimize the function calls.  But this only works with
+//    gcc 2.8.x and egcs.  For gcc 3.4 and up we even mark C functions
 //    as non-throwing using a function attribute since programs can use
 //    the -fexceptions options for C code as well.
-
-// Compilers that are not clang may object to
-//        #if defined __clang__ && __has_extension(...)
-//    even though they do not need to evaluate the right-hand side of the &&.
 
 // These two macros are not used in glibc anymore.  They are kept here
 //    only because some other projects expect the macros to be defined.
@@ -483,6 +537,25 @@ type X__float128 = float64        /* <builtin>:47:21 */
 // C++ needs to know that types and declarations are C, not C++.
 
 // Fortify support.
+
+// Use __builtin_dynamic_object_size at _FORTIFY_SOURCE=3 when available.
+
+// Compile time conditions to choose between the regular, _chk and _chk_warn
+//    variants.  These conditions should get evaluated to constant and optimized
+//    away.
+
+// Length is known to be safe at compile time if the __L * __S <= __OBJSZ
+//    condition can be folded to a constant and if it is true, or unknown (-1)
+
+// Conversely, we know at compile time that the length is unsafe if the
+//    __L * __S <= __OBJSZ condition can be folded to a constant and if it is
+//    false.
+
+// Fortify function f.  __f_alias, __f_chk and __f_chk_warn must be
+//    declared.
+
+// Fortify function f, where object size argument passed to f is the number of
+//    elements and not total size.
 
 // Support for flexible arrays.
 //    Headers that should use flexible arrays only if they're "real"
@@ -504,8 +577,8 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //
 // # define __REDIRECT(name, proto, alias) name proto; 	_Pragma("let " #name " = " #alias)
 
-// GCC has various useful declarations that can be made with the
-//    `__attribute__' syntax.  All of the ways we use this do fine if
+// GCC and clang have various useful declarations that can be made with
+//    the '__attribute__' syntax.  All of the ways we use this do fine if
 //    they are omitted for compilers that don't understand it.
 
 // At some point during the gcc 2.96 development the `malloc' attribute
@@ -514,6 +587,9 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // Tell the compiler which arguments to an allocation function
 //    indicate the size of the allocation.
+
+// Tell the compiler which argument to an allocation function
+//    indicates the alignment of the allocation.
 
 // At some point during the gcc 2.96 development the `pure' attribute
 //    for functions was introduced.  We don't want to use it unconditionally
@@ -543,8 +619,13 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    unconditionally (although this would be possible) since it
 //    generates warnings.
 
-// The nonull function attribute allows to mark pointer parameters which
-//    must not be NULL.
+// The nonnull function attribute marks pointer parameters that
+//    must not be NULL.  This has the name __nonnull in glibc,
+//    and __attribute_nonnull__ in files shared with Gnulib to avoid
+//    collision with a different __nonnull in DragonFlyBSD 5.9.
+
+// The returns_nonnull function attribute marks the return type of the function
+//    as always being non-null.
 
 // If fortification mode, we warn about unused results of certain
 //    function calls which can lead to problems.
@@ -575,11 +656,14 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    `__extension__' keyword.  But this is not generally available before
 //    version 2.8.
 
-// __restrict is known in EGCS 1.2 and above.
+// __restrict is known in EGCS 1.2 and above, and in clang.
+//    It works also in C++ mode (outside of arrays), but only when spelled
+//    as '__restrict', not 'restrict'.
 
 // ISO C99 also allows to declare arrays as non-overlapping.  The syntax is
 //      array_name[restrict]
-//    GCC 3.1 supports this.
+//    GCC 3.1 and clang support this.
+//    This syntax is not usable in C++ mode.
 
 // Describes a char array whose address can safely be passed as the first
 //    argument to strncpy and strncat, as the char array is not necessarily
@@ -589,11 +673,13 @@ type X__float128 = float64        /* <builtin>:47:21 */
 // Copies attributes from the declaration or type referenced by
 //    the argument.
 
+// Gnulib avoids including these, as they don't work on non-glibc or
+//    older glibc platforms.
 // Determine the wordsize from the preprocessor defines.
 
 // Both x86-64 and x32 use the 64-bit system call interface.
 // Properties of long double type.  ldbl-96 version.
-//    Copyright (C) 2016-2020 Free Software Foundation, Inc.
+//    Copyright (C) 2016-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -627,6 +713,22 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    On the other hand, Clang also defines __GNUC__, so a clang-specific
 //    check is required to enable the use of generic selection.
 
+// Designates a 1-based positional argument ref-index of pointer type
+//    that can be used to access size-index elements of the pointed-to
+//    array according to access mode, or at least one element when
+//    size-index is not provided:
+//      access (access-mode, <ref-index> [, <size-index>])
+// For _FORTIFY_SOURCE == 3 we use __builtin_dynamic_object_size, which may
+//    use the access attribute to get object sizes from function definition
+//    arguments, so we can't use them on functions we fortify.  Drop the object
+//    size hints for such functions.
+
+// Designates dealloc as a function to call to deallocate objects
+//    allocated by the declared function.
+
+// Specify that a function such as setjmp or vfork may return
+//    twice.
+
 // If we don't have __REDIRECT, prototypes will be missing if
 //    __USE_FILE_OFFSET64 but not __USE_LARGEFILE[64].
 
@@ -650,8 +752,26 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // ISO/IEC TS 18661-1:2014 defines the __STDC_WANT_IEC_60559_BFP_EXT__
 //    macro.  Most but not all symbols enabled by that macro in TS
-//    18661-1 are enabled unconditionally in C2X; the symbols in Annex F
-//    still require that macro in C2X.
+//    18661-1 are enabled unconditionally in C2X.  In C2X, the symbols in
+//    Annex F still require a new feature test macro
+//    __STDC_WANT_IEC_60559_EXT__ instead (C2X does not define
+//    __STDC_WANT_IEC_60559_BFP_EXT__), while a few features from TS
+//    18661-1 are not included in C2X (and thus should depend on
+//    __STDC_WANT_IEC_60559_BFP_EXT__ even when C2X features are
+//    enabled).
+//
+//    __GLIBC_USE (IEC_60559_BFP_EXT) controls those features from TS
+//    18661-1 not included in C2X.
+//
+//    __GLIBC_USE (IEC_60559_BFP_EXT_C2X) controls those features from TS
+//    18661-1 that are also included in C2X (with no feature test macro
+//    required in C2X).
+//
+//    __GLIBC_USE (IEC_60559_EXT) controls those features from TS 18661-1
+//    that are included in C2X but conditional on
+//    __STDC_WANT_IEC_60559_EXT__.  (There are currently no features
+//    conditional on __STDC_WANT_IEC_60559_EXT__ that are not in TS
+//    18661-1.)
 
 // ISO/IEC TS 18661-4:2015 defines the
 //    __STDC_WANT_IEC_60559_FUNCS_EXT__ macro.  Other than the reduction
@@ -682,8 +802,12 @@ type X__float128 = float64        /* <builtin>:47:21 */
 //    GCC 7, or if _GNU_SOURCE rather than
 //    __STDC_WANT_IEC_60559_BFP_EXT__ is used to enable this feature.
 
+// The macros for _Bool are not defined by GCC's <limits.h> before GCC
+//    11, or if _GNU_SOURCE is defined rather than enabling C2x support
+//    with -std.
+
 // POSIX adds things to <limits.h>.
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -776,7 +900,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // Get the implementation-specific values for the above.
 // Minimum guaranteed maximum values for system limits.  Linux version.
-//    Copyright (C) 1993-2020 Free Software Foundation, Inc.
+//    Copyright (C) 1993-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -819,6 +943,43 @@ type X__float128 = float64        /* <builtin>:47:21 */
 // Maximum amount by which a process can descrease its asynchronous I/O
 //    priority level.
 
+// Arrange for the definition of PTHREAD_STACK_MIN.
+// Definition of PTHREAD_STACK_MIN, possibly dynamic.
+//    Copyright (C) 2021-2022 Free Software Foundation, Inc.
+//    This file is part of the GNU C Library.
+//
+//    The GNU C Library is free software; you can redistribute it and/or
+//    modify it under the terms of the GNU Lesser General Public
+//    License as published by the Free Software Foundation; either
+//    version 2.1 of the License, or (at your option) any later version.
+//
+//    The GNU C Library is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    Lesser General Public License for more details.
+//
+//    You should have received a copy of the GNU Lesser General Public
+//    License along with the GNU C Library; if not, see
+//    <https://www.gnu.org/licenses/>.
+
+// Definition of PTHREAD_STACK_MIN.  Linux version.
+//    Copyright (C) 2021-2022 Free Software Foundation, Inc.
+//    This file is part of the GNU C Library.
+//
+//    The GNU C Library is free software; you can redistribute it and/or
+//    modify it under the terms of the GNU Lesser General Public
+//    License as published by the Free Software Foundation; either
+//    version 2.1 of the License, or (at your option) any later version.
+//
+//    The GNU C Library is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    Lesser General Public License for more details.
+//
+//    You should have received a copy of the GNU Lesser General Public
+//    License along with the GNU C Library; if not, see
+//    <https://www.gnu.org/licenses/>.
+
 // Minimum size for a thread.  We are free to choose a reasonable value.
 
 // Maximum number of timer expiration overruns.
@@ -840,7 +1001,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 // This value is a guaranteed minimum maximum.
 //    The current maximum can be got from `sysconf'.
 
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //    This file is part of the GNU C Library.
 //
 //    The GNU C Library is free software; you can redistribute it and/or
@@ -887,7 +1048,7 @@ type X__float128 = float64        /* <builtin>:47:21 */
 
 // This value is defined like this in regex.h.
 
-// Copyright (C) 1991-2020 Free Software Foundation, Inc.
+// Copyright (C) 1991-2022 Free Software Foundation, Inc.
 //
 // This file is part of GCC.
 //

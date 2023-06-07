@@ -151,19 +151,19 @@ const (
 	EXFULL                     = 54     // errno.h:35:1:
 	X_ASM_GENERIC_ERRNO_BASE_H = 0      // errno-base.h:3:1:
 	X_ASM_GENERIC_ERRNO_H      = 0      // errno.h:3:1:
-	X_ATFILE_SOURCE            = 1      // features.h:342:1:
+	X_ATFILE_SOURCE            = 1      // features.h:351:1:
 	X_BITS_ERRNO_H             = 1      // errno.h:20:1:
-	X_DEFAULT_SOURCE           = 1      // features.h:227:1:
+	X_DEFAULT_SOURCE           = 1      // features.h:236:1:
 	X_ERRNO_H                  = 1      // errno.h:23:1:
 	X_FEATURES_H               = 1      // features.h:19:1:
 	X_FILE_OFFSET_BITS         = 64     // <builtin>:25:1:
-	X_LP64                     = 1      // <predefined>:284:1:
-	X_POSIX_C_SOURCE           = 200809 // features.h:281:1:
-	X_POSIX_SOURCE             = 1      // features.h:279:1:
-	X_STDC_PREDEF_H            = 1      // <predefined>:162:1:
-	X_SYS_CDEFS_H              = 1      // cdefs.h:19:1:
-	Linux                      = 1      // <predefined>:231:1:
-	Unix                       = 1      // <predefined>:177:1:
+	X_LP64                     = 1      // <predefined>:312:1:
+	X_POSIX_C_SOURCE           = 200809 // features.h:290:1:
+	X_POSIX_SOURCE             = 1      // features.h:288:1:
+	X_STDC_PREDEF_H            = 1      // <predefined>:174:1:
+	X_SYS_CDEFS_H              = 1      // cdefs.h:20:1:
+	Linux                      = 1      // <predefined>:255:1:
+	Unix                       = 1      // <predefined>:191:1:
 )
 
 type Ptrdiff_t = int64 /* <builtin>:3:26 */
