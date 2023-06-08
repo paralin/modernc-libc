@@ -42,17 +42,12 @@ var (
 	_            = X__ctype_b_loc
 )
 
-type (
-	long  = types.X__syscall_slong_t
-	ulong = types.X__syscall_ulong_t
-)
-
 type file uintptr
 
-func (f file) fd() int32      { return (*stdio.FILE)(unsafe.Pointer(f)).F_fileno }
-func (f file) setFd(fd int32) { (*stdio.FILE)(unsafe.Pointer(f)).F_fileno = fd }
-func (f file) err() bool      { return (*stdio.FILE)(unsafe.Pointer(f)).F_flags2&stdio.X_IO_ERR_SEEN != 0 }
-func (f file) setErr()        { (*stdio.FILE)(unsafe.Pointer(f)).F_flags2 |= stdio.X_IO_ERR_SEEN }
+func (f file) fd() int32      { return (*stdio.FILE)(unsafe.Pointer(f)).Ffd }
+func (f file) setFd(fd int32) { (*stdio.FILE)(unsafe.Pointer(f)).Ffd = fd }
+func (f file) err() bool      { return (*stdio.FILE)(unsafe.Pointer(f)).Fflags&stdio.F_ERR != 0 }
+func (f file) setErr()        { (*stdio.FILE)(unsafe.Pointer(f)).Fflags |= stdio.F_ERR }
 
 func (f file) close(t *TLS) int32 {
 	r := Xclose(t, f.fd())
@@ -86,12 +81,12 @@ func fwrite(fd int32, b []byte) (int, error) {
 
 // int fprintf(FILE *stream, const char *format, ...);
 func Xfprintf(t *TLS, stream, format, args uintptr) int32 {
-	n, _ := fwrite((*stdio.FILE)(unsafe.Pointer(stream)).F_fileno, printf(format, args))
+	n, _ := fwrite((*stdio.FILE)(unsafe.Pointer(stream)).Ffd, printf(format, args))
 	return int32(n)
 }
 
 // int usleep(useconds_t usec);
-func Xusleep(t *TLS, usec types.X__useconds_t) int32 {
+func Xusleep(t *TLS, usec useconds_t) int32 {
 	time.Sleep(time.Microsecond * time.Duration(usec))
 	return 0
 }
@@ -693,7 +688,7 @@ func Xfileno(t *TLS, stream uintptr) int32 {
 		return -1
 	}
 
-	if fd := (*stdio.FILE)(unsafe.Pointer(stream)).F_fileno; fd >= 0 {
+	if fd := (*stdio.FILE)(unsafe.Pointer(stream)).Ffd; fd >= 0 {
 		return fd
 	}
 
@@ -719,7 +714,7 @@ func newFtsent(t *TLS, info int, path string, stat *unix.Stat_t, err syscall.Err
 	return &fts.FTSENT{
 		Ffts_info:    uint16(info),
 		Ffts_path:    csp,
-		Ffts_pathlen: uint16(len(path)),
+		Ffts_pathlen: uint32(len(path)),
 		Ffts_statp:   statp,
 		Ffts_errno:   int32(err),
 	}
@@ -1049,7 +1044,7 @@ func Xabort(t *TLS) {
 	}
 
 	*(*signal.Sigaction)(unsafe.Pointer(p)) = signal.Sigaction{
-		F__sigaction_handler: struct{ Fsa_handler signal.X__sighandler_t }{Fsa_handler: signal.SIG_DFL},
+		F__sa_handler: struct{ Fsa_handler uintptr }{Fsa_handler: signal.SIG_DFL},
 	}
 	Xsigaction(t, signal.SIGABRT, p, 0)
 	Xfree(t, p)
@@ -1417,7 +1412,7 @@ func Xposix_fadvise(t *TLS, fd int32, offset, len types.Off_t, advice int32) int
 
 // int fgetc(FILE *stream);
 func Xfgetc(t *TLS, stream uintptr) int32 {
-	fd := int((*stdio.FILE)(unsafe.Pointer(stream)).F_fileno)
+	fd := int((*stdio.FILE)(unsafe.Pointer(stream)).Ffd)
 	var buf [1]byte
 	if n, _ := unix.Read(fd, buf[:]); n != 0 {
 		return int32(buf[0])

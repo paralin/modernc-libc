@@ -60,25 +60,26 @@ func main() {
 		goarch = s
 	}
 	g := []string{"libc.go", "mem.go"}
+	var arch string
 	switch goos {
 	case "linux":
 		g = append(g, "libc_unix.go", "pthread.go", "pthread_all.go")
-		makeMuslLinux(goos, goarch)
+		arch = makeMuslLinux(goos, goarch)
 	case "freebsd":
 		g = append(g, "libc_unix.go", "pthread.go", "pthread_all.go")
-		makeMuslFreeBSD(goos, goarch)
+		arch = makeMuslFreeBSD(goos, goarch)
 	case "netbsd":
 		g = append(g, "libc_unix.go", "pthread.go", "pthread_all.go")
-		makeMuslNetBSD(goos, goarch)
+		arch = makeMuslNetBSD(goos, goarch)
 	case "openbsd":
 		g = append(g, "libc_unix.go", "pthread.go", "pthread_all.go")
-		makeMuslOpenBSD(goos, goarch)
+		arch = makeMuslOpenBSD(goos, goarch)
 	case "darwin":
 		g = append(g, "libc_unix.go", "pthread.go", "pthread_all.go")
-		makeMuslDarwin(goos, goarch)
+		arch = makeMuslDarwin(goos, goarch)
 	case "windows":
 		g = append(g, "libc_windows.go")
-		makeMuslWin(goos, goarch)
+		arch = makeMuslWin(goos, goarch)
 	}
 	_, _, hostSysIncludes, err := cc.HostConfig(os.Getenv("CCGO_CPP"))
 	if err != nil {
@@ -153,16 +154,16 @@ var CAPI = map[string]struct{}{`)
 
 	ccgoHelpers()
 
-	if err := libcHeaders(hostSysIncludes); err != nil {
+	if err := libcHeaders(hostSysIncludes, arch); err != nil {
 		fail(err)
 	}
 }
 
-func makeMuslWin(goos, goarch string) {
+func makeMuslWin(goos, goarch string) (arch string) {
 	if runtime.GOOS != "windows" {
 		switch goarch {
 		case "386":
-			makeMuslWin386(goos, goarch)
+			arch = makeMuslWin386(goos, goarch)
 			return
 		default:
 			fail(fmt.Errorf("must be runned on Windows"))
@@ -178,7 +179,6 @@ func makeMuslWin(goos, goarch string) {
 		fail(err)
 	}
 
-	var arch string
 	switch goarch {
 	case "amd64":
 		arch = "x86_64"
@@ -252,9 +252,10 @@ func makeMuslWin(goos, goarch string) {
 	); err != nil {
 		fail(fmt.Errorf("%s\nFAIL: %v", out, err))
 	}
+	return arch
 }
 
-func makeMuslWin386(goos, goarch string) {
+func makeMuslWin386(goos, goarch string) (arch string) {
 	if runtime.GOOS != "linux" {
 		fail(fmt.Errorf("must be runned on Linux"))
 	}
@@ -268,7 +269,7 @@ func makeMuslWin386(goos, goarch string) {
 		fail(err)
 	}
 
-	arch := "i386"
+	arch = "i386"
 	defer func() {
 		if err := os.Chdir(wd); err != nil {
 			fail(err)
@@ -321,9 +322,10 @@ func makeMuslWin386(goos, goarch string) {
 	); err != nil {
 		fail(err)
 	}
+	return arch
 }
 
-func makeMuslDarwin(goos, goarch string) {
+func makeMuslDarwin(goos, goarch string) (arch string) {
 	wd, err := os.Getwd()
 	if err != nil {
 		fail(err)
@@ -333,7 +335,6 @@ func makeMuslDarwin(goos, goarch string) {
 		fail(err)
 	}
 
-	var arch string
 	switch goarch {
 	case "amd64":
 		arch = "x86_64"
@@ -429,9 +430,10 @@ func makeMuslDarwin(goos, goarch string) {
 	); err != nil {
 		fail(err)
 	}
+	return arch
 }
 
-func makeMuslLinux(goos, goarch string) {
+func makeMuslLinux(goos, goarch string) (arch string) {
 	wd, err := os.Getwd()
 	if err != nil {
 		fail(err)
@@ -441,7 +443,6 @@ func makeMuslLinux(goos, goarch string) {
 		fail(err)
 	}
 
-	var arch string
 	switch goarch {
 	case "amd64":
 		arch = "x86_64"
@@ -564,9 +565,10 @@ func makeMuslLinux(goos, goarch string) {
 	); err != nil {
 		fail(err)
 	}
+	return arch
 }
 
-func makeMuslNetBSD(goos, goarch string) {
+func makeMuslNetBSD(goos, goarch string) (arch string) {
 	wd, err := os.Getwd()
 	if err != nil {
 		fail(err)
@@ -576,7 +578,6 @@ func makeMuslNetBSD(goos, goarch string) {
 		fail(err)
 	}
 
-	var arch string
 	switch goarch {
 	case "amd64":
 		arch = "x86_64"
@@ -659,9 +660,10 @@ func makeMuslNetBSD(goos, goarch string) {
 	); err != nil {
 		fail(err)
 	}
+	return arch
 }
 
-func makeMuslOpenBSD(goos, goarch string) {
+func makeMuslOpenBSD(goos, goarch string) (arch string) {
 	wd, err := os.Getwd()
 	if err != nil {
 		fail(err)
@@ -671,7 +673,6 @@ func makeMuslOpenBSD(goos, goarch string) {
 		fail(err)
 	}
 
-	var arch string
 	switch goarch {
 	case "amd64":
 		arch = "x86_64"
@@ -762,9 +763,10 @@ func makeMuslOpenBSD(goos, goarch string) {
 	); err != nil {
 		fail(err)
 	}
+	return arch
 }
 
-func makeMuslFreeBSD(goos, goarch string) {
+func makeMuslFreeBSD(goos, goarch string) (arch string) {
 	wd, err := os.Getwd()
 	if err != nil {
 		fail(err)
@@ -774,7 +776,6 @@ func makeMuslFreeBSD(goos, goarch string) {
 		fail(err)
 	}
 
-	var arch string
 	switch goarch {
 	case "amd64":
 		arch = "x86_64"
@@ -863,6 +864,7 @@ func makeMuslFreeBSD(goos, goarch string) {
 	); err != nil {
 		fail(err)
 	}
+	return arch
 }
 
 func run(arg0 string, args ...string) []byte {
@@ -894,7 +896,7 @@ func runcc(args ...string) ([]byte, error) {
 	return out.w.Bytes(), err
 }
 
-func libcHeaders(paths []string) error {
+func libcHeaders(paths []string, arch string) error {
 	const cfile = "gen.c"
 	return filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
@@ -925,12 +927,11 @@ func libcHeaders(paths []string) error {
 
 		var src string
 		switch filepath.ToSlash(path) {
-		case "fts":
+		case "stdio":
 			src = `
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fts.h>
-`
+			#include <stdio.h>
+			#include "stdio_impl.h"
+			`
 		default:
 			src = fmt.Sprintf("#include <%s.h>\n", dir)
 		}
@@ -951,6 +952,8 @@ func libcHeaders(paths []string) error {
 			"-export-defines", "",
 			"-export-enums", "",
 			"-export-externs", "X",
+			"-nostdinc",
+			"-nostdlib",
 			"-export-fields", "F",
 			"-export-structs", "",
 			"-export-typedefs", "",
@@ -959,6 +962,14 @@ func libcHeaders(paths []string) error {
 			"-ignore-unsupported-alignment",
 			"-o", dest,
 			"-pkgname", base,
+			fmt.Sprintf("-I%s", "musl-fts/"),
+			fmt.Sprintf("-I%s", filepath.Join("musl/arch", arch)),
+			fmt.Sprintf("-I%s", "musl/arch/generic"),
+			fmt.Sprintf("-I%s", "musl/obj/src/internal"),
+			fmt.Sprintf("-I%s", "musl/src/include"),
+			fmt.Sprintf("-I%s", "musl/src/internal"),
+			fmt.Sprintf("-I%s", "musl/obj/include"),
+			fmt.Sprintf("-I%s", "musl/include"),
 		}
 		out, err := runcc(argv...)
 		if err != nil {
