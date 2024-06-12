@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build none
 // +build none
 
 //	go mod init example.com/debug
@@ -20,7 +21,7 @@
 //	    SELECT strftime($::FMT,$::TS,'unixepoch');
 //	  } [list [strftime $FMT $TS]]
 //	}
-//	
+//
 //	date4-7384... Ok
 //	date4-7385... Ok
 //	date4-7386... Ok
@@ -61,22 +62,22 @@ import (
 	"fmt"
 	"os"
 	"runtime"
-	"unsafe"
 	gotime "time"
+	"unsafe"
 
 	"modernc.org/libc"
 	"modernc.org/libc/time"
 )
 
 const (
-	bufsz = 1000
+	bufsz  = 1000
 	format = "%d,%e,%F,%H,%k,%I,%l,%j,%m,%M,%u,%w,%W,%Y,%%,%P,%p"
 )
 
 var (
-	buf [bufsz+1]byte
+	buf  [bufsz + 1]byte
 	bufp = &buf
-	_ = gotime.Hour
+	_    = gotime.Hour
 )
 
 func main() {
@@ -95,14 +96,14 @@ func main() {
 	gf, _ := libc.CString(format)
 	cf := C.CString(format)
 	for i := 0; i <= 24854; i++ {
-		*pt = time.Time_t(i*86401)
+		*pt = time.Time_t(i * 86401)
 		g := libc.Xgmtime(tls, uintptr(unsafe.Pointer(pt)))
 		e := C.gmtime((*C.time_t)(unsafe.Pointer(pt)))
 		sg, se := libc.GoString((*time.Tm)(unsafe.Pointer(g)).Ftm_zone), C.GoString(e.tm_zone)
 		if sg == "UTC" {
 			sg = "GMT"
 		}
-		if uint64((*time.Tm)(unsafe.Pointer(g)).Ftm_sec) != uint64(e.tm_sec) || 
+		if uint64((*time.Tm)(unsafe.Pointer(g)).Ftm_sec) != uint64(e.tm_sec) ||
 			uint64((*time.Tm)(unsafe.Pointer(g)).Ftm_min) != uint64(e.tm_min) ||
 			uint64((*time.Tm)(unsafe.Pointer(g)).Ftm_hour) != uint64(e.tm_hour) ||
 			uint64((*time.Tm)(unsafe.Pointer(g)).Ftm_mon) != uint64(e.tm_mon) ||

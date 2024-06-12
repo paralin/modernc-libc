@@ -127,6 +127,7 @@ func main() {
 	util.Shell(nil, "sh", "-c", fmt.Sprintf("rm -rf %s", filepath.Join(libRoot, "src", "mq/*")))
 	util.Shell(nil, "sh", "-c", fmt.Sprintf("rm -rf %s", filepath.Join(libRoot, "src", "sched/*")))
 	util.Shell(nil, "sh", "-c", fmt.Sprintf("rm -rf %s", filepath.Join(libRoot, "src", "thread/*")))
+	util.Shell(nil, "sh", "-c", fmt.Sprintf("rm -rf %s", filepath.Join(libRoot, "src", "string", "aarch64")))
 
 	util.Shell(nil, "rm", filepath.Join(libRoot, "src", "env", "__init_tls.c"))
 	util.Shell(nil, "rm", filepath.Join(libRoot, "src", "env", "__libc_start_main.c"))

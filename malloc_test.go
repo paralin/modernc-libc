@@ -4,7 +4,7 @@
 
 //go:build linux && amd64
 
-package libc // import "modernc.org/libc/v2"
+package libc // import "modernc.org/libc"
 
 import (
 	"math"

@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-//go:build !(linux && (amd64 || loong64))
+//go:build !(linux && (amd64 || arm64 || loong64))
 
 package libc // import "modernc.org/libc"
 
@@ -446,6 +446,7 @@ func (m *mutex) lock(id int32) int32 {
 
 			m.Unlock()
 			m.wait.Lock()
+			// intentional empty section - wake up other waiters
 			m.wait.Unlock()
 		}
 	default:

@@ -31,12 +31,14 @@ func TestIssue29(t *testing.T) {
 
 	defer f.Close()
 
-	d := Xmmap(nil, 0, 4096, unix.PROT_READ|unix.PROT_WRITE, unix.MAP_SHARED, int32(f.Fd()), 0)
+	tls := NewTLS()
+	defer tls.Close()
+	d := Xmmap(tls, 0, 4096, unix.PROT_READ|unix.PROT_WRITE, unix.MAP_SHARED, int32(f.Fd()), 0)
 	if d == 0 {
 		t.Fatal("mmap failed")
 	}
 
-	if rc := Xmunmap(nil, d, 4096); rc != 0 {
+	if rc := Xmunmap(tls, d, 4096); rc != 0 {
 		t.Fatalf("munmap failed: %v", rc)
 	}
 }
