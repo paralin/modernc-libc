@@ -2678,10 +2678,6 @@ func XSetCommState(t *TLS, _ ...interface{}) int32 {
 	panic(todo(""))
 }
 
-func X_strnicmp(t *TLS, _ ...interface{}) int32 {
-	panic(todo(""))
-}
-
 func XEscapeCommFunction(t *TLS, _ ...interface{}) int32 {
 	panic(todo(""))
 }

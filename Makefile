@@ -78,7 +78,6 @@ msvcrt:
 		-hide _snwprintf \
 		-hide _strdup \
 		-hide _stricmp \
-		-hide _strnicmp \
 		-hide _time64 \
 		-hide _vsnwprintf \
 		-hide _wcsicmp \

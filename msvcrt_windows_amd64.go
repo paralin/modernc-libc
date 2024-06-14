@@ -1,4 +1,4 @@
-// Code generated for windows/amd64 by 'ccgo --cpp=/usr/bin/x86_64-w64-mingw32-gcc --goos=windows --package-name libc --prefix-external=X --prefix-field=F --prefix-static-internal=_ --prefix-static-none=_ --prefix-tagged-struct=T --prefix-tagged-union=T --prefix-typename=T --winapi=stdlib.h --winapi=string.h --winapi=time.h --winapi=wchar.h -build-lines=  -eval-all-macros -hide __acrt_iob_func -hide __mingw_strtod -hide __mingw_vfwprintf -hide __mingw_vfwscanf -hide __mingw_vsnwprintf -hide __mingw_vswscanf -hide _byteswap_uint64 -hide _byteswap_ulong -hide _errno -hide _exit -hide _gmtime64 -hide _localtime64 -hide _mktime64 -hide _set_abort_behavior -hide _snwprintf -hide _strdup -hide _stricmp -hide _strnicmp -hide _time64 -hide _vsnwprintf -hide _wcsicmp -hide _wcsnicmp -hide _wgetenv -hide _wopen -hide _wputenv -hide _wtoi -hide _wunlink -hide abort -hide abs -hide atexit -hide atof -hide atoi -hide atol -hide bsearch -hide calloc -hide div -hide exit -hide free -hide getenv -hide labs -hide ldiv -hide llabs -hide lldiv -hide malloc -hide mblen -hide mbstowcs -hide mbtowc -hide memchr -hide memcmp -hide memcpy -hide memmove -hide memset -hide perror -hide putenv -hide qsort -hide rand -hide realloc -hide strcasecmp -hide strcat -hide strchr -hide strcmp -hide strcpy -hide strcspn -hide strdup -hide strerror -hide strftime -hide strlen -hide strncmp -hide strncpy -hide strpbrk -hide strrchr -hide strspn -hide strstr -hide strtol -hide strtoul -hide strtoull -hide system -hide tzset -hide wcrtomb -hide wcschr -hide wcscmp -hide wcscpy -hide wcsicmp -hide wcslen -hide wcsncmp -hide wcsrtombs -hide wcstombs -hide wctomb -import syscall -o msvcrt_windows_amd64.go --prefix-macro m libmsvcrt.c', DO NOT EDIT.
+// Code generated for windows/amd64 by 'ccgo --cpp=/usr/bin/x86_64-w64-mingw32-gcc --goos=windows --package-name libc --prefix-external=X --prefix-field=F --prefix-static-internal=_ --prefix-static-none=_ --prefix-tagged-struct=T --prefix-tagged-union=T --prefix-typename=T --winapi=stdlib.h --winapi=string.h --winapi=time.h --winapi=wchar.h -build-lines=  -eval-all-macros -hide __acrt_iob_func -hide __mingw_strtod -hide __mingw_vfwprintf -hide __mingw_vfwscanf -hide __mingw_vsnwprintf -hide __mingw_vswscanf -hide _byteswap_uint64 -hide _byteswap_ulong -hide _errno -hide _exit -hide _gmtime64 -hide _localtime64 -hide _mktime64 -hide _set_abort_behavior -hide _snwprintf -hide _strdup -hide _stricmp -hide _time64 -hide _vsnwprintf -hide _wcsicmp -hide _wcsnicmp -hide _wgetenv -hide _wopen -hide _wputenv -hide _wtoi -hide _wunlink -hide abort -hide abs -hide atexit -hide atof -hide atoi -hide atol -hide bsearch -hide calloc -hide div -hide exit -hide free -hide getenv -hide labs -hide ldiv -hide llabs -hide lldiv -hide malloc -hide mblen -hide mbstowcs -hide mbtowc -hide memchr -hide memcmp -hide memcpy -hide memmove -hide memset -hide perror -hide putenv -hide qsort -hide rand -hide realloc -hide strcasecmp -hide strcat -hide strchr -hide strcmp -hide strcpy -hide strcspn -hide strdup -hide strerror -hide strftime -hide strlen -hide strncmp -hide strncpy -hide strpbrk -hide strrchr -hide strspn -hide strstr -hide strtol -hide strtoul -hide strtoull -hide system -hide tzset -hide wcrtomb -hide wcschr -hide wcscmp -hide wcscpy -hide wcsicmp -hide wcslen -hide wcsncmp -hide wcsrtombs -hide wcstombs -hide wctomb -import syscall -o msvcrt_windows_amd64.go --prefix-macro m libmsvcrt.c', DO NOT EDIT.
 
 package libc
 
@@ -3957,7 +3957,18 @@ func Xstrncat(tls *TLS, __Dest uintptr, __Source uintptr, __Count Tsize_t) (r ui
 	return uintptr(r0)
 }
 
-var proc_strnicmp_l = modcrt.NewProc(GoString(__ccgo_ts + 3159))
+var proc_strnicmp = modcrt.NewProc(GoString(__ccgo_ts + 3159))
+
+// __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _strnicmp(const char *_Str1,const char *_Str2,size_t _MaxCount);
+func X_strnicmp(tls *TLS, __Str1 uintptr, __Str2 uintptr, __MaxCount Tsize_t) (r int32) {
+	r0, _, err := syscall.SyscallN(proc_strnicmp.Addr(), __Str1, __Str2, uintptr(__MaxCount))
+	if err != 0 {
+		*(*int32)(unsafe.Pointer(X__errno_location(tls))) = int32(err)
+	}
+	return int32(r0)
+}
+
+var proc_strnicmp_l = modcrt.NewProc(GoString(__ccgo_ts + 3169))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _strnicmp_l(const char *_Str1,const char *_Str2,size_t _MaxCount,_locale_t _Locale);
 func X_strnicmp_l(tls *TLS, __Str1 uintptr, __Str2 uintptr, __MaxCount Tsize_t, __Locale T_locale_t) (r int32) {
@@ -3968,7 +3979,7 @@ func X_strnicmp_l(tls *TLS, __Str1 uintptr, __Str2 uintptr, __MaxCount Tsize_t, 
 	return int32(r0)
 }
 
-var proc_strnset = modcrt.NewProc(GoString(__ccgo_ts + 3171))
+var proc_strnset = modcrt.NewProc(GoString(__ccgo_ts + 3181))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _strnset(char *_Str,int _Val,size_t _MaxCount);
 func X_strnset(tls *TLS, __Str uintptr, __Val int32, __MaxCount Tsize_t) (r uintptr) {
@@ -3979,7 +3990,7 @@ func X_strnset(tls *TLS, __Str uintptr, __Val int32, __MaxCount Tsize_t) (r uint
 	return uintptr(r0)
 }
 
-var proc_strnset_l = modcrt.NewProc(GoString(__ccgo_ts + 3180))
+var proc_strnset_l = modcrt.NewProc(GoString(__ccgo_ts + 3190))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _strnset_l(char *str,int c,size_t count,_locale_t _Locale);
 func X_strnset_l(tls *TLS, _str uintptr, _c int32, _count Tsize_t, __Locale T_locale_t) (r uintptr) {
@@ -3990,7 +4001,7 @@ func X_strnset_l(tls *TLS, _str uintptr, _c int32, _count Tsize_t, __Locale T_lo
 	return uintptr(r0)
 }
 
-var proc_strrev = modcrt.NewProc(GoString(__ccgo_ts + 3191))
+var proc_strrev = modcrt.NewProc(GoString(__ccgo_ts + 3201))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _strrev(char *_Str);
 func X_strrev(tls *TLS, __Str uintptr) (r uintptr) {
@@ -4001,7 +4012,7 @@ func X_strrev(tls *TLS, __Str uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var procstrtok = modcrt.NewProc(GoString(__ccgo_ts + 3199))
+var procstrtok = modcrt.NewProc(GoString(__ccgo_ts + 3209))
 
 // char * __attribute__((__cdecl__)) strtok(char * __restrict__ _Str,const char * __restrict__ _Delim);
 func Xstrtok(tls *TLS, __Str uintptr, __Delim uintptr) (r uintptr) {
@@ -4012,7 +4023,7 @@ func Xstrtok(tls *TLS, __Str uintptr, __Delim uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var procstrtok_r = modcrt.NewProc(GoString(__ccgo_ts + 3206))
+var procstrtok_r = modcrt.NewProc(GoString(__ccgo_ts + 3216))
 
 // char *strtok_r(char * __restrict__ _Str, const char * __restrict__ _Delim, char ** __restrict__ __last);
 func Xstrtok_r(tls *TLS, __Str uintptr, __Delim uintptr, ___last uintptr) (r uintptr) {
@@ -4023,7 +4034,7 @@ func Xstrtok_r(tls *TLS, __Str uintptr, __Delim uintptr, ___last uintptr) (r uin
 	return uintptr(r0)
 }
 
-var proc_strupr = modcrt.NewProc(GoString(__ccgo_ts + 3215))
+var proc_strupr = modcrt.NewProc(GoString(__ccgo_ts + 3225))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _strupr(char *_String);
 func X_strupr(tls *TLS, __String uintptr) (r uintptr) {
@@ -4034,7 +4045,7 @@ func X_strupr(tls *TLS, __String uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proc_strupr_l = modcrt.NewProc(GoString(__ccgo_ts + 3223))
+var proc_strupr_l = modcrt.NewProc(GoString(__ccgo_ts + 3233))
 
 // __attribute__ ((__dllimport__)) char *_strupr_l(char *_String,_locale_t _Locale);
 func X_strupr_l(tls *TLS, __String uintptr, __Locale T_locale_t) (r uintptr) {
@@ -4045,7 +4056,7 @@ func X_strupr_l(tls *TLS, __String uintptr, __Locale T_locale_t) (r uintptr) {
 	return uintptr(r0)
 }
 
-var procstrxfrm = modcrt.NewProc(GoString(__ccgo_ts + 3233))
+var procstrxfrm = modcrt.NewProc(GoString(__ccgo_ts + 3243))
 
 // size_t __attribute__((__cdecl__)) strxfrm(char * __restrict__ _Dst,const char * __restrict__ _Src,size_t _MaxCount);
 func Xstrxfrm(tls *TLS, __Dst uintptr, __Src uintptr, __MaxCount Tsize_t) (r Tsize_t) {
@@ -4056,7 +4067,7 @@ func Xstrxfrm(tls *TLS, __Dst uintptr, __Src uintptr, __MaxCount Tsize_t) (r Tsi
 	return Tsize_t(r0)
 }
 
-var proc_strxfrm_l = modcrt.NewProc(GoString(__ccgo_ts + 3241))
+var proc_strxfrm_l = modcrt.NewProc(GoString(__ccgo_ts + 3251))
 
 // __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _strxfrm_l(char * __restrict__ _Dst,const char * __restrict__ _Src,size_t _MaxCount,_locale_t _Locale);
 func X_strxfrm_l(tls *TLS, __Dst uintptr, __Src uintptr, __MaxCount Tsize_t, __Locale T_locale_t) (r Tsize_t) {
@@ -4067,7 +4078,7 @@ func X_strxfrm_l(tls *TLS, __Dst uintptr, __Src uintptr, __MaxCount Tsize_t, __L
 	return Tsize_t(r0)
 }
 
-var procstrcmpi = modcrt.NewProc(GoString(__ccgo_ts + 3252))
+var procstrcmpi = modcrt.NewProc(GoString(__ccgo_ts + 3262))
 
 // int __attribute__((__cdecl__)) strcmpi(const char *_Str1,const char *_Str2);
 func Xstrcmpi(tls *TLS, __Str1 uintptr, __Str2 uintptr) (r int32) {
@@ -4078,7 +4089,7 @@ func Xstrcmpi(tls *TLS, __Str1 uintptr, __Str2 uintptr) (r int32) {
 	return int32(r0)
 }
 
-var procstricmp = modcrt.NewProc(GoString(__ccgo_ts + 3260))
+var procstricmp = modcrt.NewProc(GoString(__ccgo_ts + 3270))
 
 // int __attribute__((__cdecl__)) stricmp(const char *_Str1,const char *_Str2);
 func Xstricmp(tls *TLS, __Str1 uintptr, __Str2 uintptr) (r int32) {
@@ -4089,7 +4100,7 @@ func Xstricmp(tls *TLS, __Str1 uintptr, __Str2 uintptr) (r int32) {
 	return int32(r0)
 }
 
-var procstrlwr = modcrt.NewProc(GoString(__ccgo_ts + 3268))
+var procstrlwr = modcrt.NewProc(GoString(__ccgo_ts + 3278))
 
 // char * __attribute__((__cdecl__)) strlwr(char *_Str);
 func Xstrlwr(tls *TLS, __Str uintptr) (r uintptr) {
@@ -4100,7 +4111,7 @@ func Xstrlwr(tls *TLS, __Str uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var procstrnicmp = modcrt.NewProc(GoString(__ccgo_ts + 3275))
+var procstrnicmp = modcrt.NewProc(GoString(__ccgo_ts + 3285))
 
 // int __attribute__((__cdecl__)) strnicmp(const char *_Str1,const char *_Str,size_t _MaxCount);
 func Xstrnicmp(tls *TLS, __Str1 uintptr, __Str uintptr, __MaxCount Tsize_t) (r int32) {
@@ -4111,7 +4122,7 @@ func Xstrnicmp(tls *TLS, __Str1 uintptr, __Str uintptr, __MaxCount Tsize_t) (r i
 	return int32(r0)
 }
 
-var procstrncasecmp = modcrt.NewProc(GoString(__ccgo_ts + 3284))
+var procstrncasecmp = modcrt.NewProc(GoString(__ccgo_ts + 3294))
 
 // int __attribute__((__cdecl__)) strncasecmp (const char *, const char *, size_t);
 func Xstrncasecmp(tls *TLS, _0 uintptr, _1 uintptr, _2 Tsize_t) (r int32) {
@@ -4122,7 +4133,7 @@ func Xstrncasecmp(tls *TLS, _0 uintptr, _1 uintptr, _2 Tsize_t) (r int32) {
 	return int32(r0)
 }
 
-var procstrnset = modcrt.NewProc(GoString(__ccgo_ts + 3296))
+var procstrnset = modcrt.NewProc(GoString(__ccgo_ts + 3306))
 
 // char * __attribute__((__cdecl__)) strnset(char *_Str,int _Val,size_t _MaxCount);
 func Xstrnset(tls *TLS, __Str uintptr, __Val int32, __MaxCount Tsize_t) (r uintptr) {
@@ -4133,7 +4144,7 @@ func Xstrnset(tls *TLS, __Str uintptr, __Val int32, __MaxCount Tsize_t) (r uintp
 	return uintptr(r0)
 }
 
-var procstrrev = modcrt.NewProc(GoString(__ccgo_ts + 3304))
+var procstrrev = modcrt.NewProc(GoString(__ccgo_ts + 3314))
 
 // char * __attribute__((__cdecl__)) strrev(char *_Str);
 func Xstrrev(tls *TLS, __Str uintptr) (r uintptr) {
@@ -4144,7 +4155,7 @@ func Xstrrev(tls *TLS, __Str uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var procstrset = modcrt.NewProc(GoString(__ccgo_ts + 3311))
+var procstrset = modcrt.NewProc(GoString(__ccgo_ts + 3321))
 
 // char * __attribute__((__cdecl__)) strset(char *_Str,int _Val);
 func Xstrset(tls *TLS, __Str uintptr, __Val int32) (r uintptr) {
@@ -4155,7 +4166,7 @@ func Xstrset(tls *TLS, __Str uintptr, __Val int32) (r uintptr) {
 	return uintptr(r0)
 }
 
-var procstrupr = modcrt.NewProc(GoString(__ccgo_ts + 3318))
+var procstrupr = modcrt.NewProc(GoString(__ccgo_ts + 3328))
 
 // char * __attribute__((__cdecl__)) strupr(char *_Str);
 func Xstrupr(tls *TLS, __Str uintptr) (r uintptr) {
@@ -4209,7 +4220,7 @@ type Titimerspec = struct {
 
 type Tclock_t = int32
 
-var proc_get_daylight = modcrt.NewProc(GoString(__ccgo_ts + 3325))
+var proc_get_daylight = modcrt.NewProc(GoString(__ccgo_ts + 3335))
 
 // __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_daylight(int *_Daylight);
 func X_get_daylight(tls *TLS, __Daylight uintptr) (r Terrno_t) {
@@ -4220,7 +4231,7 @@ func X_get_daylight(tls *TLS, __Daylight uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_dstbias = modcrt.NewProc(GoString(__ccgo_ts + 3339))
+var proc_get_dstbias = modcrt.NewProc(GoString(__ccgo_ts + 3349))
 
 // __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_dstbias(long *_Daylight_savings_bias);
 func X_get_dstbias(tls *TLS, __Daylight_savings_bias uintptr) (r Terrno_t) {
@@ -4231,7 +4242,7 @@ func X_get_dstbias(tls *TLS, __Daylight_savings_bias uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_timezone = modcrt.NewProc(GoString(__ccgo_ts + 3352))
+var proc_get_timezone = modcrt.NewProc(GoString(__ccgo_ts + 3362))
 
 // __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_timezone(long *_Timezone);
 func X_get_timezone(tls *TLS, __Timezone uintptr) (r Terrno_t) {
@@ -4242,7 +4253,7 @@ func X_get_timezone(tls *TLS, __Timezone uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_tzname = modcrt.NewProc(GoString(__ccgo_ts + 3366))
+var proc_get_tzname = modcrt.NewProc(GoString(__ccgo_ts + 3376))
 
 // __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_tzname(size_t *_ReturnValue,char *_Buffer,size_t _SizeInBytes,int _Index);
 func X_get_tzname(tls *TLS, __ReturnValue uintptr, __Buffer uintptr, __SizeInBytes Tsize_t, __Index int32) (r Terrno_t) {
@@ -4253,7 +4264,7 @@ func X_get_tzname(tls *TLS, __ReturnValue uintptr, __Buffer uintptr, __SizeInByt
 	return Terrno_t(r0)
 }
 
-var procasctime = modcrt.NewProc(GoString(__ccgo_ts + 3378))
+var procasctime = modcrt.NewProc(GoString(__ccgo_ts + 3388))
 
 // char * __attribute__((__cdecl__)) asctime(const struct tm *_Tm);
 func Xasctime(tls *TLS, __Tm uintptr) (r uintptr) {
@@ -4264,7 +4275,7 @@ func Xasctime(tls *TLS, __Tm uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var procasctime_s = modcrt.NewProc(GoString(__ccgo_ts + 3386))
+var procasctime_s = modcrt.NewProc(GoString(__ccgo_ts + 3396))
 
 // __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) asctime_s (char *_Buf,size_t _SizeInWords,const struct tm *_Tm);
 func Xasctime_s(tls *TLS, __Buf uintptr, __SizeInWords Tsize_t, __Tm uintptr) (r Terrno_t) {
@@ -4275,7 +4286,7 @@ func Xasctime_s(tls *TLS, __Buf uintptr, __SizeInWords Tsize_t, __Tm uintptr) (r
 	return Terrno_t(r0)
 }
 
-var proc_ctime32 = modcrt.NewProc(GoString(__ccgo_ts + 3396))
+var proc_ctime32 = modcrt.NewProc(GoString(__ccgo_ts + 3406))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _ctime32(const __time32_t *_Time);
 func X_ctime32(tls *TLS, __Time uintptr) (r uintptr) {
@@ -4286,7 +4297,7 @@ func X_ctime32(tls *TLS, __Time uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proc_ctime32_s = modcrt.NewProc(GoString(__ccgo_ts + 3405))
+var proc_ctime32_s = modcrt.NewProc(GoString(__ccgo_ts + 3415))
 
 // __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) _ctime32_s (char *_Buf,size_t _SizeInBytes,const __time32_t *_Time);
 func X_ctime32_s(tls *TLS, __Buf uintptr, __SizeInBytes Tsize_t, __Time uintptr) (r Terrno_t) {
@@ -4297,7 +4308,7 @@ func X_ctime32_s(tls *TLS, __Buf uintptr, __SizeInBytes Tsize_t, __Time uintptr)
 	return Terrno_t(r0)
 }
 
-var procclock = modcrt.NewProc(GoString(__ccgo_ts + 3416))
+var procclock = modcrt.NewProc(GoString(__ccgo_ts + 3426))
 
 // clock_t __attribute__((__cdecl__)) clock(void);
 func Xclock(tls *TLS) (r Tclock_t) {
@@ -4308,7 +4319,7 @@ func Xclock(tls *TLS) (r Tclock_t) {
 	return Tclock_t(r0)
 }
 
-var proc_difftime32 = modcrt.NewProc(GoString(__ccgo_ts + 3422))
+var proc_difftime32 = modcrt.NewProc(GoString(__ccgo_ts + 3432))
 
 // __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _difftime32(__time32_t _Time1,__time32_t _Time2);
 func X_difftime32(tls *TLS, __Time1 T__time32_t, __Time2 T__time32_t) (r float64) {
@@ -4319,7 +4330,7 @@ func X_difftime32(tls *TLS, __Time1 T__time32_t, __Time2 T__time32_t) (r float64
 	return float64(r0)
 }
 
-var proc_gmtime32 = modcrt.NewProc(GoString(__ccgo_ts + 3434))
+var proc_gmtime32 = modcrt.NewProc(GoString(__ccgo_ts + 3444))
 
 // __attribute__ ((__dllimport__)) struct tm * __attribute__((__cdecl__)) _gmtime32(const __time32_t *_Time);
 func X_gmtime32(tls *TLS, __Time uintptr) (r uintptr) {
@@ -4330,7 +4341,7 @@ func X_gmtime32(tls *TLS, __Time uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proc_gmtime32_s = modcrt.NewProc(GoString(__ccgo_ts + 3444))
+var proc_gmtime32_s = modcrt.NewProc(GoString(__ccgo_ts + 3454))
 
 // __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) _gmtime32_s (struct tm *_Tm,const __time32_t *_Time);
 func X_gmtime32_s(tls *TLS, __Tm uintptr, __Time uintptr) (r Terrno_t) {
@@ -4341,7 +4352,7 @@ func X_gmtime32_s(tls *TLS, __Tm uintptr, __Time uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_localtime32 = modcrt.NewProc(GoString(__ccgo_ts + 3456))
+var proc_localtime32 = modcrt.NewProc(GoString(__ccgo_ts + 3466))
 
 // __attribute__ ((__dllimport__)) struct tm * __attribute__((__cdecl__)) _localtime32(const __time32_t *_Time);
 func X_localtime32(tls *TLS, __Time uintptr) (r uintptr) {
@@ -4352,7 +4363,7 @@ func X_localtime32(tls *TLS, __Time uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proc_localtime32_s = modcrt.NewProc(GoString(__ccgo_ts + 3469))
+var proc_localtime32_s = modcrt.NewProc(GoString(__ccgo_ts + 3479))
 
 // __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) _localtime32_s (struct tm *_Tm,const __time32_t *_Time);
 func X_localtime32_s(tls *TLS, __Tm uintptr, __Time uintptr) (r Terrno_t) {
@@ -4363,7 +4374,7 @@ func X_localtime32_s(tls *TLS, __Tm uintptr, __Time uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_strftime_l = modcrt.NewProc(GoString(__ccgo_ts + 3484))
+var proc_strftime_l = modcrt.NewProc(GoString(__ccgo_ts + 3494))
 
 // __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _strftime_l(char * __restrict__ _Buf,size_t _Max_size,const char * __restrict__ _Format,const struct tm * __restrict__ _Tm,_locale_t _Locale);
 func X_strftime_l(tls *TLS, __Buf uintptr, __Max_size Tsize_t, __Format uintptr, __Tm uintptr, __Locale T_locale_t) (r Tsize_t) {
@@ -4374,7 +4385,7 @@ func X_strftime_l(tls *TLS, __Buf uintptr, __Max_size Tsize_t, __Format uintptr,
 	return Tsize_t(r0)
 }
 
-var proc_strdate = modcrt.NewProc(GoString(__ccgo_ts + 3496))
+var proc_strdate = modcrt.NewProc(GoString(__ccgo_ts + 3506))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _strdate(char *_Buffer);
 func X_strdate(tls *TLS, __Buffer uintptr) (r uintptr) {
@@ -4385,7 +4396,7 @@ func X_strdate(tls *TLS, __Buffer uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proc_strdate_s = modcrt.NewProc(GoString(__ccgo_ts + 3505))
+var proc_strdate_s = modcrt.NewProc(GoString(__ccgo_ts + 3515))
 
 // __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) _strdate_s (char *_Buf,size_t _SizeInBytes);
 func X_strdate_s(tls *TLS, __Buf uintptr, __SizeInBytes Tsize_t) (r Terrno_t) {
@@ -4396,7 +4407,7 @@ func X_strdate_s(tls *TLS, __Buf uintptr, __SizeInBytes Tsize_t) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_strtime = modcrt.NewProc(GoString(__ccgo_ts + 3516))
+var proc_strtime = modcrt.NewProc(GoString(__ccgo_ts + 3526))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _strtime(char *_Buffer);
 func X_strtime(tls *TLS, __Buffer uintptr) (r uintptr) {
@@ -4407,7 +4418,7 @@ func X_strtime(tls *TLS, __Buffer uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proc_strtime_s = modcrt.NewProc(GoString(__ccgo_ts + 3525))
+var proc_strtime_s = modcrt.NewProc(GoString(__ccgo_ts + 3535))
 
 // __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) _strtime_s (char *_Buf ,size_t _SizeInBytes);
 func X_strtime_s(tls *TLS, __Buf uintptr, __SizeInBytes Tsize_t) (r Terrno_t) {
@@ -4418,7 +4429,7 @@ func X_strtime_s(tls *TLS, __Buf uintptr, __SizeInBytes Tsize_t) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_time32 = modcrt.NewProc(GoString(__ccgo_ts + 3536))
+var proc_time32 = modcrt.NewProc(GoString(__ccgo_ts + 3546))
 
 // __attribute__ ((__dllimport__)) __time32_t __attribute__((__cdecl__)) _time32(__time32_t *_Time);
 func X_time32(tls *TLS, __Time uintptr) (r T__time32_t) {
@@ -4429,7 +4440,7 @@ func X_time32(tls *TLS, __Time uintptr) (r T__time32_t) {
 	return T__time32_t(r0)
 }
 
-var proc_mktime32 = modcrt.NewProc(GoString(__ccgo_ts + 3544))
+var proc_mktime32 = modcrt.NewProc(GoString(__ccgo_ts + 3554))
 
 // __attribute__ ((__dllimport__)) __time32_t __attribute__((__cdecl__)) _mktime32(struct tm *_Tm);
 func X_mktime32(tls *TLS, __Tm uintptr) (r T__time32_t) {
@@ -4440,7 +4451,7 @@ func X_mktime32(tls *TLS, __Tm uintptr) (r T__time32_t) {
 	return T__time32_t(r0)
 }
 
-var proc_mkgmtime32 = modcrt.NewProc(GoString(__ccgo_ts + 3554))
+var proc_mkgmtime32 = modcrt.NewProc(GoString(__ccgo_ts + 3564))
 
 // __attribute__ ((__dllimport__)) __time32_t __attribute__((__cdecl__)) _mkgmtime32(struct tm *_Tm);
 func X_mkgmtime32(tls *TLS, __Tm uintptr) (r T__time32_t) {
@@ -4451,7 +4462,7 @@ func X_mkgmtime32(tls *TLS, __Tm uintptr) (r T__time32_t) {
 	return T__time32_t(r0)
 }
 
-var proc_tzset = modcrt.NewProc(GoString(__ccgo_ts + 3566))
+var proc_tzset = modcrt.NewProc(GoString(__ccgo_ts + 3576))
 
 // __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _tzset(void);
 func X_tzset(tls *TLS) {
@@ -4461,7 +4472,7 @@ func X_tzset(tls *TLS) {
 	}
 }
 
-var proc_difftime64 = modcrt.NewProc(GoString(__ccgo_ts + 3573))
+var proc_difftime64 = modcrt.NewProc(GoString(__ccgo_ts + 3583))
 
 // __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _difftime64(__time64_t _Time1,__time64_t _Time2);
 func X_difftime64(tls *TLS, __Time1 T__time64_t, __Time2 T__time64_t) (r float64) {
@@ -4472,7 +4483,7 @@ func X_difftime64(tls *TLS, __Time1 T__time64_t, __Time2 T__time64_t) (r float64
 	return float64(r0)
 }
 
-var proc_ctime64 = modcrt.NewProc(GoString(__ccgo_ts + 3585))
+var proc_ctime64 = modcrt.NewProc(GoString(__ccgo_ts + 3595))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _ctime64(const __time64_t *_Time);
 func X_ctime64(tls *TLS, __Time uintptr) (r uintptr) {
@@ -4483,7 +4494,7 @@ func X_ctime64(tls *TLS, __Time uintptr) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proc_ctime64_s = modcrt.NewProc(GoString(__ccgo_ts + 3594))
+var proc_ctime64_s = modcrt.NewProc(GoString(__ccgo_ts + 3604))
 
 // __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) _ctime64_s (char *_Buf,size_t _SizeInBytes,const __time64_t *_Time);
 func X_ctime64_s(tls *TLS, __Buf uintptr, __SizeInBytes Tsize_t, __Time uintptr) (r Terrno_t) {
@@ -4494,7 +4505,7 @@ func X_ctime64_s(tls *TLS, __Buf uintptr, __SizeInBytes Tsize_t, __Time uintptr)
 	return Terrno_t(r0)
 }
 
-var proc_gmtime64_s = modcrt.NewProc(GoString(__ccgo_ts + 3605))
+var proc_gmtime64_s = modcrt.NewProc(GoString(__ccgo_ts + 3615))
 
 // __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) _gmtime64_s (struct tm *_Tm,const __time64_t *_Time);
 func X_gmtime64_s(tls *TLS, __Tm uintptr, __Time uintptr) (r Terrno_t) {
@@ -4505,7 +4516,7 @@ func X_gmtime64_s(tls *TLS, __Tm uintptr, __Time uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_localtime64_s = modcrt.NewProc(GoString(__ccgo_ts + 3617))
+var proc_localtime64_s = modcrt.NewProc(GoString(__ccgo_ts + 3627))
 
 // __attribute__((dllimport)) errno_t __attribute__((__cdecl__)) _localtime64_s (struct tm *_Tm,const __time64_t *_Time);
 func X_localtime64_s(tls *TLS, __Tm uintptr, __Time uintptr) (r Terrno_t) {
@@ -4516,7 +4527,7 @@ func X_localtime64_s(tls *TLS, __Tm uintptr, __Time uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_mkgmtime64 = modcrt.NewProc(GoString(__ccgo_ts + 3632))
+var proc_mkgmtime64 = modcrt.NewProc(GoString(__ccgo_ts + 3642))
 
 // __attribute__ ((__dllimport__)) __time64_t __attribute__((__cdecl__)) _mkgmtime64(struct tm *_Tm);
 func X_mkgmtime64(tls *TLS, __Tm uintptr) (r T__time64_t) {
@@ -4527,7 +4538,7 @@ func X_mkgmtime64(tls *TLS, __Tm uintptr) (r T__time64_t) {
 	return T__time64_t(r0)
 }
 
-var proc_getsystime = modcrt.NewProc(GoString(__ccgo_ts + 3644))
+var proc_getsystime = modcrt.NewProc(GoString(__ccgo_ts + 3654))
 
 // unsigned __attribute__((__cdecl__)) _getsystime(struct tm *_Tm);
 func X_getsystime(tls *TLS, __Tm uintptr) (r uint32) {
@@ -4538,7 +4549,7 @@ func X_getsystime(tls *TLS, __Tm uintptr) (r uint32) {
 	return uint32(r0)
 }
 
-var proc_setsystime = modcrt.NewProc(GoString(__ccgo_ts + 3656))
+var proc_setsystime = modcrt.NewProc(GoString(__ccgo_ts + 3666))
 
 // unsigned __attribute__((__cdecl__)) _setsystime(struct tm *_Tm,unsigned _MilliSec);
 func X_setsystime(tls *TLS, __Tm uintptr, __MilliSec uint32) (r uint32) {
@@ -4559,7 +4570,7 @@ type Ttimezone = struct {
 	Ftz_dsttime     int32
 }
 
-var procmingw_gettimeofday = modcrt.NewProc(GoString(__ccgo_ts + 3668))
+var procmingw_gettimeofday = modcrt.NewProc(GoString(__ccgo_ts + 3678))
 
 // extern int __attribute__((__cdecl__)) mingw_gettimeofday (struct timeval *p, struct timezone *z);
 func Xmingw_gettimeofday(tls *TLS, _p uintptr, _z uintptr) (r int32) {
@@ -4608,7 +4619,7 @@ type T_LDBL12 = struct {
 	Fld12 [12]uint8
 }
 
-var proc___mb_cur_max_func = modcrt.NewProc(GoString(__ccgo_ts + 3687))
+var proc___mb_cur_max_func = modcrt.NewProc(GoString(__ccgo_ts + 3697))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) ___mb_cur_max_func(void);
 func X___mb_cur_max_func(tls *TLS) (r int32) {
@@ -4621,7 +4632,7 @@ func X___mb_cur_max_func(tls *TLS) (r int32) {
 
 type T_purecall_handler = uintptr
 
-var proc_set_purecall_handler = modcrt.NewProc(GoString(__ccgo_ts + 3706))
+var proc_set_purecall_handler = modcrt.NewProc(GoString(__ccgo_ts + 3716))
 
 // __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _set_purecall_handler(_purecall_handler _Handler);
 func X_set_purecall_handler(tls *TLS, __Handler T_purecall_handler) (r T_purecall_handler) {
@@ -4632,7 +4643,7 @@ func X_set_purecall_handler(tls *TLS, __Handler T_purecall_handler) (r T_purecal
 	return T_purecall_handler(r0)
 }
 
-var proc_get_purecall_handler = modcrt.NewProc(GoString(__ccgo_ts + 3728))
+var proc_get_purecall_handler = modcrt.NewProc(GoString(__ccgo_ts + 3738))
 
 // __attribute__ ((__dllimport__)) _purecall_handler __attribute__((__cdecl__)) _get_purecall_handler(void);
 func X_get_purecall_handler(tls *TLS) (r T_purecall_handler) {
@@ -4645,7 +4656,7 @@ func X_get_purecall_handler(tls *TLS) (r T_purecall_handler) {
 
 type T_invalid_parameter_handler = uintptr
 
-var proc_set_invalid_parameter_handler = modcrt.NewProc(GoString(__ccgo_ts + 3750))
+var proc_set_invalid_parameter_handler = modcrt.NewProc(GoString(__ccgo_ts + 3760))
 
 // __attribute__ ((__dllimport__)) _invalid_parameter_handler __attribute__((__cdecl__)) _set_invalid_parameter_handler(_invalid_parameter_handler _Handler);
 func X_set_invalid_parameter_handler(tls *TLS, __Handler T_invalid_parameter_handler) (r T_invalid_parameter_handler) {
@@ -4656,7 +4667,7 @@ func X_set_invalid_parameter_handler(tls *TLS, __Handler T_invalid_parameter_han
 	return T_invalid_parameter_handler(r0)
 }
 
-var proc_get_invalid_parameter_handler = modcrt.NewProc(GoString(__ccgo_ts + 3781))
+var proc_get_invalid_parameter_handler = modcrt.NewProc(GoString(__ccgo_ts + 3791))
 
 // __attribute__ ((__dllimport__)) _invalid_parameter_handler __attribute__((__cdecl__)) _get_invalid_parameter_handler(void);
 func X_get_invalid_parameter_handler(tls *TLS) (r T_invalid_parameter_handler) {
@@ -4667,7 +4678,7 @@ func X_get_invalid_parameter_handler(tls *TLS) (r T_invalid_parameter_handler) {
 	return T_invalid_parameter_handler(r0)
 }
 
-var proc_set_errno = modcrt.NewProc(GoString(__ccgo_ts + 3812))
+var proc_set_errno = modcrt.NewProc(GoString(__ccgo_ts + 3822))
 
 // errno_t __attribute__((__cdecl__)) _set_errno(int _Value);
 func X_set_errno(tls *TLS, __Value int32) (r Terrno_t) {
@@ -4678,7 +4689,7 @@ func X_set_errno(tls *TLS, __Value int32) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_errno = modcrt.NewProc(GoString(__ccgo_ts + 3823))
+var proc_get_errno = modcrt.NewProc(GoString(__ccgo_ts + 3833))
 
 // errno_t __attribute__((__cdecl__)) _get_errno(int *_Value);
 func X_get_errno(tls *TLS, __Value uintptr) (r Terrno_t) {
@@ -4689,7 +4700,7 @@ func X_get_errno(tls *TLS, __Value uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc__doserrno = modcrt.NewProc(GoString(__ccgo_ts + 3834))
+var proc__doserrno = modcrt.NewProc(GoString(__ccgo_ts + 3844))
 
 // __attribute__ ((__dllimport__)) unsigned long * __attribute__((__cdecl__)) __doserrno(void);
 func X__doserrno(tls *TLS) (r uintptr) {
@@ -4700,7 +4711,7 @@ func X__doserrno(tls *TLS) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proc_set_doserrno = modcrt.NewProc(GoString(__ccgo_ts + 3845))
+var proc_set_doserrno = modcrt.NewProc(GoString(__ccgo_ts + 3855))
 
 // errno_t __attribute__((__cdecl__)) _set_doserrno(unsigned long _Value);
 func X_set_doserrno(tls *TLS, __Value uint32) (r Terrno_t) {
@@ -4711,7 +4722,7 @@ func X_set_doserrno(tls *TLS, __Value uint32) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_doserrno = modcrt.NewProc(GoString(__ccgo_ts + 3859))
+var proc_get_doserrno = modcrt.NewProc(GoString(__ccgo_ts + 3869))
 
 // errno_t __attribute__((__cdecl__)) _get_doserrno(unsigned long *_Value);
 func X_get_doserrno(tls *TLS, __Value uintptr) (r Terrno_t) {
@@ -4722,7 +4733,7 @@ func X_get_doserrno(tls *TLS, __Value uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc__p___argv = modcrt.NewProc(GoString(__ccgo_ts + 3873))
+var proc__p___argv = modcrt.NewProc(GoString(__ccgo_ts + 3883))
 
 // __attribute__ ((__dllimport__)) char *** __attribute__((__cdecl__)) __p___argv(void);
 func X__p___argv(tls *TLS) (r uintptr) {
@@ -4733,7 +4744,7 @@ func X__p___argv(tls *TLS) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proc__p__fmode = modcrt.NewProc(GoString(__ccgo_ts + 3884))
+var proc__p__fmode = modcrt.NewProc(GoString(__ccgo_ts + 3894))
 
 // __attribute__ ((__dllimport__)) int * __attribute__((__cdecl__)) __p__fmode(void);
 func X__p__fmode(tls *TLS) (r uintptr) {
@@ -4744,7 +4755,7 @@ func X__p__fmode(tls *TLS) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proc_get_pgmptr = modcrt.NewProc(GoString(__ccgo_ts + 3895))
+var proc_get_pgmptr = modcrt.NewProc(GoString(__ccgo_ts + 3905))
 
 // errno_t __attribute__((__cdecl__)) _get_pgmptr(char **_Value);
 func X_get_pgmptr(tls *TLS, __Value uintptr) (r Terrno_t) {
@@ -4755,7 +4766,7 @@ func X_get_pgmptr(tls *TLS, __Value uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_wpgmptr = modcrt.NewProc(GoString(__ccgo_ts + 3907))
+var proc_get_wpgmptr = modcrt.NewProc(GoString(__ccgo_ts + 3917))
 
 // errno_t __attribute__((__cdecl__)) _get_wpgmptr(wchar_t **_Value);
 func X_get_wpgmptr(tls *TLS, __Value uintptr) (r Terrno_t) {
@@ -4766,7 +4777,7 @@ func X_get_wpgmptr(tls *TLS, __Value uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_set_fmode = modcrt.NewProc(GoString(__ccgo_ts + 3920))
+var proc_set_fmode = modcrt.NewProc(GoString(__ccgo_ts + 3930))
 
 // __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _set_fmode(int _Mode);
 func X_set_fmode(tls *TLS, __Mode int32) (r Terrno_t) {
@@ -4777,7 +4788,7 @@ func X_set_fmode(tls *TLS, __Mode int32) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_fmode = modcrt.NewProc(GoString(__ccgo_ts + 3931))
+var proc_get_fmode = modcrt.NewProc(GoString(__ccgo_ts + 3941))
 
 // __attribute__ ((__dllimport__)) errno_t __attribute__((__cdecl__)) _get_fmode(int *_PMode);
 func X_get_fmode(tls *TLS, __PMode uintptr) (r Terrno_t) {
@@ -4788,7 +4799,7 @@ func X_get_fmode(tls *TLS, __PMode uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_osplatform = modcrt.NewProc(GoString(__ccgo_ts + 3942))
+var proc_get_osplatform = modcrt.NewProc(GoString(__ccgo_ts + 3952))
 
 // errno_t __attribute__((__cdecl__)) _get_osplatform(unsigned int *_Value);
 func X_get_osplatform(tls *TLS, __Value uintptr) (r Terrno_t) {
@@ -4799,7 +4810,7 @@ func X_get_osplatform(tls *TLS, __Value uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_osver = modcrt.NewProc(GoString(__ccgo_ts + 3958))
+var proc_get_osver = modcrt.NewProc(GoString(__ccgo_ts + 3968))
 
 // errno_t __attribute__((__cdecl__)) _get_osver(unsigned int *_Value);
 func X_get_osver(tls *TLS, __Value uintptr) (r Terrno_t) {
@@ -4810,7 +4821,7 @@ func X_get_osver(tls *TLS, __Value uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_winver = modcrt.NewProc(GoString(__ccgo_ts + 3969))
+var proc_get_winver = modcrt.NewProc(GoString(__ccgo_ts + 3979))
 
 // errno_t __attribute__((__cdecl__)) _get_winver(unsigned int *_Value);
 func X_get_winver(tls *TLS, __Value uintptr) (r Terrno_t) {
@@ -4821,7 +4832,7 @@ func X_get_winver(tls *TLS, __Value uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_winmajor = modcrt.NewProc(GoString(__ccgo_ts + 3981))
+var proc_get_winmajor = modcrt.NewProc(GoString(__ccgo_ts + 3991))
 
 // errno_t __attribute__((__cdecl__)) _get_winmajor(unsigned int *_Value);
 func X_get_winmajor(tls *TLS, __Value uintptr) (r Terrno_t) {
@@ -4832,7 +4843,7 @@ func X_get_winmajor(tls *TLS, __Value uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_get_winminor = modcrt.NewProc(GoString(__ccgo_ts + 3995))
+var proc_get_winminor = modcrt.NewProc(GoString(__ccgo_ts + 4005))
 
 // errno_t __attribute__((__cdecl__)) _get_winminor(unsigned int *_Value);
 func X_get_winminor(tls *TLS, __Value uintptr) (r Terrno_t) {
@@ -4843,7 +4854,7 @@ func X_get_winminor(tls *TLS, __Value uintptr) (r Terrno_t) {
 	return Terrno_t(r0)
 }
 
-var proc_Exit = modcrt.NewProc(GoString(__ccgo_ts + 4009))
+var proc_Exit = modcrt.NewProc(GoString(__ccgo_ts + 4019))
 
 // void __attribute__((__cdecl__)) _Exit(int) __attribute__ ((__noreturn__));
 func X_Exit(tls *TLS, _0 int32) {
@@ -4853,7 +4864,7 @@ func X_Exit(tls *TLS, _0 int32) {
 	}
 }
 
-var proc_abs64 = modcrt.NewProc(GoString(__ccgo_ts + 4015))
+var proc_abs64 = modcrt.NewProc(GoString(__ccgo_ts + 4025))
 
 // long long __attribute__((__cdecl__)) _abs64( long long);
 func X_abs64(tls *TLS, _x int64) (r int64) {
@@ -4864,7 +4875,7 @@ func X_abs64(tls *TLS, _x int64) (r int64) {
 	return int64(r0)
 }
 
-var proc_atof_l = modcrt.NewProc(GoString(__ccgo_ts + 4022))
+var proc_atof_l = modcrt.NewProc(GoString(__ccgo_ts + 4032))
 
 // double __attribute__((__cdecl__)) _atof_l(const char *_String,_locale_t _Locale);
 func X_atof_l(tls *TLS, __String uintptr, __Locale T_locale_t) (r float64) {
@@ -4875,7 +4886,7 @@ func X_atof_l(tls *TLS, __String uintptr, __Locale T_locale_t) (r float64) {
 	return float64(r0)
 }
 
-var proc_atoi_l = modcrt.NewProc(GoString(__ccgo_ts + 4030))
+var proc_atoi_l = modcrt.NewProc(GoString(__ccgo_ts + 4040))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoi_l(const char *_Str,_locale_t _Locale);
 func X_atoi_l(tls *TLS, __Str uintptr, __Locale T_locale_t) (r int32) {
@@ -4886,7 +4897,7 @@ func X_atoi_l(tls *TLS, __Str uintptr, __Locale T_locale_t) (r int32) {
 	return int32(r0)
 }
 
-var proc_atol_l = modcrt.NewProc(GoString(__ccgo_ts + 4038))
+var proc_atol_l = modcrt.NewProc(GoString(__ccgo_ts + 4048))
 
 // __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _atol_l(const char *_Str,_locale_t _Locale);
 func X_atol_l(tls *TLS, __Str uintptr, __Locale T_locale_t) (r int32) {
@@ -4897,7 +4908,7 @@ func X_atol_l(tls *TLS, __Str uintptr, __Locale T_locale_t) (r int32) {
 	return int32(r0)
 }
 
-var proc_byteswap_ushort = modcrt.NewProc(GoString(__ccgo_ts + 4046))
+var proc_byteswap_ushort = modcrt.NewProc(GoString(__ccgo_ts + 4056))
 
 // unsigned short __attribute__((__cdecl__)) _byteswap_ushort(unsigned short _Short);
 func X_byteswap_ushort(tls *TLS, __Short uint16) (r uint16) {
@@ -4908,7 +4919,7 @@ func X_byteswap_ushort(tls *TLS, __Short uint16) (r uint16) {
 	return uint16(r0)
 }
 
-var proc_itoa = modcrt.NewProc(GoString(__ccgo_ts + 4063))
+var proc_itoa = modcrt.NewProc(GoString(__ccgo_ts + 4073))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _itoa(int _Value,char *_Dest,int _Radix);
 func X_itoa(tls *TLS, __Value int32, __Dest uintptr, __Radix int32) (r uintptr) {
@@ -4919,7 +4930,7 @@ func X_itoa(tls *TLS, __Value int32, __Dest uintptr, __Radix int32) (r uintptr) 
 	return uintptr(r0)
 }
 
-var proc_i64toa = modcrt.NewProc(GoString(__ccgo_ts + 4069))
+var proc_i64toa = modcrt.NewProc(GoString(__ccgo_ts + 4079))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _i64toa( long long _Val,char *_DstBuf,int _Radix);
 func X_i64toa(tls *TLS, __Val int64, __DstBuf uintptr, __Radix int32) (r uintptr) {
@@ -4930,7 +4941,7 @@ func X_i64toa(tls *TLS, __Val int64, __DstBuf uintptr, __Radix int32) (r uintptr
 	return uintptr(r0)
 }
 
-var proc_ui64toa = modcrt.NewProc(GoString(__ccgo_ts + 4077))
+var proc_ui64toa = modcrt.NewProc(GoString(__ccgo_ts + 4087))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _ui64toa(unsigned long long _Val,char *_DstBuf,int _Radix);
 func X_ui64toa(tls *TLS, __Val uint64, __DstBuf uintptr, __Radix int32) (r uintptr) {
@@ -4941,7 +4952,7 @@ func X_ui64toa(tls *TLS, __Val uint64, __DstBuf uintptr, __Radix int32) (r uintp
 	return uintptr(r0)
 }
 
-var proc_atoi64 = modcrt.NewProc(GoString(__ccgo_ts + 4086))
+var proc_atoi64 = modcrt.NewProc(GoString(__ccgo_ts + 4096))
 
 // __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _atoi64(const char *_String);
 func X_atoi64(tls *TLS, __String uintptr) (r int64) {
@@ -4952,7 +4963,7 @@ func X_atoi64(tls *TLS, __String uintptr) (r int64) {
 	return int64(r0)
 }
 
-var proc_atoi64_l = modcrt.NewProc(GoString(__ccgo_ts + 4094))
+var proc_atoi64_l = modcrt.NewProc(GoString(__ccgo_ts + 4104))
 
 // __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _atoi64_l(const char *_String,_locale_t _Locale);
 func X_atoi64_l(tls *TLS, __String uintptr, __Locale T_locale_t) (r int64) {
@@ -4963,7 +4974,7 @@ func X_atoi64_l(tls *TLS, __String uintptr, __Locale T_locale_t) (r int64) {
 	return int64(r0)
 }
 
-var proc_strtoi64 = modcrt.NewProc(GoString(__ccgo_ts + 4104))
+var proc_strtoi64 = modcrt.NewProc(GoString(__ccgo_ts + 4114))
 
 // __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _strtoi64(const char *_String,char **_EndPtr,int _Radix);
 func X_strtoi64(tls *TLS, __String uintptr, __EndPtr uintptr, __Radix int32) (r int64) {
@@ -4974,7 +4985,7 @@ func X_strtoi64(tls *TLS, __String uintptr, __EndPtr uintptr, __Radix int32) (r 
 	return int64(r0)
 }
 
-var proc_strtoi64_l = modcrt.NewProc(GoString(__ccgo_ts + 4114))
+var proc_strtoi64_l = modcrt.NewProc(GoString(__ccgo_ts + 4124))
 
 // __attribute__ ((__dllimport__)) long long __attribute__((__cdecl__)) _strtoi64_l(const char *_String,char **_EndPtr,int _Radix,_locale_t _Locale);
 func X_strtoi64_l(tls *TLS, __String uintptr, __EndPtr uintptr, __Radix int32, __Locale T_locale_t) (r int64) {
@@ -4985,7 +4996,7 @@ func X_strtoi64_l(tls *TLS, __String uintptr, __EndPtr uintptr, __Radix int32, _
 	return int64(r0)
 }
 
-var proc_strtoui64 = modcrt.NewProc(GoString(__ccgo_ts + 4126))
+var proc_strtoui64 = modcrt.NewProc(GoString(__ccgo_ts + 4136))
 
 // __attribute__ ((__dllimport__)) unsigned long long __attribute__((__cdecl__)) _strtoui64(const char *_String,char **_EndPtr,int _Radix);
 func X_strtoui64(tls *TLS, __String uintptr, __EndPtr uintptr, __Radix int32) (r uint64) {
@@ -4996,7 +5007,7 @@ func X_strtoui64(tls *TLS, __String uintptr, __EndPtr uintptr, __Radix int32) (r
 	return uint64(r0)
 }
 
-var proc_strtoui64_l = modcrt.NewProc(GoString(__ccgo_ts + 4137))
+var proc_strtoui64_l = modcrt.NewProc(GoString(__ccgo_ts + 4147))
 
 // __attribute__ ((__dllimport__)) unsigned long long __attribute__((__cdecl__)) _strtoui64_l(const char *_String,char **_EndPtr,int _Radix,_locale_t _Locale);
 func X_strtoui64_l(tls *TLS, __String uintptr, __EndPtr uintptr, __Radix int32, __Locale T_locale_t) (r uint64) {
@@ -5007,7 +5018,7 @@ func X_strtoui64_l(tls *TLS, __String uintptr, __EndPtr uintptr, __Radix int32, 
 	return uint64(r0)
 }
 
-var proc_ltoa = modcrt.NewProc(GoString(__ccgo_ts + 4150))
+var proc_ltoa = modcrt.NewProc(GoString(__ccgo_ts + 4160))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _ltoa(long _Value,char *_Dest,int _Radix);
 func X_ltoa(tls *TLS, __Value int32, __Dest uintptr, __Radix int32) (r uintptr) {
@@ -5018,7 +5029,7 @@ func X_ltoa(tls *TLS, __Value int32, __Dest uintptr, __Radix int32) (r uintptr) 
 	return uintptr(r0)
 }
 
-var proc_mblen_l = modcrt.NewProc(GoString(__ccgo_ts + 4156))
+var proc_mblen_l = modcrt.NewProc(GoString(__ccgo_ts + 4166))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _mblen_l(const char *_Ch,size_t _MaxCount,_locale_t _Locale);
 func X_mblen_l(tls *TLS, __Ch uintptr, __MaxCount Tsize_t, __Locale T_locale_t) (r int32) {
@@ -5029,7 +5040,7 @@ func X_mblen_l(tls *TLS, __Ch uintptr, __MaxCount Tsize_t, __Locale T_locale_t) 
 	return int32(r0)
 }
 
-var proc_mbstrlen = modcrt.NewProc(GoString(__ccgo_ts + 4165))
+var proc_mbstrlen = modcrt.NewProc(GoString(__ccgo_ts + 4175))
 
 // __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrlen(const char *_Str);
 func X_mbstrlen(tls *TLS, __Str uintptr) (r Tsize_t) {
@@ -5040,7 +5051,7 @@ func X_mbstrlen(tls *TLS, __Str uintptr) (r Tsize_t) {
 	return Tsize_t(r0)
 }
 
-var proc_mbstrlen_l = modcrt.NewProc(GoString(__ccgo_ts + 4175))
+var proc_mbstrlen_l = modcrt.NewProc(GoString(__ccgo_ts + 4185))
 
 // __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrlen_l(const char *_Str,_locale_t _Locale);
 func X_mbstrlen_l(tls *TLS, __Str uintptr, __Locale T_locale_t) (r Tsize_t) {
@@ -5051,7 +5062,7 @@ func X_mbstrlen_l(tls *TLS, __Str uintptr, __Locale T_locale_t) (r Tsize_t) {
 	return Tsize_t(r0)
 }
 
-var proc_mbstrnlen = modcrt.NewProc(GoString(__ccgo_ts + 4187))
+var proc_mbstrnlen = modcrt.NewProc(GoString(__ccgo_ts + 4197))
 
 // __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrnlen(const char *_Str,size_t _MaxCount);
 func X_mbstrnlen(tls *TLS, __Str uintptr, __MaxCount Tsize_t) (r Tsize_t) {
@@ -5062,7 +5073,7 @@ func X_mbstrnlen(tls *TLS, __Str uintptr, __MaxCount Tsize_t) (r Tsize_t) {
 	return Tsize_t(r0)
 }
 
-var proc_mbstrnlen_l = modcrt.NewProc(GoString(__ccgo_ts + 4198))
+var proc_mbstrnlen_l = modcrt.NewProc(GoString(__ccgo_ts + 4208))
 
 // __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstrnlen_l(const char *_Str,size_t _MaxCount,_locale_t _Locale);
 func X_mbstrnlen_l(tls *TLS, __Str uintptr, __MaxCount Tsize_t, __Locale T_locale_t) (r Tsize_t) {
@@ -5073,7 +5084,7 @@ func X_mbstrnlen_l(tls *TLS, __Str uintptr, __MaxCount Tsize_t, __Locale T_local
 	return Tsize_t(r0)
 }
 
-var proc_mbtowc_l = modcrt.NewProc(GoString(__ccgo_ts + 4211))
+var proc_mbtowc_l = modcrt.NewProc(GoString(__ccgo_ts + 4221))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _mbtowc_l(wchar_t * __restrict__ _DstCh,const char * __restrict__ _SrcCh,size_t _SrcSizeInBytes,_locale_t _Locale);
 func X_mbtowc_l(tls *TLS, __DstCh uintptr, __SrcCh uintptr, __SrcSizeInBytes Tsize_t, __Locale T_locale_t) (r int32) {
@@ -5084,7 +5095,7 @@ func X_mbtowc_l(tls *TLS, __DstCh uintptr, __SrcCh uintptr, __SrcSizeInBytes Tsi
 	return int32(r0)
 }
 
-var proc_mbstowcs_l = modcrt.NewProc(GoString(__ccgo_ts + 4221))
+var proc_mbstowcs_l = modcrt.NewProc(GoString(__ccgo_ts + 4231))
 
 // __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _mbstowcs_l(wchar_t * __restrict__ _Dest,const char * __restrict__ _Source,size_t _MaxCount,_locale_t _Locale);
 func X_mbstowcs_l(tls *TLS, __Dest uintptr, __Source uintptr, __MaxCount Tsize_t, __Locale T_locale_t) (r Tsize_t) {
@@ -5095,7 +5106,7 @@ func X_mbstowcs_l(tls *TLS, __Dest uintptr, __Source uintptr, __MaxCount Tsize_t
 	return Tsize_t(r0)
 }
 
-var procmkstemp = modcrt.NewProc(GoString(__ccgo_ts + 4233))
+var procmkstemp = modcrt.NewProc(GoString(__ccgo_ts + 4243))
 
 // int __attribute__((__cdecl__)) mkstemp(char *template_name);
 func Xmkstemp(tls *TLS, _template_name uintptr) (r int32) {
@@ -5106,7 +5117,7 @@ func Xmkstemp(tls *TLS, _template_name uintptr) (r int32) {
 	return int32(r0)
 }
 
-var proc_set_error_mode = modcrt.NewProc(GoString(__ccgo_ts + 4241))
+var proc_set_error_mode = modcrt.NewProc(GoString(__ccgo_ts + 4251))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _set_error_mode(int _Mode);
 func X_set_error_mode(tls *TLS, __Mode int32) (r int32) {
@@ -5117,7 +5128,7 @@ func X_set_error_mode(tls *TLS, __Mode int32) (r int32) {
 	return int32(r0)
 }
 
-var procsrand = modcrt.NewProc(GoString(__ccgo_ts + 4257))
+var procsrand = modcrt.NewProc(GoString(__ccgo_ts + 4267))
 
 // void __attribute__((__cdecl__)) srand(unsigned int _Seed);
 func Xsrand(tls *TLS, __Seed uint32) {
@@ -5127,7 +5138,7 @@ func Xsrand(tls *TLS, __Seed uint32) {
 	}
 }
 
-var procstrtold = modcrt.NewProc(GoString(__ccgo_ts + 4263))
+var procstrtold = modcrt.NewProc(GoString(__ccgo_ts + 4273))
 
 // long double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) strtold(const char * __restrict__ , char ** __restrict__ );
 func Xstrtold(tls *TLS, _0 uintptr, _1 uintptr) (r float64) {
@@ -5138,7 +5149,7 @@ func Xstrtold(tls *TLS, _0 uintptr, _1 uintptr) (r float64) {
 	return float64(r0)
 }
 
-var proc__strtod = modcrt.NewProc(GoString(__ccgo_ts + 4271))
+var proc__strtod = modcrt.NewProc(GoString(__ccgo_ts + 4281))
 
 // extern double __attribute__((__cdecl__)) __attribute__ ((__nothrow__)) __strtod (const char * __restrict__ , char ** __restrict__);
 func X__strtod(tls *TLS, _0 uintptr, _1 uintptr) (r float64) {
@@ -5149,7 +5160,7 @@ func X__strtod(tls *TLS, _0 uintptr, _1 uintptr) (r float64) {
 	return float64(r0)
 }
 
-var proc__mingw_strtof = modcrt.NewProc(GoString(__ccgo_ts + 4280))
+var proc__mingw_strtof = modcrt.NewProc(GoString(__ccgo_ts + 4290))
 
 // float __attribute__((__cdecl__)) __mingw_strtof (const char * __restrict__, char ** __restrict__);
 func X__mingw_strtof(tls *TLS, _0 uintptr, _1 uintptr) (r float32) {
@@ -5160,7 +5171,7 @@ func X__mingw_strtof(tls *TLS, _0 uintptr, _1 uintptr) (r float32) {
 	return float32(r0)
 }
 
-var proc__mingw_strtold = modcrt.NewProc(GoString(__ccgo_ts + 4295))
+var proc__mingw_strtold = modcrt.NewProc(GoString(__ccgo_ts + 4305))
 
 // long double __attribute__((__cdecl__)) __mingw_strtold(const char * __restrict__, char ** __restrict__);
 func X__mingw_strtold(tls *TLS, _0 uintptr, _1 uintptr) (r float64) {
@@ -5171,7 +5182,7 @@ func X__mingw_strtold(tls *TLS, _0 uintptr, _1 uintptr) (r float64) {
 	return float64(r0)
 }
 
-var proc_strtod_l = modcrt.NewProc(GoString(__ccgo_ts + 4311))
+var proc_strtod_l = modcrt.NewProc(GoString(__ccgo_ts + 4321))
 
 // __attribute__ ((__dllimport__)) double __attribute__((__cdecl__)) _strtod_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,_locale_t _Locale);
 func X_strtod_l(tls *TLS, __Str uintptr, __EndPtr uintptr, __Locale T_locale_t) (r float64) {
@@ -5182,7 +5193,7 @@ func X_strtod_l(tls *TLS, __Str uintptr, __EndPtr uintptr, __Locale T_locale_t) 
 	return float64(r0)
 }
 
-var proc_strtol_l = modcrt.NewProc(GoString(__ccgo_ts + 4321))
+var proc_strtol_l = modcrt.NewProc(GoString(__ccgo_ts + 4331))
 
 // __attribute__ ((__dllimport__)) long __attribute__((__cdecl__)) _strtol_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
 func X_strtol_l(tls *TLS, __Str uintptr, __EndPtr uintptr, __Radix int32, __Locale T_locale_t) (r int32) {
@@ -5193,7 +5204,7 @@ func X_strtol_l(tls *TLS, __Str uintptr, __EndPtr uintptr, __Radix int32, __Loca
 	return int32(r0)
 }
 
-var proc_strtoul_l = modcrt.NewProc(GoString(__ccgo_ts + 4331))
+var proc_strtoul_l = modcrt.NewProc(GoString(__ccgo_ts + 4341))
 
 // __attribute__ ((__dllimport__)) unsigned long __attribute__((__cdecl__)) _strtoul_l(const char * __restrict__ _Str,char ** __restrict__ _EndPtr,int _Radix,_locale_t _Locale);
 func X_strtoul_l(tls *TLS, __Str uintptr, __EndPtr uintptr, __Radix int32, __Locale T_locale_t) (r uint32) {
@@ -5204,7 +5215,7 @@ func X_strtoul_l(tls *TLS, __Str uintptr, __EndPtr uintptr, __Radix int32, __Loc
 	return uint32(r0)
 }
 
-var proc_ultoa = modcrt.NewProc(GoString(__ccgo_ts + 4342))
+var proc_ultoa = modcrt.NewProc(GoString(__ccgo_ts + 4352))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _ultoa(unsigned long _Value,char *_Dest,int _Radix);
 func X_ultoa(tls *TLS, __Value uint32, __Dest uintptr, __Radix int32) (r uintptr) {
@@ -5215,7 +5226,7 @@ func X_ultoa(tls *TLS, __Value uint32, __Dest uintptr, __Radix int32) (r uintptr
 	return uintptr(r0)
 }
 
-var proc_wctomb_l = modcrt.NewProc(GoString(__ccgo_ts + 4349))
+var proc_wctomb_l = modcrt.NewProc(GoString(__ccgo_ts + 4359))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _wctomb_l(char *_MbCh,wchar_t _WCh,_locale_t _Locale);
 func X_wctomb_l(tls *TLS, __MbCh uintptr, __WCh Twchar_t, __Locale T_locale_t) (r int32) {
@@ -5226,7 +5237,7 @@ func X_wctomb_l(tls *TLS, __MbCh uintptr, __WCh Twchar_t, __Locale T_locale_t) (
 	return int32(r0)
 }
 
-var proc_wcstombs_l = modcrt.NewProc(GoString(__ccgo_ts + 4359))
+var proc_wcstombs_l = modcrt.NewProc(GoString(__ccgo_ts + 4369))
 
 // __attribute__ ((__dllimport__)) size_t __attribute__((__cdecl__)) _wcstombs_l(char * __restrict__ _Dest,const wchar_t * __restrict__ _Source,size_t _MaxCount,_locale_t _Locale);
 func X_wcstombs_l(tls *TLS, __Dest uintptr, __Source uintptr, __MaxCount Tsize_t, __Locale T_locale_t) (r Tsize_t) {
@@ -5237,7 +5248,7 @@ func X_wcstombs_l(tls *TLS, __Dest uintptr, __Source uintptr, __MaxCount Tsize_t
 	return Tsize_t(r0)
 }
 
-var proc_recalloc = modcrt.NewProc(GoString(__ccgo_ts + 4371))
+var proc_recalloc = modcrt.NewProc(GoString(__ccgo_ts + 4381))
 
 // __attribute__ ((__dllimport__)) void * __attribute__((__cdecl__)) _recalloc(void *_Memory,size_t _Count,size_t _Size);
 func X_recalloc(tls *TLS, __Memory uintptr, __Count Tsize_t, __Size Tsize_t) (r uintptr) {
@@ -5248,7 +5259,7 @@ func X_recalloc(tls *TLS, __Memory uintptr, __Count Tsize_t, __Size Tsize_t) (r 
 	return uintptr(r0)
 }
 
-var proc_aligned_free = modcrt.NewProc(GoString(__ccgo_ts + 4381))
+var proc_aligned_free = modcrt.NewProc(GoString(__ccgo_ts + 4391))
 
 // __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _aligned_free(void *_Memory);
 func X_aligned_free(tls *TLS, __Memory uintptr) {
@@ -5258,7 +5269,7 @@ func X_aligned_free(tls *TLS, __Memory uintptr) {
 	}
 }
 
-var proc_aligned_malloc = modcrt.NewProc(GoString(__ccgo_ts + 4395))
+var proc_aligned_malloc = modcrt.NewProc(GoString(__ccgo_ts + 4405))
 
 // __attribute__ ((__dllimport__)) void * __attribute__((__cdecl__)) _aligned_malloc(size_t _Size,size_t _Alignment);
 func X_aligned_malloc(tls *TLS, __Size Tsize_t, __Alignment Tsize_t) (r uintptr) {
@@ -5269,7 +5280,7 @@ func X_aligned_malloc(tls *TLS, __Size Tsize_t, __Alignment Tsize_t) (r uintptr)
 	return uintptr(r0)
 }
 
-var proc_aligned_offset_malloc = modcrt.NewProc(GoString(__ccgo_ts + 4411))
+var proc_aligned_offset_malloc = modcrt.NewProc(GoString(__ccgo_ts + 4421))
 
 // __attribute__ ((__dllimport__)) void * __attribute__((__cdecl__)) _aligned_offset_malloc(size_t _Size,size_t _Alignment,size_t _Offset);
 func X_aligned_offset_malloc(tls *TLS, __Size Tsize_t, __Alignment Tsize_t, __Offset Tsize_t) (r uintptr) {
@@ -5280,7 +5291,7 @@ func X_aligned_offset_malloc(tls *TLS, __Size Tsize_t, __Alignment Tsize_t, __Of
 	return uintptr(r0)
 }
 
-var proc_aligned_realloc = modcrt.NewProc(GoString(__ccgo_ts + 4434))
+var proc_aligned_realloc = modcrt.NewProc(GoString(__ccgo_ts + 4444))
 
 // __attribute__ ((__dllimport__)) void * __attribute__((__cdecl__)) _aligned_realloc(void *_Memory,size_t _Size,size_t _Alignment);
 func X_aligned_realloc(tls *TLS, __Memory uintptr, __Size Tsize_t, __Alignment Tsize_t) (r uintptr) {
@@ -5291,7 +5302,7 @@ func X_aligned_realloc(tls *TLS, __Memory uintptr, __Size Tsize_t, __Alignment T
 	return uintptr(r0)
 }
 
-var proc_aligned_recalloc = modcrt.NewProc(GoString(__ccgo_ts + 4451))
+var proc_aligned_recalloc = modcrt.NewProc(GoString(__ccgo_ts + 4461))
 
 // __attribute__ ((__dllimport__)) void * __attribute__((__cdecl__)) _aligned_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment);
 func X_aligned_recalloc(tls *TLS, __Memory uintptr, __Count Tsize_t, __Size Tsize_t, __Alignment Tsize_t) (r uintptr) {
@@ -5302,7 +5313,7 @@ func X_aligned_recalloc(tls *TLS, __Memory uintptr, __Count Tsize_t, __Size Tsiz
 	return uintptr(r0)
 }
 
-var proc_aligned_offset_realloc = modcrt.NewProc(GoString(__ccgo_ts + 4469))
+var proc_aligned_offset_realloc = modcrt.NewProc(GoString(__ccgo_ts + 4479))
 
 // __attribute__ ((__dllimport__)) void * __attribute__((__cdecl__)) _aligned_offset_realloc(void *_Memory,size_t _Size,size_t _Alignment,size_t _Offset);
 func X_aligned_offset_realloc(tls *TLS, __Memory uintptr, __Size Tsize_t, __Alignment Tsize_t, __Offset Tsize_t) (r uintptr) {
@@ -5313,7 +5324,7 @@ func X_aligned_offset_realloc(tls *TLS, __Memory uintptr, __Size Tsize_t, __Alig
 	return uintptr(r0)
 }
 
-var proc_aligned_offset_recalloc = modcrt.NewProc(GoString(__ccgo_ts + 4493))
+var proc_aligned_offset_recalloc = modcrt.NewProc(GoString(__ccgo_ts + 4503))
 
 // __attribute__ ((__dllimport__)) void * __attribute__((__cdecl__)) _aligned_offset_recalloc(void *_Memory,size_t _Count,size_t _Size,size_t _Alignment,size_t _Offset);
 func X_aligned_offset_recalloc(tls *TLS, __Memory uintptr, __Count Tsize_t, __Size Tsize_t, __Alignment Tsize_t, __Offset Tsize_t) (r uintptr) {
@@ -5324,7 +5335,7 @@ func X_aligned_offset_recalloc(tls *TLS, __Memory uintptr, __Count Tsize_t, __Si
 	return uintptr(r0)
 }
 
-var proc_putenv = modcrt.NewProc(GoString(__ccgo_ts + 4518))
+var proc_putenv = modcrt.NewProc(GoString(__ccgo_ts + 4528))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _putenv(const char *_EnvString);
 func X_putenv(tls *TLS, __EnvString uintptr) (r int32) {
@@ -5335,7 +5346,7 @@ func X_putenv(tls *TLS, __EnvString uintptr) (r int32) {
 	return int32(r0)
 }
 
-var proc_fullpath = modcrt.NewProc(GoString(__ccgo_ts + 4526))
+var proc_fullpath = modcrt.NewProc(GoString(__ccgo_ts + 4536))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _fullpath(char *_FullPath,const char *_Path,size_t _SizeInBytes);
 func X_fullpath(tls *TLS, __FullPath uintptr, __Path uintptr, __SizeInBytes Tsize_t) (r uintptr) {
@@ -5346,7 +5357,7 @@ func X_fullpath(tls *TLS, __FullPath uintptr, __Path uintptr, __SizeInBytes Tsiz
 	return uintptr(r0)
 }
 
-var proc_ecvt = modcrt.NewProc(GoString(__ccgo_ts + 4536))
+var proc_ecvt = modcrt.NewProc(GoString(__ccgo_ts + 4546))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign);
 func X_ecvt(tls *TLS, __Val float64, __NumOfDigits int32, __PtDec uintptr, __PtSign uintptr) (r uintptr) {
@@ -5357,7 +5368,7 @@ func X_ecvt(tls *TLS, __Val float64, __NumOfDigits int32, __PtDec uintptr, __PtS
 	return uintptr(r0)
 }
 
-var proc_fcvt = modcrt.NewProc(GoString(__ccgo_ts + 4542))
+var proc_fcvt = modcrt.NewProc(GoString(__ccgo_ts + 4552))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign);
 func X_fcvt(tls *TLS, __Val float64, __NumOfDec int32, __PtDec uintptr, __PtSign uintptr) (r uintptr) {
@@ -5368,7 +5379,7 @@ func X_fcvt(tls *TLS, __Val float64, __NumOfDec int32, __PtDec uintptr, __PtSign
 	return uintptr(r0)
 }
 
-var proc_gcvt = modcrt.NewProc(GoString(__ccgo_ts + 4548))
+var proc_gcvt = modcrt.NewProc(GoString(__ccgo_ts + 4558))
 
 // __attribute__ ((__dllimport__)) char * __attribute__((__cdecl__)) _gcvt(double _Val,int _NumOfDigits,char *_DstBuf);
 func X_gcvt(tls *TLS, __Val float64, __NumOfDigits int32, __DstBuf uintptr) (r uintptr) {
@@ -5379,7 +5390,7 @@ func X_gcvt(tls *TLS, __Val float64, __NumOfDigits int32, __DstBuf uintptr) (r u
 	return uintptr(r0)
 }
 
-var proc_atodbl = modcrt.NewProc(GoString(__ccgo_ts + 4554))
+var proc_atodbl = modcrt.NewProc(GoString(__ccgo_ts + 4564))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl(_CRT_DOUBLE *_Result,char *_Str);
 func X_atodbl(tls *TLS, __Result uintptr, __Str uintptr) (r int32) {
@@ -5390,7 +5401,7 @@ func X_atodbl(tls *TLS, __Result uintptr, __Str uintptr) (r int32) {
 	return int32(r0)
 }
 
-var proc_atoldbl = modcrt.NewProc(GoString(__ccgo_ts + 4562))
+var proc_atoldbl = modcrt.NewProc(GoString(__ccgo_ts + 4572))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl(_LDOUBLE *_Result,char *_Str);
 func X_atoldbl(tls *TLS, __Result uintptr, __Str uintptr) (r int32) {
@@ -5401,7 +5412,7 @@ func X_atoldbl(tls *TLS, __Result uintptr, __Str uintptr) (r int32) {
 	return int32(r0)
 }
 
-var proc_atoflt = modcrt.NewProc(GoString(__ccgo_ts + 4571))
+var proc_atoflt = modcrt.NewProc(GoString(__ccgo_ts + 4581))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt(_CRT_FLOAT *_Result,char *_Str);
 func X_atoflt(tls *TLS, __Result uintptr, __Str uintptr) (r int32) {
@@ -5412,7 +5423,7 @@ func X_atoflt(tls *TLS, __Result uintptr, __Str uintptr) (r int32) {
 	return int32(r0)
 }
 
-var proc_atodbl_l = modcrt.NewProc(GoString(__ccgo_ts + 4579))
+var proc_atodbl_l = modcrt.NewProc(GoString(__ccgo_ts + 4589))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atodbl_l(_CRT_DOUBLE *_Result,char *_Str,_locale_t _Locale);
 func X_atodbl_l(tls *TLS, __Result uintptr, __Str uintptr, __Locale T_locale_t) (r int32) {
@@ -5423,7 +5434,7 @@ func X_atodbl_l(tls *TLS, __Result uintptr, __Str uintptr, __Locale T_locale_t) 
 	return int32(r0)
 }
 
-var proc_atoldbl_l = modcrt.NewProc(GoString(__ccgo_ts + 4589))
+var proc_atoldbl_l = modcrt.NewProc(GoString(__ccgo_ts + 4599))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoldbl_l(_LDOUBLE *_Result,char *_Str,_locale_t _Locale);
 func X_atoldbl_l(tls *TLS, __Result uintptr, __Str uintptr, __Locale T_locale_t) (r int32) {
@@ -5434,7 +5445,7 @@ func X_atoldbl_l(tls *TLS, __Result uintptr, __Str uintptr, __Locale T_locale_t)
 	return int32(r0)
 }
 
-var proc_atoflt_l = modcrt.NewProc(GoString(__ccgo_ts + 4600))
+var proc_atoflt_l = modcrt.NewProc(GoString(__ccgo_ts + 4610))
 
 // __attribute__ ((__dllimport__)) int __attribute__((__cdecl__)) _atoflt_l(_CRT_FLOAT *_Result,char *_Str,_locale_t _Locale);
 func X_atoflt_l(tls *TLS, __Result uintptr, __Str uintptr, __Locale T_locale_t) (r int32) {
@@ -5445,7 +5456,7 @@ func X_atoflt_l(tls *TLS, __Result uintptr, __Str uintptr, __Locale T_locale_t) 
 	return int32(r0)
 }
 
-var proc_lrotl = modcrt.NewProc(GoString(__ccgo_ts + 4610))
+var proc_lrotl = modcrt.NewProc(GoString(__ccgo_ts + 4620))
 
 // unsigned long __attribute__((__cdecl__)) _lrotl(unsigned long,int);
 func X_lrotl(tls *TLS, _0 uint32, _1 int32) (r uint32) {
@@ -5456,7 +5467,7 @@ func X_lrotl(tls *TLS, _0 uint32, _1 int32) (r uint32) {
 	return uint32(r0)
 }
 
-var proc_lrotr = modcrt.NewProc(GoString(__ccgo_ts + 4617))
+var proc_lrotr = modcrt.NewProc(GoString(__ccgo_ts + 4627))
 
 // unsigned long __attribute__((__cdecl__)) _lrotr(unsigned long,int);
 func X_lrotr(tls *TLS, _0 uint32, _1 int32) (r uint32) {
@@ -5467,7 +5478,7 @@ func X_lrotr(tls *TLS, _0 uint32, _1 int32) (r uint32) {
 	return uint32(r0)
 }
 
-var proc_makepath = modcrt.NewProc(GoString(__ccgo_ts + 4624))
+var proc_makepath = modcrt.NewProc(GoString(__ccgo_ts + 4634))
 
 // __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _makepath(char *_Path,const char *_Drive,const char *_Dir,const char *_Filename,const char *_Ext);
 func X_makepath(tls *TLS, __Path uintptr, __Drive uintptr, __Dir uintptr, __Filename uintptr, __Ext uintptr) {
@@ -5477,7 +5488,7 @@ func X_makepath(tls *TLS, __Path uintptr, __Drive uintptr, __Dir uintptr, __File
 	}
 }
 
-var proc_onexit = modcrt.NewProc(GoString(__ccgo_ts + 4634))
+var proc_onexit = modcrt.NewProc(GoString(__ccgo_ts + 4644))
 
 // _onexit_t __attribute__((__cdecl__)) _onexit(_onexit_t _Func);
 func X_onexit(tls *TLS, __Func T_onexit_t) (r T_onexit_t) {
@@ -5488,7 +5499,7 @@ func X_onexit(tls *TLS, __Func T_onexit_t) (r T_onexit_t) {
 	return T_onexit_t(r0)
 }
 
-var proc_rotl64 = modcrt.NewProc(GoString(__ccgo_ts + 4642))
+var proc_rotl64 = modcrt.NewProc(GoString(__ccgo_ts + 4652))
 
 // unsigned long long __attribute__((__cdecl__)) _rotl64(unsigned long long _Val,int _Shift);
 func X_rotl64(tls *TLS, __Val uint64, __Shift int32) (r uint64) {
@@ -5499,7 +5510,7 @@ func X_rotl64(tls *TLS, __Val uint64, __Shift int32) (r uint64) {
 	return uint64(r0)
 }
 
-var proc_rotr64 = modcrt.NewProc(GoString(__ccgo_ts + 4650))
+var proc_rotr64 = modcrt.NewProc(GoString(__ccgo_ts + 4660))
 
 // unsigned long long __attribute__((__cdecl__)) _rotr64(unsigned long long Value,int Shift);
 func X_rotr64(tls *TLS, _Value uint64, _Shift int32) (r uint64) {
@@ -5510,7 +5521,7 @@ func X_rotr64(tls *TLS, _Value uint64, _Shift int32) (r uint64) {
 	return uint64(r0)
 }
 
-var proc_rotr = modcrt.NewProc(GoString(__ccgo_ts + 4658))
+var proc_rotr = modcrt.NewProc(GoString(__ccgo_ts + 4668))
 
 // unsigned int __attribute__((__cdecl__)) _rotr(unsigned int _Val,int _Shift);
 func X_rotr(tls *TLS, __Val uint32, __Shift int32) (r uint32) {
@@ -5521,7 +5532,7 @@ func X_rotr(tls *TLS, __Val uint32, __Shift int32) (r uint32) {
 	return uint32(r0)
 }
 
-var proc_rotl = modcrt.NewProc(GoString(__ccgo_ts + 4664))
+var proc_rotl = modcrt.NewProc(GoString(__ccgo_ts + 4674))
 
 // unsigned int __attribute__((__cdecl__)) _rotl(unsigned int _Val,int _Shift);
 func X_rotl(tls *TLS, __Val uint32, __Shift int32) (r uint32) {
@@ -5532,7 +5543,7 @@ func X_rotl(tls *TLS, __Val uint32, __Shift int32) (r uint32) {
 	return uint32(r0)
 }
 
-var proc_searchenv = modcrt.NewProc(GoString(__ccgo_ts + 4670))
+var proc_searchenv = modcrt.NewProc(GoString(__ccgo_ts + 4680))
 
 // __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _searchenv(const char *_Filename,const char *_EnvVar,char *_ResultPath);
 func X_searchenv(tls *TLS, __Filename uintptr, __EnvVar uintptr, __ResultPath uintptr) {
@@ -5542,7 +5553,7 @@ func X_searchenv(tls *TLS, __Filename uintptr, __EnvVar uintptr, __ResultPath ui
 	}
 }
 
-var proc_splitpath = modcrt.NewProc(GoString(__ccgo_ts + 4681))
+var proc_splitpath = modcrt.NewProc(GoString(__ccgo_ts + 4691))
 
 // __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _splitpath(const char *_FullPath,char *_Drive,char *_Dir,char *_Filename,char *_Ext);
 func X_splitpath(tls *TLS, __FullPath uintptr, __Drive uintptr, __Dir uintptr, __Filename uintptr, __Ext uintptr) {
@@ -5552,7 +5563,7 @@ func X_splitpath(tls *TLS, __FullPath uintptr, __Drive uintptr, __Dir uintptr, _
 	}
 }
 
-var proc_swab = modcrt.NewProc(GoString(__ccgo_ts + 4692))
+var proc_swab = modcrt.NewProc(GoString(__ccgo_ts + 4702))
 
 // __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _swab(char *_Buf1,char *_Buf2,int _SizeInBytes);
 func X_swab(tls *TLS, __Buf1 uintptr, __Buf2 uintptr, __SizeInBytes int32) {
@@ -5562,7 +5573,7 @@ func X_swab(tls *TLS, __Buf1 uintptr, __Buf2 uintptr, __SizeInBytes int32) {
 	}
 }
 
-var proc_beep = modcrt.NewProc(GoString(__ccgo_ts + 4698))
+var proc_beep = modcrt.NewProc(GoString(__ccgo_ts + 4708))
 
 // __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _beep(unsigned _Frequency,unsigned _Duration) __attribute__ ((__deprecated__));
 func X_beep(tls *TLS, __Frequency uint32, __Duration uint32) {
@@ -5572,7 +5583,7 @@ func X_beep(tls *TLS, __Frequency uint32, __Duration uint32) {
 	}
 }
 
-var proc_seterrormode = modcrt.NewProc(GoString(__ccgo_ts + 4704))
+var proc_seterrormode = modcrt.NewProc(GoString(__ccgo_ts + 4714))
 
 // __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _seterrormode(int _Mode) __attribute__ ((__deprecated__));
 func X_seterrormode(tls *TLS, __Mode int32) {
@@ -5582,7 +5593,7 @@ func X_seterrormode(tls *TLS, __Mode int32) {
 	}
 }
 
-var proc_sleep = modcrt.NewProc(GoString(__ccgo_ts + 4718))
+var proc_sleep = modcrt.NewProc(GoString(__ccgo_ts + 4728))
 
 // __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) _sleep(unsigned long _Duration) __attribute__ ((__deprecated__));
 func X_sleep(tls *TLS, __Duration uint32) {
@@ -5592,7 +5603,7 @@ func X_sleep(tls *TLS, __Duration uint32) {
 	}
 }
 
-var procecvt = modcrt.NewProc(GoString(__ccgo_ts + 4725))
+var procecvt = modcrt.NewProc(GoString(__ccgo_ts + 4735))
 
 // char * __attribute__((__cdecl__)) ecvt(double _Val,int _NumOfDigits,int *_PtDec,int *_PtSign);
 func Xecvt(tls *TLS, __Val float64, __NumOfDigits int32, __PtDec uintptr, __PtSign uintptr) (r uintptr) {
@@ -5603,7 +5614,7 @@ func Xecvt(tls *TLS, __Val float64, __NumOfDigits int32, __PtDec uintptr, __PtSi
 	return uintptr(r0)
 }
 
-var procfcvt = modcrt.NewProc(GoString(__ccgo_ts + 4730))
+var procfcvt = modcrt.NewProc(GoString(__ccgo_ts + 4740))
 
 // char * __attribute__((__cdecl__)) fcvt(double _Val,int _NumOfDec,int *_PtDec,int *_PtSign);
 func Xfcvt(tls *TLS, __Val float64, __NumOfDec int32, __PtDec uintptr, __PtSign uintptr) (r uintptr) {
@@ -5614,7 +5625,7 @@ func Xfcvt(tls *TLS, __Val float64, __NumOfDec int32, __PtDec uintptr, __PtSign 
 	return uintptr(r0)
 }
 
-var procgcvt = modcrt.NewProc(GoString(__ccgo_ts + 4735))
+var procgcvt = modcrt.NewProc(GoString(__ccgo_ts + 4745))
 
 // char * __attribute__((__cdecl__)) gcvt(double _Val,int _NumOfDigits,char *_DstBuf);
 func Xgcvt(tls *TLS, __Val float64, __NumOfDigits int32, __DstBuf uintptr) (r uintptr) {
@@ -5625,7 +5636,7 @@ func Xgcvt(tls *TLS, __Val float64, __NumOfDigits int32, __DstBuf uintptr) (r ui
 	return uintptr(r0)
 }
 
-var procitoa = modcrt.NewProc(GoString(__ccgo_ts + 4740))
+var procitoa = modcrt.NewProc(GoString(__ccgo_ts + 4750))
 
 // char * __attribute__((__cdecl__)) itoa(int _Val,char *_DstBuf,int _Radix);
 func Xitoa(tls *TLS, __Val int32, __DstBuf uintptr, __Radix int32) (r uintptr) {
@@ -5636,7 +5647,7 @@ func Xitoa(tls *TLS, __Val int32, __DstBuf uintptr, __Radix int32) (r uintptr) {
 	return uintptr(r0)
 }
 
-var procltoa = modcrt.NewProc(GoString(__ccgo_ts + 4745))
+var procltoa = modcrt.NewProc(GoString(__ccgo_ts + 4755))
 
 // char * __attribute__((__cdecl__)) ltoa(long _Val,char *_DstBuf,int _Radix);
 func Xltoa(tls *TLS, __Val int32, __DstBuf uintptr, __Radix int32) (r uintptr) {
@@ -5647,7 +5658,7 @@ func Xltoa(tls *TLS, __Val int32, __DstBuf uintptr, __Radix int32) (r uintptr) {
 	return uintptr(r0)
 }
 
-var procswab = modcrt.NewProc(GoString(__ccgo_ts + 4750))
+var procswab = modcrt.NewProc(GoString(__ccgo_ts + 4760))
 
 // void __attribute__((__cdecl__)) swab(char *_Buf1,char *_Buf2,int _SizeInBytes);
 func Xswab(tls *TLS, __Buf1 uintptr, __Buf2 uintptr, __SizeInBytes int32) {
@@ -5657,7 +5668,7 @@ func Xswab(tls *TLS, __Buf1 uintptr, __Buf2 uintptr, __SizeInBytes int32) {
 	}
 }
 
-var procultoa = modcrt.NewProc(GoString(__ccgo_ts + 4755))
+var procultoa = modcrt.NewProc(GoString(__ccgo_ts + 4765))
 
 // char * __attribute__((__cdecl__)) ultoa(unsigned long _Val,char *_Dstbuf,int _Radix);
 func Xultoa(tls *TLS, __Val uint32, __Dstbuf uintptr, __Radix int32) (r uintptr) {
@@ -5668,7 +5679,7 @@ func Xultoa(tls *TLS, __Val uint32, __Dstbuf uintptr, __Radix int32) (r uintptr)
 	return uintptr(r0)
 }
 
-var proconexit = modcrt.NewProc(GoString(__ccgo_ts + 4761))
+var proconexit = modcrt.NewProc(GoString(__ccgo_ts + 4771))
 
 // _onexit_t __attribute__((__cdecl__)) onexit( _onexit_t _Func);
 func Xonexit(tls *TLS, __Func T_onexit_t) (r T_onexit_t) {
@@ -5684,7 +5695,7 @@ type Tlldiv_t = struct {
 	Frem  int64
 }
 
-var procstrtoll = modcrt.NewProc(GoString(__ccgo_ts + 4768))
+var procstrtoll = modcrt.NewProc(GoString(__ccgo_ts + 4778))
 
 // long long __attribute__((__cdecl__)) strtoll(const char * __restrict__, char ** __restrict, int);
 func Xstrtoll(tls *TLS, _0 uintptr, _1 uintptr, _2 int32) (r int64) {
@@ -5695,7 +5706,7 @@ func Xstrtoll(tls *TLS, _0 uintptr, _1 uintptr, _2 int32) (r int64) {
 	return int64(r0)
 }
 
-var procatoll = modcrt.NewProc(GoString(__ccgo_ts + 4776))
+var procatoll = modcrt.NewProc(GoString(__ccgo_ts + 4786))
 
 // long long __attribute__((__cdecl__)) atoll (const char *);
 func Xatoll(tls *TLS, _0 uintptr) (r int64) {
@@ -5706,7 +5717,7 @@ func Xatoll(tls *TLS, _0 uintptr) (r int64) {
 	return int64(r0)
 }
 
-var procwtoll = modcrt.NewProc(GoString(__ccgo_ts + 4782))
+var procwtoll = modcrt.NewProc(GoString(__ccgo_ts + 4792))
 
 // long long __attribute__((__cdecl__)) wtoll (const wchar_t *);
 func Xwtoll(tls *TLS, _0 uintptr) (r int64) {
@@ -5717,7 +5728,7 @@ func Xwtoll(tls *TLS, _0 uintptr) (r int64) {
 	return int64(r0)
 }
 
-var proclltoa = modcrt.NewProc(GoString(__ccgo_ts + 4788))
+var proclltoa = modcrt.NewProc(GoString(__ccgo_ts + 4798))
 
 // char * __attribute__((__cdecl__)) lltoa (long long, char *, int);
 func Xlltoa(tls *TLS, _0 int64, _1 uintptr, _2 int32) (r uintptr) {
@@ -5728,7 +5739,7 @@ func Xlltoa(tls *TLS, _0 int64, _1 uintptr, _2 int32) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proculltoa = modcrt.NewProc(GoString(__ccgo_ts + 4794))
+var proculltoa = modcrt.NewProc(GoString(__ccgo_ts + 4804))
 
 // char * __attribute__((__cdecl__)) ulltoa (unsigned long long , char *, int);
 func Xulltoa(tls *TLS, _0 uint64, _1 uintptr, _2 int32) (r uintptr) {
@@ -5739,7 +5750,7 @@ func Xulltoa(tls *TLS, _0 uint64, _1 uintptr, _2 int32) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proclltow = modcrt.NewProc(GoString(__ccgo_ts + 4801))
+var proclltow = modcrt.NewProc(GoString(__ccgo_ts + 4811))
 
 // wchar_t * __attribute__((__cdecl__)) lltow (long long, wchar_t *, int);
 func Xlltow(tls *TLS, _0 int64, _1 uintptr, _2 int32) (r uintptr) {
@@ -5750,7 +5761,7 @@ func Xlltow(tls *TLS, _0 int64, _1 uintptr, _2 int32) (r uintptr) {
 	return uintptr(r0)
 }
 
-var proculltow = modcrt.NewProc(GoString(__ccgo_ts + 4807))
+var proculltow = modcrt.NewProc(GoString(__ccgo_ts + 4817))
 
 // wchar_t * __attribute__((__cdecl__)) ulltow (unsigned long long, wchar_t *, int);
 func Xulltow(tls *TLS, _0 uint64, _1 uintptr, _2 int32) (r uintptr) {
@@ -5771,4 +5782,4 @@ type T_heapinfo = T_HEAPINFO
 
 var __ccgo_ts = (*reflect.StringHeader)(unsafe.Pointer(&__ccgo_ts1)).Data
 
-var __ccgo_ts1 = "__iob_func\x00iswalpha\x00_iswalpha_l\x00iswupper\x00_iswupper_l\x00iswlower\x00_iswlower_l\x00iswdigit\x00_iswdigit_l\x00iswxdigit\x00_iswxdigit_l\x00iswspace\x00_iswspace_l\x00iswpunct\x00_iswpunct_l\x00iswalnum\x00_iswalnum_l\x00iswprint\x00_iswprint_l\x00iswgraph\x00_iswgraph_l\x00iswcntrl\x00_iswcntrl_l\x00iswascii\x00isleadbyte\x00_isleadbyte_l\x00towupper\x00_towupper_l\x00towlower\x00_towlower_l\x00iswctype\x00is_wctype\x00iswblank\x00_wgetcwd\x00_wgetdcwd\x00_wchdir\x00_wmkdir\x00_wrmdir\x00_waccess\x00_wchmod\x00_wcreat\x00_wfindfirst32\x00_wfindnext32\x00_wrename\x00_wmktemp\x00_wfindfirst32i64\x00_wfindfirst64i32\x00_wfindfirst64\x00_wfindnext32i64\x00_wfindnext64i32\x00_wfindnext64\x00_wsopen_s\x00_wsopen\x00_wsetlocale\x00_wexecl\x00_wexecle\x00_wexeclp\x00_wexeclpe\x00_wexecv\x00_wexecve\x00_wexecvp\x00_wexecvpe\x00_wspawnl\x00_wspawnle\x00_wspawnlp\x00_wspawnlpe\x00_wspawnv\x00_wspawnve\x00_wspawnvp\x00_wspawnvpe\x00_wsystem\x00_wstat32\x00_wstat32i64\x00_wstat64i32\x00_wstat64\x00_cgetws\x00_getwch\x00_getwche\x00_putwch\x00_ungetwch\x00_cputws\x00_cwprintf\x00_cwscanf\x00_cwscanf_l\x00_vcwprintf\x00_cwprintf_p\x00_vcwprintf_p\x00_cwprintf_l\x00_vcwprintf_l\x00_cwprintf_p_l\x00_vcwprintf_p_l\x00__mingw_swscanf\x00__mingw_wscanf\x00__mingw_vwscanf\x00__mingw_fwscanf\x00__mingw_fwprintf\x00__mingw_wprintf\x00__mingw_vwprintf\x00__mingw_snwprintf\x00__mingw_swprintf\x00__mingw_vswprintf\x00__ms_swscanf\x00__ms_wscanf\x00__ms_fwscanf\x00__ms_fwprintf\x00__ms_wprintf\x00__ms_vfwprintf\x00__ms_vwprintf\x00__ms_swprintf\x00__ms_vswprintf\x00_wfsopen\x00fgetwc\x00_fgetwchar\x00fputwc\x00_fputwchar\x00getwc\x00getwchar\x00putwc\x00putwchar\x00ungetwc\x00fgetws\x00fputws\x00_getws\x00_putws\x00_scwprintf\x00_swprintf_l\x00_swprintf_c\x00_vswprintf_c\x00_fwprintf_p\x00_wprintf_p\x00_vfwprintf_p\x00_vwprintf_p\x00_swprintf_p\x00_vswprintf_p\x00_scwprintf_p\x00_vscwprintf_p\x00_wprintf_l\x00_wprintf_p_l\x00_vwprintf_l\x00_vwprintf_p_l\x00_fwprintf_l\x00_fwprintf_p_l\x00_vfwprintf_l\x00_vfwprintf_p_l\x00_swprintf_c_l\x00_swprintf_p_l\x00_vswprintf_c_l\x00_vswprintf_p_l\x00_scwprintf_l\x00_scwprintf_p_l\x00_vscwprintf_p_l\x00_snwprintf_l\x00_vsnwprintf_l\x00_swprintf\x00_vswprintf\x00__swprintf_l\x00_vswprintf_l\x00__vswprintf_l\x00_wtempnam\x00_vscwprintf\x00_vscwprintf_l\x00_fwscanf_l\x00_swscanf_l\x00_snwscanf\x00_snwscanf_l\x00_wscanf_l\x00_wfdopen\x00_wfopen\x00_wfreopen\x00_wperror\x00_wpopen\x00_wremove\x00_wtmpnam\x00_itow\x00_ltow\x00_ultow\x00_wcstod_l\x00__mingw_wcstod\x00__mingw_wcstof\x00__mingw_wcstold\x00wcstold\x00wcstol\x00_wcstol_l\x00wcstoul\x00_wcstoul_l\x00_wtof\x00_wtof_l\x00_wtoi_l\x00_wtol\x00_wtol_l\x00_i64tow\x00_ui64tow\x00_wtoi64\x00_wtoi64_l\x00_wcstoi64\x00_wcstoi64_l\x00_wcstoui64\x00_wcstoui64_l\x00_wfullpath\x00_wmakepath\x00_wsearchenv\x00_wsplitpath\x00_wcsdup\x00wcscat\x00wcscspn\x00wcsnlen\x00wcsncat\x00wcsncpy\x00_wcsncpy_l\x00wcspbrk\x00wcsrchr\x00wcsspn\x00wcsstr\x00wcstok\x00_wcserror\x00__wcserror\x00_wcsicmp_l\x00_wcsnicmp_l\x00_wcsnset\x00_wcsrev\x00_wcsset\x00_wcslwr\x00_wcslwr_l\x00_wcsupr\x00_wcsupr_l\x00wcsxfrm\x00_wcsxfrm_l\x00wcscoll\x00_wcscoll_l\x00_wcsicoll\x00_wcsicoll_l\x00_wcsncoll\x00_wcsncoll_l\x00_wcsnicoll\x00_wcsnicoll_l\x00wcsdup\x00wcsnicmp\x00wcsnset\x00wcsrev\x00wcsset\x00wcslwr\x00wcsupr\x00wcsicoll\x00_wasctime\x00_wasctime_s\x00_wctime32\x00_wctime32_s\x00wcsftime\x00_wcsftime_l\x00_wstrdate\x00_wstrdate_s\x00_wstrtime\x00_wstrtime_s\x00_wctime64\x00_wctime64_s\x00_wctime\x00_wctime_s\x00btowc\x00mbrlen\x00mbrtowc\x00mbsrtowcs\x00wctob\x00wmemset\x00wmemchr\x00wmemcmp\x00wmemcpy\x00wmempcpy\x00wmemmove\x00fwide\x00mbsinit\x00wcstoll\x00wcstoull\x00__mingw_str_wide_utf8\x00__mingw_str_utf8_wide\x00__mingw_str_free\x00_memccpy\x00_memicmp\x00_memicmp_l\x00memcpy_s\x00mempcpy\x00memccpy\x00memicmp\x00_strset\x00_strset_l\x00strnlen\x00_strcmpi\x00_stricmp_l\x00strcoll\x00_strcoll_l\x00_stricoll\x00_stricoll_l\x00_strncoll\x00_strncoll_l\x00_strnicoll\x00_strnicoll_l\x00_strerror\x00_strlwr\x00strlwr_l\x00strncat\x00_strnicmp_l\x00_strnset\x00_strnset_l\x00_strrev\x00strtok\x00strtok_r\x00_strupr\x00_strupr_l\x00strxfrm\x00_strxfrm_l\x00strcmpi\x00stricmp\x00strlwr\x00strnicmp\x00strncasecmp\x00strnset\x00strrev\x00strset\x00strupr\x00_get_daylight\x00_get_dstbias\x00_get_timezone\x00_get_tzname\x00asctime\x00asctime_s\x00_ctime32\x00_ctime32_s\x00clock\x00_difftime32\x00_gmtime32\x00_gmtime32_s\x00_localtime32\x00_localtime32_s\x00_strftime_l\x00_strdate\x00_strdate_s\x00_strtime\x00_strtime_s\x00_time32\x00_mktime32\x00_mkgmtime32\x00_tzset\x00_difftime64\x00_ctime64\x00_ctime64_s\x00_gmtime64_s\x00_localtime64_s\x00_mkgmtime64\x00_getsystime\x00_setsystime\x00mingw_gettimeofday\x00___mb_cur_max_func\x00_set_purecall_handler\x00_get_purecall_handler\x00_set_invalid_parameter_handler\x00_get_invalid_parameter_handler\x00_set_errno\x00_get_errno\x00__doserrno\x00_set_doserrno\x00_get_doserrno\x00__p___argv\x00__p__fmode\x00_get_pgmptr\x00_get_wpgmptr\x00_set_fmode\x00_get_fmode\x00_get_osplatform\x00_get_osver\x00_get_winver\x00_get_winmajor\x00_get_winminor\x00_Exit\x00_abs64\x00_atof_l\x00_atoi_l\x00_atol_l\x00_byteswap_ushort\x00_itoa\x00_i64toa\x00_ui64toa\x00_atoi64\x00_atoi64_l\x00_strtoi64\x00_strtoi64_l\x00_strtoui64\x00_strtoui64_l\x00_ltoa\x00_mblen_l\x00_mbstrlen\x00_mbstrlen_l\x00_mbstrnlen\x00_mbstrnlen_l\x00_mbtowc_l\x00_mbstowcs_l\x00mkstemp\x00_set_error_mode\x00srand\x00strtold\x00__strtod\x00__mingw_strtof\x00__mingw_strtold\x00_strtod_l\x00_strtol_l\x00_strtoul_l\x00_ultoa\x00_wctomb_l\x00_wcstombs_l\x00_recalloc\x00_aligned_free\x00_aligned_malloc\x00_aligned_offset_malloc\x00_aligned_realloc\x00_aligned_recalloc\x00_aligned_offset_realloc\x00_aligned_offset_recalloc\x00_putenv\x00_fullpath\x00_ecvt\x00_fcvt\x00_gcvt\x00_atodbl\x00_atoldbl\x00_atoflt\x00_atodbl_l\x00_atoldbl_l\x00_atoflt_l\x00_lrotl\x00_lrotr\x00_makepath\x00_onexit\x00_rotl64\x00_rotr64\x00_rotr\x00_rotl\x00_searchenv\x00_splitpath\x00_swab\x00_beep\x00_seterrormode\x00_sleep\x00ecvt\x00fcvt\x00gcvt\x00itoa\x00ltoa\x00swab\x00ultoa\x00onexit\x00strtoll\x00atoll\x00wtoll\x00lltoa\x00ulltoa\x00lltow\x00ulltow\x00"
+var __ccgo_ts1 = "__iob_func\x00iswalpha\x00_iswalpha_l\x00iswupper\x00_iswupper_l\x00iswlower\x00_iswlower_l\x00iswdigit\x00_iswdigit_l\x00iswxdigit\x00_iswxdigit_l\x00iswspace\x00_iswspace_l\x00iswpunct\x00_iswpunct_l\x00iswalnum\x00_iswalnum_l\x00iswprint\x00_iswprint_l\x00iswgraph\x00_iswgraph_l\x00iswcntrl\x00_iswcntrl_l\x00iswascii\x00isleadbyte\x00_isleadbyte_l\x00towupper\x00_towupper_l\x00towlower\x00_towlower_l\x00iswctype\x00is_wctype\x00iswblank\x00_wgetcwd\x00_wgetdcwd\x00_wchdir\x00_wmkdir\x00_wrmdir\x00_waccess\x00_wchmod\x00_wcreat\x00_wfindfirst32\x00_wfindnext32\x00_wrename\x00_wmktemp\x00_wfindfirst32i64\x00_wfindfirst64i32\x00_wfindfirst64\x00_wfindnext32i64\x00_wfindnext64i32\x00_wfindnext64\x00_wsopen_s\x00_wsopen\x00_wsetlocale\x00_wexecl\x00_wexecle\x00_wexeclp\x00_wexeclpe\x00_wexecv\x00_wexecve\x00_wexecvp\x00_wexecvpe\x00_wspawnl\x00_wspawnle\x00_wspawnlp\x00_wspawnlpe\x00_wspawnv\x00_wspawnve\x00_wspawnvp\x00_wspawnvpe\x00_wsystem\x00_wstat32\x00_wstat32i64\x00_wstat64i32\x00_wstat64\x00_cgetws\x00_getwch\x00_getwche\x00_putwch\x00_ungetwch\x00_cputws\x00_cwprintf\x00_cwscanf\x00_cwscanf_l\x00_vcwprintf\x00_cwprintf_p\x00_vcwprintf_p\x00_cwprintf_l\x00_vcwprintf_l\x00_cwprintf_p_l\x00_vcwprintf_p_l\x00__mingw_swscanf\x00__mingw_wscanf\x00__mingw_vwscanf\x00__mingw_fwscanf\x00__mingw_fwprintf\x00__mingw_wprintf\x00__mingw_vwprintf\x00__mingw_snwprintf\x00__mingw_swprintf\x00__mingw_vswprintf\x00__ms_swscanf\x00__ms_wscanf\x00__ms_fwscanf\x00__ms_fwprintf\x00__ms_wprintf\x00__ms_vfwprintf\x00__ms_vwprintf\x00__ms_swprintf\x00__ms_vswprintf\x00_wfsopen\x00fgetwc\x00_fgetwchar\x00fputwc\x00_fputwchar\x00getwc\x00getwchar\x00putwc\x00putwchar\x00ungetwc\x00fgetws\x00fputws\x00_getws\x00_putws\x00_scwprintf\x00_swprintf_l\x00_swprintf_c\x00_vswprintf_c\x00_fwprintf_p\x00_wprintf_p\x00_vfwprintf_p\x00_vwprintf_p\x00_swprintf_p\x00_vswprintf_p\x00_scwprintf_p\x00_vscwprintf_p\x00_wprintf_l\x00_wprintf_p_l\x00_vwprintf_l\x00_vwprintf_p_l\x00_fwprintf_l\x00_fwprintf_p_l\x00_vfwprintf_l\x00_vfwprintf_p_l\x00_swprintf_c_l\x00_swprintf_p_l\x00_vswprintf_c_l\x00_vswprintf_p_l\x00_scwprintf_l\x00_scwprintf_p_l\x00_vscwprintf_p_l\x00_snwprintf_l\x00_vsnwprintf_l\x00_swprintf\x00_vswprintf\x00__swprintf_l\x00_vswprintf_l\x00__vswprintf_l\x00_wtempnam\x00_vscwprintf\x00_vscwprintf_l\x00_fwscanf_l\x00_swscanf_l\x00_snwscanf\x00_snwscanf_l\x00_wscanf_l\x00_wfdopen\x00_wfopen\x00_wfreopen\x00_wperror\x00_wpopen\x00_wremove\x00_wtmpnam\x00_itow\x00_ltow\x00_ultow\x00_wcstod_l\x00__mingw_wcstod\x00__mingw_wcstof\x00__mingw_wcstold\x00wcstold\x00wcstol\x00_wcstol_l\x00wcstoul\x00_wcstoul_l\x00_wtof\x00_wtof_l\x00_wtoi_l\x00_wtol\x00_wtol_l\x00_i64tow\x00_ui64tow\x00_wtoi64\x00_wtoi64_l\x00_wcstoi64\x00_wcstoi64_l\x00_wcstoui64\x00_wcstoui64_l\x00_wfullpath\x00_wmakepath\x00_wsearchenv\x00_wsplitpath\x00_wcsdup\x00wcscat\x00wcscspn\x00wcsnlen\x00wcsncat\x00wcsncpy\x00_wcsncpy_l\x00wcspbrk\x00wcsrchr\x00wcsspn\x00wcsstr\x00wcstok\x00_wcserror\x00__wcserror\x00_wcsicmp_l\x00_wcsnicmp_l\x00_wcsnset\x00_wcsrev\x00_wcsset\x00_wcslwr\x00_wcslwr_l\x00_wcsupr\x00_wcsupr_l\x00wcsxfrm\x00_wcsxfrm_l\x00wcscoll\x00_wcscoll_l\x00_wcsicoll\x00_wcsicoll_l\x00_wcsncoll\x00_wcsncoll_l\x00_wcsnicoll\x00_wcsnicoll_l\x00wcsdup\x00wcsnicmp\x00wcsnset\x00wcsrev\x00wcsset\x00wcslwr\x00wcsupr\x00wcsicoll\x00_wasctime\x00_wasctime_s\x00_wctime32\x00_wctime32_s\x00wcsftime\x00_wcsftime_l\x00_wstrdate\x00_wstrdate_s\x00_wstrtime\x00_wstrtime_s\x00_wctime64\x00_wctime64_s\x00_wctime\x00_wctime_s\x00btowc\x00mbrlen\x00mbrtowc\x00mbsrtowcs\x00wctob\x00wmemset\x00wmemchr\x00wmemcmp\x00wmemcpy\x00wmempcpy\x00wmemmove\x00fwide\x00mbsinit\x00wcstoll\x00wcstoull\x00__mingw_str_wide_utf8\x00__mingw_str_utf8_wide\x00__mingw_str_free\x00_memccpy\x00_memicmp\x00_memicmp_l\x00memcpy_s\x00mempcpy\x00memccpy\x00memicmp\x00_strset\x00_strset_l\x00strnlen\x00_strcmpi\x00_stricmp_l\x00strcoll\x00_strcoll_l\x00_stricoll\x00_stricoll_l\x00_strncoll\x00_strncoll_l\x00_strnicoll\x00_strnicoll_l\x00_strerror\x00_strlwr\x00strlwr_l\x00strncat\x00_strnicmp\x00_strnicmp_l\x00_strnset\x00_strnset_l\x00_strrev\x00strtok\x00strtok_r\x00_strupr\x00_strupr_l\x00strxfrm\x00_strxfrm_l\x00strcmpi\x00stricmp\x00strlwr\x00strnicmp\x00strncasecmp\x00strnset\x00strrev\x00strset\x00strupr\x00_get_daylight\x00_get_dstbias\x00_get_timezone\x00_get_tzname\x00asctime\x00asctime_s\x00_ctime32\x00_ctime32_s\x00clock\x00_difftime32\x00_gmtime32\x00_gmtime32_s\x00_localtime32\x00_localtime32_s\x00_strftime_l\x00_strdate\x00_strdate_s\x00_strtime\x00_strtime_s\x00_time32\x00_mktime32\x00_mkgmtime32\x00_tzset\x00_difftime64\x00_ctime64\x00_ctime64_s\x00_gmtime64_s\x00_localtime64_s\x00_mkgmtime64\x00_getsystime\x00_setsystime\x00mingw_gettimeofday\x00___mb_cur_max_func\x00_set_purecall_handler\x00_get_purecall_handler\x00_set_invalid_parameter_handler\x00_get_invalid_parameter_handler\x00_set_errno\x00_get_errno\x00__doserrno\x00_set_doserrno\x00_get_doserrno\x00__p___argv\x00__p__fmode\x00_get_pgmptr\x00_get_wpgmptr\x00_set_fmode\x00_get_fmode\x00_get_osplatform\x00_get_osver\x00_get_winver\x00_get_winmajor\x00_get_winminor\x00_Exit\x00_abs64\x00_atof_l\x00_atoi_l\x00_atol_l\x00_byteswap_ushort\x00_itoa\x00_i64toa\x00_ui64toa\x00_atoi64\x00_atoi64_l\x00_strtoi64\x00_strtoi64_l\x00_strtoui64\x00_strtoui64_l\x00_ltoa\x00_mblen_l\x00_mbstrlen\x00_mbstrlen_l\x00_mbstrnlen\x00_mbstrnlen_l\x00_mbtowc_l\x00_mbstowcs_l\x00mkstemp\x00_set_error_mode\x00srand\x00strtold\x00__strtod\x00__mingw_strtof\x00__mingw_strtold\x00_strtod_l\x00_strtol_l\x00_strtoul_l\x00_ultoa\x00_wctomb_l\x00_wcstombs_l\x00_recalloc\x00_aligned_free\x00_aligned_malloc\x00_aligned_offset_malloc\x00_aligned_realloc\x00_aligned_recalloc\x00_aligned_offset_realloc\x00_aligned_offset_recalloc\x00_putenv\x00_fullpath\x00_ecvt\x00_fcvt\x00_gcvt\x00_atodbl\x00_atoldbl\x00_atoflt\x00_atodbl_l\x00_atoldbl_l\x00_atoflt_l\x00_lrotl\x00_lrotr\x00_makepath\x00_onexit\x00_rotl64\x00_rotr64\x00_rotr\x00_rotl\x00_searchenv\x00_splitpath\x00_swab\x00_beep\x00_seterrormode\x00_sleep\x00ecvt\x00fcvt\x00gcvt\x00itoa\x00ltoa\x00swab\x00ultoa\x00onexit\x00strtoll\x00atoll\x00wtoll\x00lltoa\x00ulltoa\x00lltow\x00ulltow\x00"
